@@ -1,0 +1,76 @@
+// @import 'assets/styles/mixins.scss';
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  border-top: 1px dashed #e4e9f0 ;
+  padding-top: 15px;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.large {
+  .name {
+    font-size: 16px;
+  }
+
+  .note {
+    font-size: 13px;
+  }
+
+  .actionData {
+    font-size: 20px;
+  }
+}
+
+.borderedBottom {
+  border-bottom: 1px dashed #e4e9f0;
+}
+
+.img {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 15px;
+  margin-bottom: 15px;
+
+  img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+.description {
+  flex-grow: 1;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
+.name {
+  font-size: rem(13);
+  font-weight: 700;
+}
+
+.note {
+  font-weight: 300;
+  font-size: rem(11);
+  margin-bottom: 0;
+  color: #b8beca;
+}
+
+.actionData {
+  margin-bottom: rem(15);
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: rem(16);
+}
+
+

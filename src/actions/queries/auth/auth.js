@@ -1,17 +1,12 @@
 export default {
-  login(login, password) {
+  login(username, password) {
     return `
       mutation {
-        loginAdmin(email: "${login}", password: "${password}") {
+        loginAdmin(username: "${username}", password: "${password}") {
           token
           user {
             _id
-            verification
-            mail
-            name
-            icon
-            iconThumbnail
-            playIds
+            username
           }
           userSession {
             _id
@@ -74,30 +69,11 @@ export default {
     mutation {
       checkUserSession(sessionId: "${session}") {
         _id
-        mail
-        name
-        icon
-        iconThumbnail
-        banner
-        verification
-        phoneVerified
-        phone
-        description
-        playIds
-        isTermsOfUse
-        isPrivacyPolicy
-        isLoanPolicy
-        isProhibitedItems
-        userAddress{
-          _id
-        }
-        location{
-          _id
-          coordinate{
-            latitude
-            longitude
-          }
-        }
+        username
+        isAdmin
+        status
+        firstTime
+        lastActive
       }
     }
     `

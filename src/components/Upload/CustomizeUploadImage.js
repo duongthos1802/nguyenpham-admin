@@ -20,7 +20,7 @@ const FileResult = ({ file, handleSetThumbnail, handleDeleteFile }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={file.url} className="ant-upload-list-item-image"/>
+            <img src={file.url} alt="" className="ant-upload-list-item-image"/>
           </a>
           <a
             target="_blank"

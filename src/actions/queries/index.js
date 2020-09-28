@@ -11,6 +11,8 @@ import categoryQuery from './category'
 
 // PRODUCT
 import productQuery from './product'
+// RECIPE
+import recipeQuery from './recipe'
 
 // SELECT
 import select from './select'
@@ -24,5 +26,7 @@ export default {
 
   categoryQuery,
 
-  productQuery
+  productQuery,
+
+  recipeQuery
 }

@@ -5,6 +5,7 @@ import enumType from '../../constants/enum'
 import { LoadableRoute } from '../../components'
 import { navCategories, resourceCategories } from './navCategories'
 import { navProduct, resourceProduct } from './navProduct'
+import { navRecipes, resourceRecipes } from './navRecipes'
 
 export const navAdmin = [
   {
@@ -45,7 +46,7 @@ export const navAdmin = [
     path: mainRoutes.ADMIN_CATEGORIES,
     isMenu: true,
     isProtected: true,
-    icon: 'icmn icmn-list-numbered',
+    icon: 'icmn icmn-menu',
     actionType: enumType.action.View,
     resource: resourceCategories.MENU_MANAGEMENT_CATEGORIES,
     key: 'categories',
@@ -66,6 +67,22 @@ export const navAdmin = [
     resource: resourceProduct.MENU_MANAGEMENT_PRODUCT,
     key: 'products',
     children: navProduct
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Recipes'
+        defaultMessage='Recipes'
+      />
+    ),
+    path: mainRoutes.ADMIN_RECIPES,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-cart',
+    actionType: enumType.action.View,
+    resource: resourceRecipes.MENU_MANAGEMENT_RECIPES,
+    key: 'recipes',
+    children: navRecipes
   },
 ]
 

@@ -20,7 +20,7 @@ import {
   FooterForm,
   UploadImage
 } from '../../components'
-import { EnumSelect, CategorySelect } from '../../components/Select'
+import { EnumSelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -38,12 +38,6 @@ const customFormik = withFormik({
     description: stringHelper.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(data, 'description', null)
     ),
-    categoryParent: utils.formatObjectSelect(
-      data ? data.parentId : null,
-      '_id',
-      'name'
-    ),
-
     banner: formikHelper.getImageValueField(data, 'banner', enumType.imagePath.Banner),
     index: formikHelper.getDefaultValueField(data, 'index', null),
     metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
@@ -202,35 +196,6 @@ const Form = (props) => {
                 fieldName='slug'
                 touched={touched}
                 errors={errors}
-                isValidate={true}
-              />
-            </FormItem>
-
-            <FormItem
-              required={true}
-              label={
-                <FormattedMessage
-                  id="Label.Category.Parent"
-                  defaultMessage="Category Parent"
-                />
-              }
-              className="mb-0"
-            >
-              <FormattedMessage id="Label.Category" defaultMessage="Category Parent">
-                {() => (
-                  <CategorySelect
-                    isProduct={true}
-                    value={values.categoryParent}
-                    onChange={setFieldValue}
-                    onBlur={setFieldTouched}
-                    path={'categoryParent'}
-                  />
-                )}
-              </FormattedMessage>
-              <ErrorMessage
-                fieldName="categoryParent"
-                errors={errors}
-                touched={touched}
                 isValidate={true}
               />
             </FormItem>
@@ -416,18 +381,18 @@ const Form = (props) => {
             <FormItem
               label={
                 <FormattedMessage
-                  id="Label.Logo"
-                  defaultMessage="Logo Hãng"
+                  id="Label.Banner"
+                  defaultMessage="Banner"
                 />
               }
               className='mb-0'
             >
               <UploadImage
                 name={'icon'}
-                data={values.logo}
+                data={values.banner}
                 multiple={false}
-                handleUploadFile={(file) => setFieldValue('logo', file)}
-                handleChangeFile={(fileList) => setFieldValue('logo',
+                handleUploadFile={(file) => setFieldValue('banner', file)}
+                handleChangeFile={(fileList) => setFieldValue('banner',
                   fileList)}
                 showUploadList={true}
                 type={enumType.uploadType.Banner}
@@ -468,8 +433,8 @@ const Form = (props) => {
           handleCancel={handleCancel}
           buttonSave={
             mode === enumType.mode.create
-              ? 'Add Category'
-              : 'Save Category'
+              ? 'Create Recipe'
+              : 'Save Recipe'
           }
         />
       </AntForm>

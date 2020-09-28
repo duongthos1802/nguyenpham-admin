@@ -46,7 +46,7 @@ export default {
       queryClause += `, name: null`
       queryClause += `, slug: null`
     }
-    // queryClause += `, priority: ${values.priority}`
+
 
     if (values.description) {
       queryClause += `, description: "${values.description}"`
@@ -96,6 +96,9 @@ export default {
     } else {
       queryClause += `, banner: null`
     }
+
+    queryClause += `, status: ${values.status}`
+    queryClause += `, index: ${values.index}`
     return `record: {${queryClause}}`
   }
 }

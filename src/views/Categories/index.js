@@ -106,6 +106,10 @@ const customSearch = withSearch({
     const queryClause = categoryService.initQuerySearchCategories(values,
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)
+  },
+  deleteData: (values, { deleteDataCallback }) => {
+    const queryClause = `_id: "${values._id}"`
+    //  deleteDataCallback(queryClause)
   }
 })
 

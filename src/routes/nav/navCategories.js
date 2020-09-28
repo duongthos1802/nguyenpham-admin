@@ -24,18 +24,18 @@ export const navCategories = [
     isMenu: false,
     isProtected: true
   },
-  // {
-  //   name: null,
-  //   key: 'categories-edit',
-  //   resource: resourceCategories.MENU_MANAGEMENT_CATEGORIES,
-  //   path: `${routeCategories.ROUTE_CATEGORIES_EDIT}/:id`,
-  //   component: LoadableRoute(() =>
-  //     import('../../views/Categories/edit')
-  //   ),
-  //   actionType: enumType.action.Write,
-  //   isMenu: false,
-  //   isProtected: true
-  // },
+  {
+    name: null,
+    key: 'categories-edit',
+    resource: resourceCategories.MENU_MANAGEMENT_CATEGORIES,
+    path: `${routeCategories.ROUTE_CATEGORIES_EDIT}/:id`,
+    component: LoadableRoute(() =>
+      import('../../views/Categories/edit')
+    ),
+    actionType: enumType.action.Write,
+    isMenu: false,
+    isProtected: true
+  },
   {
     name: null,
     key: 'categories',

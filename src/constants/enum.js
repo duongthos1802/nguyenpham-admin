@@ -14,20 +14,20 @@ const action = {
   Write: 'Write'
 }
 
-const actionTypePermission =  [
+const actionTypePermission = [
   {
     value: action.NoControl,
-    label:'NoControl'
+    label: 'NoControl'
   },
   {
     value: 'View',
-    label:'View'
+    label: 'View'
   },
   {
     value: 'Write',
-    label:'Write'
+    label: 'Write'
   },
- 
+
 ]
 
 const actionType = [
@@ -42,11 +42,11 @@ const actionType = [
   },
   {
     value: action.View,
-    label: <FormattedMessage id={'Enum.Action.View'} defaultMessage="View"/>
+    label: <FormattedMessage id={'Enum.Action.View'} defaultMessage="View" />
   },
   {
     value: action.Write,
-    label: <FormattedMessage id={'Enum.Action.Write'} defaultMessage="Write"/>
+    label: <FormattedMessage id={'Enum.Action.Write'} defaultMessage="Write" />
   }
 ]
 
@@ -155,10 +155,10 @@ const imagePath = {
   Category: 'category_pictures'
 }
 
-const discountType = {
-  Weekly: 'weekly',
-  Monthly: 'monthly'
-}
+// const discountType = {
+//   Weekly: 'weekly',
+//   Monthly: 'monthly'
+// }
 
 const userAdminTab = {
   UserRole: 'user-role'
@@ -238,221 +238,221 @@ const productStatusEnum = [
 ]
 
 
-const orderStatusValues = {
-  RequestCancelled: 'requestCancel',
-  Expired: 'expired',
-  Placed: 'placed',
-  Accepted: 'accepted',
-  Payment: 'payment',
-  WithDraw: 'withDraw',
-  Delivered: 'delivered',
-  Received: 'received',
-  AcceptedItIs: 'acceptedItIs',
-  Resolved: 'resolved',
-  Returned: 'returned',
-  Reviewed: 'reviewed',
-  Canceled: 'canceled',
-  LendeeCanceled: 'lendeeCanceled',
-  Declined: 'declined',
-  CanceledByAdmin: 'canceled-by-admin',
-  DisputeOrderByLendor: 'dispute-order-by-lendor',
-  DisputeOrderByLendee: 'dispute-order-by-lendee'
-}
+// const orderStatusValues = {
+//   RequestCancelled: 'requestCancel',
+//   Expired: 'expired',
+//   Placed: 'placed',
+//   Accepted: 'accepted',
+//   Payment: 'payment',
+//   WithDraw: 'withDraw',
+//   Delivered: 'delivered',
+//   Received: 'received',
+//   AcceptedItIs: 'acceptedItIs',
+//   Resolved: 'resolved',
+//   Returned: 'returned',
+//   Reviewed: 'reviewed',
+//   Canceled: 'canceled',
+//   LendeeCanceled: 'lendeeCanceled',
+//   Declined: 'declined',
+//   CanceledByAdmin: 'canceled-by-admin',
+//   DisputeOrderByLendor: 'dispute-order-by-lendor',
+//   DisputeOrderByLendee: 'dispute-order-by-lendee'
+// }
 
-const orderTransactionStatusEnum = [
-  {
-    value: orderStatusValues.Placed,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Placed"
-      defaultMessage="Loan requested"
-    />,
-    color: 'orange',
-    description: <FormattedMessage
-      id="Label.Placed"
-      defaultMessage="Placed"
-    />
-  },
-  {
-    value: orderStatusValues.Accepted,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Accepted"
-      defaultMessage="Request accepted"
-    />,
-    color: 'orange',
-    description: <FormattedMessage
-      id="Label.Accepted"
-      defaultMessage="Accepted"
-    />
-  },
-  {
-    value: orderStatusValues.Delivered,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Delivered"
-      defaultMessage="Item Sent"
-    />,
-    color: 'orange',
-    description: <FormattedMessage
-      id="Label.Delivered"
-      defaultMessage="Delivered"
-    />
-  },
-  {
-    value: orderStatusValues.Received,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Received"
-      defaultMessage="Item Accepted"
-    />,
-    color: 'orange',
-    description: <FormattedMessage
-      id="Label.Received"
-      defaultMessage="Received"
-    />
-  },
-  {
-    value: orderStatusValues.Returned,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Returned"
-      defaultMessage="Item Returned"
-    />,
-    color: 'orange',
-    description: <FormattedMessage
-      id="Label.Returned"
-      defaultMessage="Returned"
-    />
-  },
-  {
-    value: orderStatusValues.Reviewed,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Reviewed"
-      defaultMessage="Item Returned In Order"
-    />,
-    color: 'green',
-    description: <FormattedMessage
-      id="Label.Reviewed"
-      defaultMessage="Reviewed"
-    />
-  },
-  {
-    value: orderStatusValues.Canceled,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Canceled"
-      defaultMessage="Request Canceled"
-    />,
-    color: 'gray',
-    description: <FormattedMessage
-      id="Label.Canceled"
-      defaultMessage="Canceled"
-    />
-  },
-  {
-    value: orderStatusValues.Declined,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Declined"
-      defaultMessage="Request Declined"
-    />,
-    color: 'gray',
-    description: <FormattedMessage
-      id="Label.Declined"
-      defaultMessage="Declined"
-    />
-  },
-  {
-    value: 'disputeOrderByLendor',
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.DisputeOrderByLendor"
-      defaultMessage="disputed"
-    />,
-    color: 'red',
-    description: <FormattedMessage
-      id="Label.disputeOrderByLendor"
-      defaultMessage="Disputed By Lendor"
-    />
-  },
-  {
-    value: 'disputeOrderByLendee',
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.DisputeOrderByLendee"
-      defaultMessage="disputed"
-    />,
-    color: 'red',
-    description: <FormattedMessage
-      id="Label.disputeOrderByLendee"
-      defaultMessage="Disputed By Lendee"
-    />
-  },
-  {
-    value: orderStatusValues.Expired,
-    label: <FormattedMessage
-      id="Enum.OrderTransactionStatus.Expired"
-      defaultMessage="Request expired"
-    />,
-    color: 'gray',
-    description: <FormattedMessage
-      id="Label.Expired"
-      defaultMessage="Expired"
-    />
-  },
-]
+// const orderTransactionStatusEnum = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Placed"
+//       defaultMessage="Loan requested"
+//     />,
+//     color: 'orange',
+//     description: <FormattedMessage
+//       id="Label.Placed"
+//       defaultMessage="Placed"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Accepted,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Accepted"
+//       defaultMessage="Request accepted"
+//     />,
+//     color: 'orange',
+//     description: <FormattedMessage
+//       id="Label.Accepted"
+//       defaultMessage="Accepted"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Delivered,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Delivered"
+//       defaultMessage="Item Sent"
+//     />,
+//     color: 'orange',
+//     description: <FormattedMessage
+//       id="Label.Delivered"
+//       defaultMessage="Delivered"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Received,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Received"
+//       defaultMessage="Item Accepted"
+//     />,
+//     color: 'orange',
+//     description: <FormattedMessage
+//       id="Label.Received"
+//       defaultMessage="Received"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Returned,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Returned"
+//       defaultMessage="Item Returned"
+//     />,
+//     color: 'orange',
+//     description: <FormattedMessage
+//       id="Label.Returned"
+//       defaultMessage="Returned"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Reviewed,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Reviewed"
+//       defaultMessage="Item Returned In Order"
+//     />,
+//     color: 'green',
+//     description: <FormattedMessage
+//       id="Label.Reviewed"
+//       defaultMessage="Reviewed"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Canceled,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Canceled"
+//       defaultMessage="Request Canceled"
+//     />,
+//     color: 'gray',
+//     description: <FormattedMessage
+//       id="Label.Canceled"
+//       defaultMessage="Canceled"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Declined,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Declined"
+//       defaultMessage="Request Declined"
+//     />,
+//     color: 'gray',
+//     description: <FormattedMessage
+//       id="Label.Declined"
+//       defaultMessage="Declined"
+//     />
+//   },
+//   {
+//     value: 'disputeOrderByLendor',
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.DisputeOrderByLendor"
+//       defaultMessage="disputed"
+//     />,
+//     color: 'red',
+//     description: <FormattedMessage
+//       id="Label.disputeOrderByLendor"
+//       defaultMessage="Disputed By Lendor"
+//     />
+//   },
+//   {
+//     value: 'disputeOrderByLendee',
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.DisputeOrderByLendee"
+//       defaultMessage="disputed"
+//     />,
+//     color: 'red',
+//     description: <FormattedMessage
+//       id="Label.disputeOrderByLendee"
+//       defaultMessage="Disputed By Lendee"
+//     />
+//   },
+//   {
+//     value: orderStatusValues.Expired,
+//     label: <FormattedMessage
+//       id="Enum.OrderTransactionStatus.Expired"
+//       defaultMessage="Request expired"
+//     />,
+//     color: 'gray',
+//     description: <FormattedMessage
+//       id="Label.Expired"
+//       defaultMessage="Expired"
+//     />
+//   },
+// ]
 
-const orderStatusValue = {
-  LendeeLoanRequested: 'Lendee Loan Requested',
-  LendeeCancelledLoanRequest: 'Lendee cancelled Loan Request',
-  LendorLoanAccepted: 'Lendor Loan Accepted',
-  LendeeCollectedItem: 'Lendee collected item',
-  ItemReturnedInOrder: 'Item returned in order',
-  LendorDisputedItem: 'Lendor disputed item'
-}
+// const orderStatusValue = {
+//   LendeeLoanRequested: 'Lendee Loan Requested',
+//   LendeeCancelledLoanRequest: 'Lendee cancelled Loan Request',
+//   LendorLoanAccepted: 'Lendor Loan Accepted',
+//   LendeeCollectedItem: 'Lendee collected item',
+//   ItemReturnedInOrder: 'Item returned in order',
+//   LendorDisputedItem: 'Lendor disputed item'
+// }
 
-const orderStatusEnum = [
-  {
-    value: orderStatusValue.LendeeLoanRequested,
-    description: <FormattedMessage
-      id="Label.LendeeLoanRequested"
-      defaultMessage={orderStatusValue.LendeeLoanRequested}
-    />
-  },
-  {
-    value: orderStatusValue.LendeeCancelledLoanRequest,
-    description: <FormattedMessage
-      id="Label.LendeeCancelledLoanRequest"
-      defaultMessage={orderStatusValue.LendeeCancelledLoanRequest}
-    />
-  },
-  {
-    value: orderStatusValue.LendorLoanAccepted,
-    description: <FormattedMessage
-      id="Label.LendorLoanAccepted"
-      defaultMessage={orderStatusValue.LendorLoanAccepted}
-    />
-  },
-  {
-    value: orderStatusValue.LendeeCollectedItem,
-    description: <FormattedMessage
-      id="Label.LendeeCollectedItem"
-      defaultMessage={orderStatusValue.LendeeCollectedItem}
-    />
-  },
-  {
-    value: orderStatusValue.ItemReturnedInOrder,
-    description: <FormattedMessage
-      id="Label.ItemReturnedInOrder"
-      defaultMessage={orderStatusValue.ItemReturnedInOrder}
-    />
-  },
-  {
-    value: orderStatusValue.LendorDisputedItem,
-    description: <FormattedMessage
-      id="Label.LendorDisputedItem"
-      defaultMessage={orderStatusValue.LendorDisputedItem}
-    />
-  }
-]
+// const orderStatusEnum = [
+//   {
+//     value: orderStatusValue.LendeeLoanRequested,
+//     description: <FormattedMessage
+//       id="Label.LendeeLoanRequested"
+//       defaultMessage={orderStatusValue.LendeeLoanRequested}
+//     />
+//   },
+//   {
+//     value: orderStatusValue.LendeeCancelledLoanRequest,
+//     description: <FormattedMessage
+//       id="Label.LendeeCancelledLoanRequest"
+//       defaultMessage={orderStatusValue.LendeeCancelledLoanRequest}
+//     />
+//   },
+//   {
+//     value: orderStatusValue.LendorLoanAccepted,
+//     description: <FormattedMessage
+//       id="Label.LendorLoanAccepted"
+//       defaultMessage={orderStatusValue.LendorLoanAccepted}
+//     />
+//   },
+//   {
+//     value: orderStatusValue.LendeeCollectedItem,
+//     description: <FormattedMessage
+//       id="Label.LendeeCollectedItem"
+//       defaultMessage={orderStatusValue.LendeeCollectedItem}
+//     />
+//   },
+//   {
+//     value: orderStatusValue.ItemReturnedInOrder,
+//     description: <FormattedMessage
+//       id="Label.ItemReturnedInOrder"
+//       defaultMessage={orderStatusValue.ItemReturnedInOrder}
+//     />
+//   },
+//   {
+//     value: orderStatusValue.LendorDisputedItem,
+//     description: <FormattedMessage
+//       id="Label.LendorDisputedItem"
+//       defaultMessage={orderStatusValue.LendorDisputedItem}
+//     />
+//   }
+// ]
 
-const orderStatusQuery = {
-  Published: 'Published',
-  Waiting: 'Waiting',
-  Ended: 'Ended'
-}
+// const orderStatusQuery = {
+//   Published: 'Published',
+//   Waiting: 'Waiting',
+//   Ended: 'Ended'
+// }
 
 const bannerStatus = {
   Published: true,
@@ -503,194 +503,215 @@ const paymentMethod = {
   CreditCash: 'CreditCash'
 }
 
-const stepRequestViaCard = [
-  {
-    value: orderStatusValues.Placed,
-    label: 'Loan Requested'
-  },
-  {
-    value: orderStatusValues.Delivered,
-    label: 'Item Sent'
-  },
-  {
-    value: orderStatusValues.Received,
-    label: 'Item Accepted'
-  },
-  {
-    value: orderStatusValues.Returned,
-    label: 'Item Returned'
-  },
-  {
-    value: orderStatusValues.Reviewed,
-    label: 'Item Returned In Order'
-  }
-]
+// const stepRequestViaCard = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: 'Loan Requested'
+//   },
+//   {
+//     value: orderStatusValues.Delivered,
+//     label: 'Item Sent'
+//   },
+//   {
+//     value: orderStatusValues.Received,
+//     label: 'Item Accepted'
+//   },
+//   {
+//     value: orderStatusValues.Returned,
+//     label: 'Item Returned'
+//   },
+//   {
+//     value: orderStatusValues.Reviewed,
+//     label: 'Item Returned In Order'
+//   }
+// ]
 
-const stepRequest = [
-  {
-    value: orderStatusValues.Placed,
-    label: 'Loan Requested'
-  },
-  {
-    value: orderStatusValues.Accepted,
-    label: 'Loan Accepted'
-  },
-  {
-    value: orderStatusValues.Delivered,
-    label: 'Item Sent'
-  },
-  {
-    value: orderStatusValues.Received,
-    label: 'Item Accepted'
-  },
-  {
-    value: orderStatusValues.Returned,
-    label: 'Item Returned'
-  },
-  {
-    value: orderStatusValues.Reviewed,
-    label: 'Item Returned In Order'
-  }
-]
+// const stepRequest = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: 'Loan Requested'
+//   },
+//   {
+//     value: orderStatusValues.Accepted,
+//     label: 'Loan Accepted'
+//   },
+//   {
+//     value: orderStatusValues.Delivered,
+//     label: 'Item Sent'
+//   },
+//   {
+//     value: orderStatusValues.Received,
+//     label: 'Item Accepted'
+//   },
+//   {
+//     value: orderStatusValues.Returned,
+//     label: 'Item Returned'
+//   },
+//   {
+//     value: orderStatusValues.Reviewed,
+//     label: 'Item Returned In Order'
+//   }
+// ]
 
-const stepCancel = [
-  {
-    value: orderStatusValues.Placed,
-    label: 'Loan Requested'
-  },
-  {
-    value: orderStatusValues.Canceled,
-    label: 'Request Cancelled'
-  }
-]
+// const stepCancel = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: 'Loan Requested'
+//   },
+//   {
+//     value: orderStatusValues.Canceled,
+//     label: 'Request Cancelled'
+//   }
+// ]
 
-const stepDecline = [
-  {
-    value: orderStatusValues.Placed,
-    label: 'Loan Requested'
-  },
-  {
-    value: orderStatusValues.Declined,
-    label: 'Request Declined'
-  }
-]
+// const stepDecline = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: 'Loan Requested'
+//   },
+//   {
+//     value: orderStatusValues.Declined,
+//     label: 'Request Declined'
+//   }
+// ]
 
-const stepExpired = [
-  {
-    value: orderStatusValues.Placed,
-    label: 'Loan Requested'
-  },
-  {
-    value: orderStatusValues.Expired,
-    label: 'Request Expired'
-  }
-]
+// const stepExpired = [
+//   {
+//     value: orderStatusValues.Placed,
+//     label: 'Loan Requested'
+//   },
+//   {
+//     value: orderStatusValues.Expired,
+//     label: 'Request Expired'
+//   }
+// ]
 
-const orderStatus = {
-  Placed: 'placed',
-  Accepted: 'accepted',
-  WithDraw: 'withDraw',
-  Delivered: 'delivered',
-  Received: ['received', 'acceptedItIs'],
-  Returned: 'returned',
-  Reviewed: ['reviewed', 'resolved'],
-  Declined: 'declined',
-  Canceled: 'canceled',
-  CanceledByAdmin: 'canceled-by-admin',
-  DisputeOrderByLendor: 'dispute-order-by-lendor',
-  DisputeOrderByLendee: 'dispute-order-by-lendee',
-  Expired: 'expired'
+// const orderStatus = {
+//   Placed: 'placed',
+//   Accepted: 'accepted',
+//   WithDraw: 'withDraw',
+//   Delivered: 'delivered',
+//   Received: ['received', 'acceptedItIs'],
+//   Returned: 'returned',
+//   Reviewed: ['reviewed', 'resolved'],
+//   Declined: 'declined',
+//   Canceled: 'canceled',
+//   CanceledByAdmin: 'canceled-by-admin',
+//   DisputeOrderByLendor: 'dispute-order-by-lendor',
+//   DisputeOrderByLendee: 'dispute-order-by-lendee',
+//   Expired: 'expired'
+// }
+
+// const collectionMethod = {
+//   SelfCollect: 'Self Collection',
+//   Delivery: 'Delivery'
+// }
+
+// export const promoDiscount = {
+//   Fixed: 'fixed',
+//   Percentage: 'percentage'
+// }
+
+// export const promoDiscountEnum = [
+//   {
+//     value: promoDiscount.Fixed,
+//     label: 'Fixed'
+//   },
+//   {
+//     value: promoDiscount.Percentage,
+//     label: 'Percentage'
+//   }
+// ]
+
+// const promoStatus = {
+//   Inactive: 'inactive',
+//   Active: 'active'
+// }
+
+// const promoStatusEnum = [
+//   {
+//     label: 'Active',
+//     value: promoStatus.Active
+//   },
+//   {
+//     label: 'Inactive',
+//     value: promoStatus.Inactive
+//   }
+// ]
+
+// export const FAQType = {
+//   Lendor: 'Lendor',
+//   Lendee: 'Lendee'
+// }
+
+// export const FAQTypeEnum = [
+//   {
+//     label: 'Lendor',
+//     value: FAQType.Lendor
+//   },
+//   {
+//     label: 'Lendee',
+//     value: FAQType.Lendee
+//   }
+// ]
+
+// export const FAQStatus = {
+//   Normal: 'Normal',
+//   Delete: 'Delete'
+// }
+
+// export const FAQStatusEnum = [
+//   {
+//     label: 'Normal',
+//     value: FAQStatus.Normal,
+//     color: 'green'
+//   },
+//   {
+//     label: 'Delete',
+//     value: FAQStatus.Delete,
+//     color: 'red'
+//   }
+// ]
+
+// export const DeliveryOptions = ['1 way trip', '2 way trip']
+
+// export const DeliveryOptionsValue = {
+//   OneWay: 'OneWay',
+//   TwoWay: 'TwoWay',
+//   NoDelivery: 'NoDelivery',
+// }
+
+// const deliveryType = [
+//   {
+//     label: '1 way trip',
+//     value: 'OneWay',
+//   },
+//   {
+//     label: '2 way trip',
+//     value: 'TwoWay',
+//   }
+// ]
+
+// TEAMO================================================================
+
+const categoryStatus = {
+  PUBLISHED: 'Published',
+  SUSPENDED: 'Suspended'
 }
 
-const collectionMethod = {
-  SelfCollect: 'Self Collection',
-  Delivery: 'Delivery'
-}
 
-export const promoDiscount = {
-  Fixed: 'fixed',
-  Percentage: 'percentage'
-}
-
-export const promoDiscountEnum = [
+const categoryStatusEnum = [
   {
-    value: promoDiscount.Fixed,
-    label: 'Fixed'
+    label: 'Published',
+    value: categoryStatus.PUBLISHED
   },
   {
-    value: promoDiscount.Percentage,
-    label: 'Percentage'
+    label: 'Suspended',
+    value: categoryStatus.SUSPENDED
   }
 ]
 
-const promoStatus = {
-  Inactive: 'inactive',
-  Active: 'active'
-}
 
-const promoStatusEnum = [
-  {
-    label: 'Active',
-    value: promoStatus.Active
-  },
-  {
-    label: 'Inactive',
-    value: promoStatus.Inactive
-  }
-]
-
-export const FAQType = {
-  Lendor: 'Lendor',
-  Lendee: 'Lendee'
-}
-
-export const FAQTypeEnum = [
-  {
-    label: 'Lendor',
-    value: FAQType.Lendor
-  },
-  {
-    label: 'Lendee',
-    value: FAQType.Lendee
-  }
-]
-
-export const FAQStatus = {
-  Normal: 'Normal',
-  Delete: 'Delete'
-}
-
-export const FAQStatusEnum = [
-  {
-    label: 'Normal',
-    value: FAQStatus.Normal,
-    color: 'green'
-  },
-  {
-    label: 'Delete',
-    value: FAQStatus.Delete,
-    color: 'red'
-  }
-]
-
-export const DeliveryOptions = ['1 way trip', '2 way trip']
-
-export const DeliveryOptionsValue = {
-  OneWay: 'OneWay',
-  TwoWay: 'TwoWay',
-  NoDelivery: 'NoDelivery',
-}
-
-const deliveryType = [
-  {
-    label: '1 way trip',
-    value: 'OneWay',
-  },
-  {
-    label: '2 way trip',
-    value: 'TwoWay',
-  }
-]
 
 export default {
   mode,
@@ -702,7 +723,7 @@ export default {
   confirmType,
   uploadType,
   imagePath,
-  discountType,
+  // discountType,
   buttonTypeComponent,
   userEditTab,
   userAdminTab,
@@ -711,32 +732,34 @@ export default {
   sortDirection,
   productStatus,
   productStatusEnum,
-  orderStatusQuery,
+  // orderStatusQuery,
   bannerStatus,
   pageEditTab,
   userStatus,
   userStatusEnum,
-  orderStatusEnum,
-  orderStatusValues,
-  paymentMethod,
-  stepRequestViaCard,
-  orderTransactionStatusEnum,
-  orderStatus,
-  stepRequest,
-  stepCancel,
-  stepDecline,
-  stepExpired,
-  collectionMethod,
-  promoDiscount: promoDiscount,
-  promoDiscountEnum: promoDiscountEnum,
-  promoStatus,
-  promoStatusEnum,
-  FAQType,
-  FAQTypeEnum,
-  FAQStatus,
-  FAQStatusEnum,
+  // orderStatusEnum,
+  // orderStatusValues,
+  // paymentMethod,
+  // stepRequestViaCard,
+  // orderTransactionStatusEnum,
+  // orderStatus,
+  // stepRequest,
+  // stepCancel,
+  // stepDecline,
+  // stepExpired,
+  // collectionMethod,
+  // promoDiscount: promoDiscount,
+  // promoDiscountEnum: promoDiscountEnum,
+  // promoStatus,
+  // promoStatusEnum,
+  // FAQType,
+  // FAQTypeEnum,
+  // FAQStatus,
+  // FAQStatusEnum,
   actionTypePermission,
-  DeliveryOptions,
-  DeliveryOptionsValue,
-  deliveryType
+  // DeliveryOptions,
+  // DeliveryOptionsValue,
+  // deliveryType
+  categoryStatus,
+  categoryStatusEnum
 }

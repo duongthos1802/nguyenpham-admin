@@ -13,6 +13,7 @@ export default {
           metaTitle
           metaDescription
           metaKeyword
+          status
         }
       }`
   },
@@ -31,6 +32,7 @@ export default {
         metaTitle
         metaDescription
         metaKeyword
+        status
       }
       categoriesCount(${queryClause.whereConnectionClause})
     }

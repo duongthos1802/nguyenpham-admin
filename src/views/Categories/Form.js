@@ -20,6 +20,7 @@ import {
   FooterForm,
   UploadImage
 } from '../../components'
+import { EnumSelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -27,7 +28,8 @@ const customFormik = withFormik({
   validationSchema: Yup.object().shape({
     name: yupHelper.stringRequired,
     slug: yupHelper.stringRequired,
-    // priority: yupHelper.stringRequired,
+    status: yupHelper.stringRequired,
+    index: yupHelper.numberRequired
   }),
   mapPropsToValues: ({ data }) => ({
     _id: formikHelper.getDefaultValueField(data, '_id', null),
@@ -38,7 +40,6 @@ const customFormik = withFormik({
     ),
     banner: formikHelper.getImageValueField(data, 'banner', enumType.imagePath.Banner),
     index: formikHelper.getDefaultValueField(data, 'index', null),
-    // priority: formikHelper.getDefaultValueField(data, 'priority', null),
     metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
     metaDescription: stringHelper.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(data, 'metaDescription', null)
@@ -46,8 +47,8 @@ const customFormik = withFormik({
     metaKeyword: formikHelper.getDefaultValueField(data, 'metaKeyword', null),
     image: formikHelper.getImageValueField(data, 'image',
       enumType.imagePath.Banner),
-    menuIcon: formikHelper.getImageValueField(data, 'menuIcon',
-      enumType.imagePath.Banner),
+    status: formikHelper.getDefaultValueField(data, 'status',
+      enumType.categoryStatus.PUBLISHED),
   }),
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
@@ -196,6 +197,44 @@ const Form = (props) => {
                 touched={touched}
                 errors={errors}
                 isValidate={true}
+              />
+            </FormItem>
+
+            <FormItem
+              required={true}
+              label={
+                <FormattedMessage
+                  id="Label.Index"
+                  defaultMessage="index"
+                />
+              }
+              className='mb-0'
+            ><FormattedMessage
+              id="Label.Index"
+              defaultMessage="index"
+            >
+                {
+                  placeholder => (
+                    <InputNumber
+                      placeholder={placeholder}
+                      value={values.index}
+                      customClass={classNames({
+                        'has-error': formikHelper.checkFieldError(errors, touched,
+                          'index')
+                      })}
+                      onChange={(value) => setFieldValue('index', value)}
+                      handleBlur={() => setFieldTouched('index', true)}
+                      min={100}
+                      max={10000}
+                    />
+                  )
+                }
+              </FormattedMessage>
+              <ErrorMessage
+                errors={errors}
+                touched={touched}
+                isValidate={true}
+                fieldName='index'
               />
             </FormItem>
 
@@ -360,6 +399,31 @@ const Form = (props) => {
                 showSingleImage={false}
               />
             </FormItem>
+
+            <FormItem
+              required={true}
+              label={
+                <FormattedMessage
+                  id="Label.Status"
+                  defaultMessage="Status"
+                />
+              }
+              className='mb-0'
+            >
+              <EnumSelect
+                options={enumType.categoryStatusEnum}
+                value={values.status}
+                onChange={(value) => setFieldValue('status', value)}
+                isClearable={false}
+                onBlur={() => setFieldTouched('status', true)}
+              />
+              <ErrorMessage
+                errors={errors}
+                touched={touched}
+                fieldName='status'
+                isValidate={true}
+              />
+            </FormItem>
           </Col>
 
         </Row>
@@ -374,7 +438,7 @@ const Form = (props) => {
           }
         />
       </AntForm>
-    </CustomForm>
+    </CustomForm >
   )
 }
 

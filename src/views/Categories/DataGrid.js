@@ -27,7 +27,8 @@ const DataGrid = (props) => {
     pageIndex,
     handleChangePageSize,
     handleChangePageIndex,
-    handleChangeTable
+    handleChangeTable,
+    handleChangeItemUpdate
   } = props
 
   let header = [
@@ -72,12 +73,20 @@ const DataGrid = (props) => {
     },
     {
       title: <FormattedMessage
+        id="Grid.Status"
+        defaultMessage="Status"
+      />,
+      dataIndex: 'status',
+      key: 'status'
+    },
+    {
+      title: <FormattedMessage
         id="Grid.Action"
         defaultMessage="Action"
       />,
       className: 'text-center',
       key: 'action',
-      render: () => (
+      render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
             resource={resource.MENU_MANAGEMENT_CATEGORIES}
@@ -89,6 +98,18 @@ const DataGrid = (props) => {
                 defaultMessage="View"
               />
             }
+          />
+          <Divider
+            type='vertical'
+          />
+          <ButtonDelete
+            type={enumType.buttonTypeComponent.Link}
+            isHiddenIcon={true}
+            resource={resource.MENU_MANAGEMENT_CATEGORIES}
+            action={enumType.action.Write}
+            record={record}
+            handleChangeItemUpdate={handleChangeItemUpdate}
+            customClass='px-0'
           />
         </div>
       )

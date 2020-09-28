@@ -221,6 +221,7 @@ const Form = (props) => {
                 {() => (
                   <CategorySelect
                     isProduct={true}
+                    isClearable={true}
                     value={values.category}
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}

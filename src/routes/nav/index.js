@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import mainRoutes from './mainRoute'
 import enumType from '../../constants/enum'
 import { LoadableRoute } from '../../components'
+import { navCategories, resourceCategories } from './navCategories'
 
 export const navAdmin = [
   {
@@ -32,7 +33,23 @@ export const navAdmin = [
     resource: 'MENU-DASHBOARD',
     key: 'dashboard',
     component: LoadableRoute(() => import('../../views/Admin/Dashboard'))
-  }
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Categories'
+        defaultMessage='Categories'
+      />
+    ),
+    path: mainRoutes.ADMIN_CATEGORIES,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-list-numbered',
+    actionType: enumType.action.View,
+    resource: resourceCategories.MENU_MANAGEMENT_CATEGORIES,
+    key: 'categories',
+    children: navCategories
+  },
 ]
 
 export default navAdmin

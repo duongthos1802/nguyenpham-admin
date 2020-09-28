@@ -1,9 +1,13 @@
 import mainRoute from './nav/mainRoute'
-export { default as navAdmin } from './nav'
+import { resourceCategories, routeCategories } from './nav/navCategories'
 
+export { default as navAdmin } from './nav'
 export const resource = {
+  ...resourceCategories,
 }
 
 export const routes = {
-  ...mainRoute
+  ...mainRoute,
+  ...routeCategories,
+
 }

@@ -104,7 +104,7 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
-    "dev": "nf start -p 3002",
+    "dev": "nf start -p 3004",
     "start-js": "react-scripts start",
     "start-doc": "gitbook --port 4001 serve",
     "start": "npm-run-all -p start-js",

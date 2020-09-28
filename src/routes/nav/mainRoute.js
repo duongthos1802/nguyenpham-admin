@@ -30,4 +30,5 @@ export default {
   ADMIN_SYSTEMS: `/${SYSTEMS}`,
   ADMIN_ROLE: `/${ROLE}`,
   ADMIN_USER_ROLE: `/${USER_ROLE}`,
+  ADMIN_CATEGORIES: `/${CATEGORIES}`
 }

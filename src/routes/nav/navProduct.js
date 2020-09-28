@@ -28,7 +28,7 @@ export const navProduct = [
     name: null,
     key: 'product-edit',
     resource: resourceProduct.MENU_MANAGEMENT_PRODUCT,
-    path: `${routeProduct.ROUTE_PRODUCT_CREATE}/:id`,
+    path: `${routeProduct.ROUTE_PRODUCT_EDIT}/:id`,
     component: LoadableRoute(() =>
       import('../../views/Product/edit')
     ),

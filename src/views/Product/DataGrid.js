@@ -50,7 +50,7 @@ const DataGrid = (props) => {
         return (
           <ProductImage
             src={imageUtils.getBannerUrl(record.image)}
-            alt='category-image'
+            alt='product-image'
           />
         )
       }
@@ -89,7 +89,7 @@ const DataGrid = (props) => {
       render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
-            resource={resource.MENU_MANAGEMENT_CATEGORIES}
+            resource={resource.MENU_MANAGEMENT_PRODUCT}
             action={enumType.action.View}
             customClass='bg-transparent border-0 text-primary px-0'
             buttonName={
@@ -105,7 +105,7 @@ const DataGrid = (props) => {
           <ButtonDelete
             type={enumType.buttonTypeComponent.Link}
             isHiddenIcon={true}
-            resource={resource.MENU_MANAGEMENT_CATEGORIES}
+            resource={resource.MENU_MANAGEMENT_PRODUCT}
             action={enumType.action.Write}
             record={record}
             handleChangeItemUpdate={handleChangeItemUpdate}
@@ -132,7 +132,7 @@ const DataGrid = (props) => {
       handleChangePageSize={handleChangePageSize}
       onChangeTable={handleChangeTable}
       onRowClick={(record) => redirectPath(
-        `${routes.ROUTE_CATEGORIES_EDIT}/${record._id}`)}
+        `${routes.ROUTE_PRODUCT_EDIT}/${record._id}`)}
     />
   )
 }

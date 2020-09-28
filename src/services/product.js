@@ -1,4 +1,4 @@
-import { queryStringHelper, stringHelper } from '../extensions'
+import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
 
 export default {
   initQuerySearchProduct(searchObject, defaultPageSize) {
@@ -21,11 +21,11 @@ export default {
   },
 
 
-  initQueryCreateOrUpdateProduct({ values, categoryId }) {
+  initQueryCreateOrUpdateProduct({ values, productId }) {
     let queryClause = ``
 
-    if (categoryId) {
-      queryClause += `_id: "${categoryId}"`
+    if (productId) {
+      queryClause += `_id: "${productId}"`
     }
 
     if (values.name) {
@@ -38,7 +38,6 @@ export default {
       queryClause += `, name: null`
       queryClause += `, slug: null`
     }
-
 
     if (values.description) {
       queryClause += `, description: "${values.description}"`
@@ -66,6 +65,29 @@ export default {
     // } else {
     //   queryClause += `, banner: null`
     // }
+
+    if (values.packing) {
+      const packing = htmlHelper.encodeContent(values.packing)
+      queryClause += `, packing: "${packing}"`
+    } else {
+      queryClause += `, packing: null`
+    }
+
+
+    if (values.attribute) {
+      const attribute = htmlHelper.encodeContent(values.attribute)
+      queryClause += `, attribute: "${attribute}"`
+    } else {
+      queryClause += `, attribute: null`
+    }
+
+
+    if (values.tutorial) {
+      const tutorial = htmlHelper.encodeContent(values.tutorial)
+      queryClause += `, tutorial: "${tutorial}"`
+    } else {
+      queryClause += `, tutorial: null`
+    }
 
     queryClause += `, status: ${values.status}`
     return `record: {${queryClause}}`

@@ -12,6 +12,8 @@ export default {
 
   PRODUCT_QUERY: `productQuery`,
 
+  RECIPE_QUERY: `recipeQuery`,
+
   BULK_PRODUCT_QUERY: `bulkProductQuery`,
 
   SUPPORT_QUERY: 'supportQuery',

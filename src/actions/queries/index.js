@@ -9,6 +9,9 @@ import dashboardQuery from './dashboard'
 // CATEGORY
 import categoryQuery from './category'
 
+// RECIPE
+import recipeQuery from './recipe'
+
 // SELECT
 import select from './select'
 
@@ -19,5 +22,7 @@ export default {
 
   dashboardQuery,
 
-  categoryQuery
+  categoryQuery,
+
+  recipeQuery
 }

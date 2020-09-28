@@ -433,8 +433,8 @@ const Form = (props) => {
           handleCancel={handleCancel}
           buttonSave={
             mode === enumType.mode.create
-              ? 'Add Category'
-              : 'Save Category'
+              ? 'Create Recipe'
+              : 'Save Recipe'
           }
         />
       </AntForm>

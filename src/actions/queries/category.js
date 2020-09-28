@@ -7,7 +7,8 @@ export default {
           index
           name
           image
-          description
+          description,
+          parentId
           banner
           slug
           metaTitle

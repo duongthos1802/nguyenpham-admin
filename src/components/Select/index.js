@@ -1,6 +1,6 @@
 export { default as EnumSelect } from './EnumSelect'
 
-// export { default as CategorySelect } from './CategorySelect'
+export { default as CategorySelect } from './CategorySelect'
 
 export { default as UserSelect } from './UserSelect'
 

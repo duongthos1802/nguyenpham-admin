@@ -20,7 +20,7 @@ import {
   FooterForm,
   UploadImage
 } from '../../components'
-import { EnumSelect } from '../../components/Select'
+import { EnumSelect, CategorySelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -38,6 +38,12 @@ const customFormik = withFormik({
     description: stringHelper.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(data, 'description', null)
     ),
+    categoryParent: utils.formatObjectSelect(
+      data ? data.parentId : null,
+      '_id',
+      'name'
+    ),
+
     banner: formikHelper.getImageValueField(data, 'banner', enumType.imagePath.Banner),
     index: formikHelper.getDefaultValueField(data, 'index', null),
     metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
@@ -196,6 +202,35 @@ const Form = (props) => {
                 fieldName='slug'
                 touched={touched}
                 errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
+
+            <FormItem
+              required={true}
+              label={
+                <FormattedMessage
+                  id="Label.Category.Parent"
+                  defaultMessage="Category Parent"
+                />
+              }
+              className="mb-0"
+            >
+              <FormattedMessage id="Label.Category" defaultMessage="Category Parent">
+                {() => (
+                  <CategorySelect
+                    isProduct={true}
+                    value={values.categoryParent}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    path={'categoryParent'}
+                  />
+                )}
+              </FormattedMessage>
+              <ErrorMessage
+                fieldName="categoryParent"
+                errors={errors}
+                touched={touched}
                 isValidate={true}
               />
             </FormItem>

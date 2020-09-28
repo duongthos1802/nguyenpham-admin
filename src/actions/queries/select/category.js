@@ -6,7 +6,6 @@ export default {
         index
         _id
         name
-        brokenName
       }
     }
     `

@@ -54,6 +54,12 @@ export default {
       queryClause += `, description: ""`
     }
 
+    if (values.categoryParent) {
+      queryClause += `, parentId: "${values.categoryParent.value}"`
+    } else {
+      queryClause += `, parentId: ""`
+    }
+
     if (values.metaTitle) {
       const metaTitle = stringHelper.removeEscapeCharacter(values.metaTitle)
       queryClause += `, metaTitle: "${metaTitle}"`

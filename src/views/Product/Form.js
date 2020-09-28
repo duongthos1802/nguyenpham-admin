@@ -28,8 +28,7 @@ const customFormik = withFormik({
   validationSchema: Yup.object().shape({
     name: yupHelper.stringRequired,
     slug: yupHelper.stringRequired,
-    status: yupHelper.stringRequired,
-    index: yupHelper.numberRequired
+    status: yupHelper.stringRequired
   }),
   mapPropsToValues: ({ data }) => ({
     _id: formikHelper.getDefaultValueField(data, '_id', null),
@@ -44,8 +43,7 @@ const customFormik = withFormik({
       'name'
     ),
 
-    banner: formikHelper.getImageValueField(data, 'banner', enumType.imagePath.Banner),
-    index: formikHelper.getDefaultValueField(data, 'index', null),
+    logo: formikHelper.getImageValueField(data, 'logo', enumType.imagePath.Banner),
     metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
     metaDescription: stringHelper.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(data, 'metaDescription', null)
@@ -59,7 +57,7 @@ const customFormik = withFormik({
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
   },
-  displayName: 'CategoryForm'
+  displayName: 'ProductForm'
 })
 
 const Form = (props) => {
@@ -123,8 +121,8 @@ const Form = (props) => {
           {
             utils.initTitleForm(
               <FormattedMessage
-                id="Page.Category"
-                defaultMessage="Category"
+                id="Page.Product"
+                defaultMessage="Product"
               />,
               mode
             )
@@ -236,44 +234,6 @@ const Form = (props) => {
             </FormItem>
 
             <FormItem
-              required={true}
-              label={
-                <FormattedMessage
-                  id="Label.Index"
-                  defaultMessage="index"
-                />
-              }
-              className='mb-0'
-            ><FormattedMessage
-              id="Label.Index"
-              defaultMessage="index"
-            >
-                {
-                  placeholder => (
-                    <InputNumber
-                      placeholder={placeholder}
-                      value={values.index}
-                      customClass={classNames({
-                        'has-error': formikHelper.checkFieldError(errors, touched,
-                          'index')
-                      })}
-                      onChange={(value) => setFieldValue('index', value)}
-                      handleBlur={() => setFieldTouched('index', true)}
-                      min={100}
-                      max={10000}
-                    />
-                  )
-                }
-              </FormattedMessage>
-              <ErrorMessage
-                errors={errors}
-                touched={touched}
-                isValidate={true}
-                fieldName='index'
-              />
-            </FormItem>
-
-            <FormItem
               label={
                 <FormattedMessage
                   id="Label.Description"
@@ -293,100 +253,6 @@ const Form = (props) => {
               />
             </FormItem>
 
-            <FormItem
-              required={true}
-              label={
-                <FormattedMessage
-                  id="Label.MetaTitle"
-                  defaultMessage="Meta Title"
-                />
-              }
-              className='mb-0'
-            >
-              <Input
-                value={values.metaTitle}
-                onChange={(value) => setFieldValue('metaTitle',
-                  value.target.value)}
-                onBlur={() => setFieldTouched('metaTitle', true)}
-                className={
-                  classNames({
-                    'has-error': formikHelper.checkFieldError(errors, touched,
-                      'metaTitle')
-                  })
-                }
-              />
-              <ErrorMessage
-                fieldName='metaTitle'
-                touched={touched}
-                errors={errors}
-                isValidate={true}
-              />
-            </FormItem>
-
-
-            <FormItem
-              label={
-                <FormattedMessage
-                  id="Label.MetaDescription"
-                  defaultMessage="Meta Description"
-                />
-              }
-              className='mb-0'
-            >
-              <FormattedMessage
-                id="Label.metaDescription"
-                defaultMessage="Meta Description"
-              >
-                {
-                  placeholder => (
-                    <Input.TextArea
-                      placeholder={placeholder}
-                      rows={5}
-                      className='height-auto'
-                      value={values.metaDescription}
-                      onChange={(input) => {
-                        setFieldValue('metaDescription', input.target.value)
-                      }}
-                      onBlur={() => setFieldTouched('metaDescription', true)}
-                    />
-                  )
-                }
-              </FormattedMessage>
-              <ErrorMessage
-                fieldName='metaDescription'
-                touched={touched}
-                errors={errors}
-                isValidate={true}
-              />
-            </FormItem>
-            <FormItem
-              label={
-                <FormattedMessage
-                  id="Label.MetaKeyword"
-                  defaultMessage="Meta Keyword"
-                />
-              }
-              className='mb-0'
-            >
-              <Input
-                value={values.metaKeyword}
-                onChange={(value) => setFieldValue('metaKeyword',
-                  value.target.value)}
-                onBlur={() => setFieldTouched('metaKeyword', true)}
-                className={
-                  classNames({
-                    'has-error': formikHelper.checkFieldError(errors, touched,
-                      'metaKeyword')
-                  })
-                }
-              />
-              <ErrorMessage
-                fieldName='metaKeyword'
-                touched={touched}
-                errors={errors}
-                isValidate={true}
-              />
-            </FormItem>
           </Col>
           <Col
             lg={8}
@@ -438,38 +304,32 @@ const Form = (props) => {
             <FormItem
               required={true}
               label={
-                <FormattedMessage
-                  id="Label.Status"
-                  defaultMessage="Status"
-                />
+                <FormattedMessage id="Label.Status " defaultMessage="Status" />
               }
-              className='mb-0'
+              className="mb-0"
             >
               <EnumSelect
-                options={enumType.categoryStatusEnum}
+                options={enumType.productStatusEnum}
                 value={values.status}
-                onChange={(value) => setFieldValue('status', value)}
+                fieldName="status"
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
                 isClearable={false}
-                onBlur={() => setFieldTouched('status', true)}
+                labelField="description"
               />
-              <ErrorMessage
-                errors={errors}
-                touched={touched}
-                fieldName='status'
-                isValidate={true}
-              />
+              <div className="custom-error" />
             </FormItem>
           </Col>
 
         </Row>
         <FooterForm
           handleSubmit={handleSubmit}
-          resource={resource.MENU_MANAGEMENT_CATEGORIES}
+          resource={resource.MENU_MANAGEMENT_PRODUCT}
           handleCancel={handleCancel}
           buttonSave={
             mode === enumType.mode.create
-              ? 'Add Category'
-              : 'Save Category'
+              ? 'Add Product'
+              : 'Save Product'
           }
         />
       </AntForm>

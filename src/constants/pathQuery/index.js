@@ -5,22 +5,22 @@ export default {
   ...pathAuth,
 
   ...pathSelect,
-  
-  ORDER_QUERY: `orderQuery`,
 
-  ORDER_AFFILIATE_CODE_QUERY: `orderAffiliateCodeQuery`,
+  // ORDER_QUERY: `orderQuery`,
+
+  // ORDER_AFFILIATE_CODE_QUERY: `orderAffiliateCodeQuery`,
 
   PRODUCT_QUERY: `productQuery`,
 
-  BULK_PRODUCT_QUERY: `bulkProductQuery`,
+  // BULK_PRODUCT_QUERY: `bulkProductQuery`,
 
-  SUPPORT_QUERY: 'supportQuery',
+  // SUPPORT_QUERY: 'supportQuery',
 
   DASHBOARD_QUERY: 'dashboardQuery',
 
   USERS_QUERY: 'usersQuery',
 
-  PROMO_CODE_QUERY: 'promoCodesQuery',
+  // PROMO_CODE_QUERY: 'promoCodesQuery',
 
   GROUP_BANNERS_QUERY: 'groupBannersQuery',
 
@@ -28,27 +28,27 @@ export default {
 
   CATEGORY_QUERY: 'categoryQuery',
 
-  MEMBERSHIP_QUERY: 'membershipQuery',
+  // MEMBERSHIP_QUERY: 'membershipQuery',
 
-  LOCATION_QUERY: 'locationQuery',
+  // LOCATION_QUERY: 'locationQuery',
 
-  NOTIFICATION_QUERY: 'notificationQuery',
+  // NOTIFICATION_QUERY: 'notificationQuery',
 
-  FEEDBACK_QUERY: 'feedbackQuery',
+  // FEEDBACK_QUERY: 'feedbackQuery',
 
-  ADMIN_NOTIFICATION_QUERY: 'adminNotificationQuery',
+  // ADMIN_NOTIFICATION_QUERY: 'adminNotificationQuery',
 
-  PING_QUERY: 'pingQuery',
+  // PING_QUERY: 'pingQuery',
 
   HTML_BLOCK_QUERY: 'htmlBlockQuery',
 
-  MEDIA_QUERY: 'mediaQuery',
+  // MEDIA_QUERY: 'mediaQuery',
 
   MANAGE_PAGES_QUERY: 'managePagesQuery',
 
-  FAQ_QUERY: 'faqQuery',
+  // FAQ_QUERY: 'faqQuery',
 
-  MEMBERSHIP_PLAN_QUERY: 'membershipPlanQuery',
+  // MEMBERSHIP_PLAN_QUERY: 'membershipPlanQuery',
 
   RESOURCE_QUERY: 'resourceQuery',
 

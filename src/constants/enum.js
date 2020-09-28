@@ -219,8 +219,8 @@ const productStatusEnum = [
     />,
     color: 'green',
     description: <FormattedMessage
-      id="Label.Online"
-      defaultMessage="Online"
+      id="Label.Published"
+      defaultMessage="Published"
     />
   },
   {
@@ -699,7 +699,6 @@ const categoryStatus = {
   SUSPENDED: 'Suspended'
 }
 
-
 const categoryStatusEnum = [
   {
     label: 'Published',
@@ -710,6 +709,23 @@ const categoryStatusEnum = [
     value: categoryStatus.SUSPENDED
   }
 ]
+
+
+// const productStatus = {
+//   PUBLISHED: 'Published',
+//   SUSPENDED: 'Suspended'
+// }
+
+// const StatusProductEnum = [
+//   {
+//     label: 'Published',
+//     value: productStatus.PUBLISHED
+//   },
+//   {
+//     label: 'Suspended',
+//     value: productStatus.SUSPENDED
+//   }
+// ]
 
 
 

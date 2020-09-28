@@ -328,8 +328,6 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
-
-
           </Col>
           <Col
             lg={8}

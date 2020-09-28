@@ -13,7 +13,6 @@ export default {
             name
             description
           }
-          priority
           ingredient
           method
           level
@@ -36,7 +35,6 @@ export default {
           name
           description
         }
-        priority
         ingredient
         method
         level

@@ -237,6 +237,73 @@ const productStatusEnum = [
   }
 ]
 
+const recipeStatus = {
+  Deleted: 'Deleted',
+  Published: 'Published',
+  Suspended: 'Suspended'
+}
+
+const recipeStatusEnum = [
+  {
+    value: recipeStatus.Suspended,
+    label: <FormattedMessage
+      id="Enum.recipeStatus.Removed"
+      defaultMessage="Removed"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Removed"
+      defaultMessage="Removed"
+    />
+  },
+  {
+    value: recipeStatus.Published,
+    label: <FormattedMessage
+      id="Enum.recipeStatus.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
+  },
+  {
+    value: recipeStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.recipeStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
+
+
+const recipeLevel = {
+  Easy: 'Easy',
+  Medium: 'Medium',
+  Difficult: 'Difficult'
+}
+
+const recipeLevelEnum = [
+  {
+    value: recipeLevel.Easy,
+    label: "Easy"
+  },
+  {
+    value: recipeLevel.Medium,
+    label: "Medium"
+  },
+  {
+    value: recipeLevel.Difficult,
+    label: "Difficult"
+  }
+]
+
 
 // const orderStatusValues = {
 //   RequestCancelled: 'requestCancel',
@@ -498,10 +565,10 @@ const userStatusEnum = [
   }
 ]
 
-const paymentMethod = {
-  Cash: 'cash',
-  CreditCash: 'CreditCash'
-}
+// const paymentMethod = {
+//   Cash: 'cash',
+//   CreditCash: 'CreditCash'
+// }
 
 // const stepRequestViaCard = [
 //   {
@@ -777,5 +844,9 @@ export default {
   // DeliveryOptionsValue,
   // deliveryType
   categoryStatus,
-  categoryStatusEnum
+  categoryStatusEnum,
+  recipeStatus,
+  recipeStatusEnum,
+  recipeLevel,
+  recipeLevelEnum
 }

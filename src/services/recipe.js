@@ -1,4 +1,4 @@
-import { queryStringHelper, stringHelper } from '../extensions'
+import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
 
 export default {
   initQuerySearchRecipes(searchObject, defaultPageSize) {
@@ -47,13 +47,12 @@ export default {
     if (values.slug) {
       const slug = stringHelper.generateSlug(stringHelper.removeEscapeCharacter(values.slug))
       queryClause += `, slug: "${slug}"`
-    } else if(values.name) {
+    } else if (values.name) {
       const name = stringHelper.removeEscapeCharacter(values.name)
       queryClause += `, slug: ${stringHelper.removeEscapeCharacter(name)}`
     } else {
       queryClause += `, slug: null`
     }
-
 
     if (values.description) {
       queryClause += `, description: "${values.description}"`
@@ -61,28 +60,26 @@ export default {
       queryClause += `, description: ""`
     }
 
-    if (values.content) {
-      const content = stringHelper.removeEscapeCharacter(
-        values.content)
-      queryClause += `, content: "${content}"`
+    if (values.ingredient) {
+      const ingredient = htmlHelper.encodeContent(values.ingredient)
+      queryClause += `, ingredient: "${ingredient}"`
     } else {
-      queryClause += `, content: null`
+      queryClause += `, ingredient: null`
     }
 
-    if(values.ingredient) {
-      queryClause += `, ingredient: ${values.ingredient}`
-    }
-    
-    if(values.priority) {
-      queryClause += `, priority: ${values.priority}`
+    if (values.method) {
+      const method = htmlHelper.encodeContent(values.method)
+      queryClause += `, method: "${method}"`
+    } else {
+      queryClause += `, method: null`
     }
 
-    if(values.level) {
+    // if (values.priority) {
+    //   queryClause += `, priority: ${values.priority}`
+    // }
+
+    if (values.level) {
       queryClause += `, level: ${values.level}`
-    }
-
-    if(values.method) {
-      queryClause += `, method: ${values.method}`
     }
 
     // query upload image
@@ -116,13 +113,13 @@ export default {
     }
 
     // banner
-    if (values.banner) {
-      if (values.banner.filename) {
-        queryClause += `, banner: "${values.banner.filename}"`
-      }
-    } else {
-      queryClause += `, banner: null`
-    }
+    // if (values.banner) {
+    //   if (values.banner.filename) {
+    //     queryClause += `, banner: "${values.banner.filename}"`
+    //   }
+    // } else {
+    //   queryClause += `, banner: null`
+    // }
 
     queryClause += `, status: ${values.status}`
 

@@ -15,6 +15,7 @@ const RESOURCE = 'resource'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
 
+
 export default {
   ADMIN_HOME_PAGE: '/',
   ADMIN_DASHBOARD: `/${ADMIN_DASHBOARD}`,
@@ -26,5 +27,6 @@ export default {
   ADMIN_USER_ROLE: `/${USER_ROLE}`,
   ADMIN_CATEGORIES: `/${CATEGORIES}`,
   ADMIN_PRODUCT: `/${PRODUCTS}`,
-  ADMIN_RECIPES: `/${RECIPES}`
+  ADMIN_RECIPES: `/${RECIPES}`,
+  ADMIN_HTML_BLOCK: `/${HTML_BLOCK}`,
 }

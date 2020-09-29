@@ -1,7 +1,7 @@
-import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
+import { queryStringHelper, stringHelper, htmlHelper, datetimeHelper } from '../extensions'
 
 export default {
-  initQuerySearchProduct(searchObject, defaultPageSize) {
+  initQuerySearchProduct(searchObject, defaultPageSize, unSearchAll) {
     const {
       pageSize,
       skip
@@ -14,6 +14,30 @@ export default {
       query += `keyword: "${keyword}"`
     }
 
+    // if (unSearchAll) {
+    //   query += `, isSearchAll: ${!unSearchAll}`
+    // } else {
+    //   query += `, isSearchAll: true`
+    // }
+
+    // if (searchObject.category) {
+    //   query += `, categoryId: "${searchObject.category}"`
+    // }
+
+    // if (searchObject.startDate && searchObject.endDate) {
+    //   const startDate = datetimeHelper.initNewVnDate(
+    //     searchObject.startDate
+    //   ).format()
+    //   const endDate = datetimeHelper.initNewVnDate(
+    //     searchObject.endDate
+    //   ).format()
+    //   query += `, fromDate: "${startDate}"`
+    //   query += `, endDate: "${endDate}"`
+    // }
+
+    // if (searchObject.status) {
+    //   query += `, status: "${searchObject.status}"`
+    // }
     return {
       whereClause: `filter: {${query}}, limit :${pageSize}, skip: ${skip}`,
       whereConnectionClause: `filter: {${query}}`

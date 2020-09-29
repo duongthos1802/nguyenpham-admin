@@ -13,7 +13,7 @@ import { ProductImage } from '../../components/Image'
 // extensions
 import { numberHelper } from '../../extensions'
 // utils
-import { imageUtils } from '../../utils'
+import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
 

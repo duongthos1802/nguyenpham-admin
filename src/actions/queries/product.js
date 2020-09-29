@@ -8,6 +8,10 @@ export default {
           images
           description,
           attribute
+          category {
+            _id
+            name
+          }
           slug
           packing
           tutorial
@@ -25,6 +29,9 @@ export default {
         images
         description,
         attribute
+        category {
+          name
+        }
         slug
         packing
         tutorial

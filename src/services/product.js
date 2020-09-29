@@ -57,6 +57,12 @@ export default {
       // queryClause += `, imageFile: null`
     }
 
+    if (values.category) {
+      queryClause += `, category: "${values.category.value}"`
+    } else {
+      queryClause += `, category: null`
+    }
+
     // banner
     // if (values.banner) {
     //   if (values.banner.filename) {

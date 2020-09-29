@@ -13,7 +13,7 @@ import { ProductImage } from '../../components/Image'
 // extensions
 import { numberHelper } from '../../extensions'
 // utils
-import { imageUtils } from '../../utils'
+import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
 
@@ -70,6 +70,14 @@ const DataGrid = (props) => {
       />,
       dataIndex: 'slug',
       key: 'slug'
+    },
+    {
+      title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
+      dataIndex: 'category',
+      key: 'category',
+      sorter: true,
+      render: (text) => text ? text.name : null,
+      sortOrder: utils.getSortDirection(search, 'category')
     },
     {
       title: <FormattedMessage

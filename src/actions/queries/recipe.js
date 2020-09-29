@@ -9,7 +9,7 @@ export default {
           slug
           status
           category {
-            index
+            _id
             name
             description
           }
@@ -31,9 +31,7 @@ export default {
         slug
         status
         category {
-          index
           name
-          description
         }
         ingredient
         method

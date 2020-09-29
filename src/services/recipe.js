@@ -60,6 +60,12 @@ export default {
       queryClause += `, description: ""`
     }
 
+    if (values.category) {
+      queryClause += `, category: "${values.category.value}"`
+    } else {
+      queryClause += `, category: null`
+    }
+
     if (values.ingredient) {
       const ingredient = htmlHelper.encodeContent(values.ingredient)
       queryClause += `, ingredient: "${ingredient}"`

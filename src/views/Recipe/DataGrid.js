@@ -64,6 +64,14 @@ const DataGrid = (props) => {
       key: 'name'
     },
     {
+      title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
+      dataIndex: 'category',
+      key: 'category',
+      sorter: true,
+      render: (text) => text ? text.name : null,
+      sortOrder: utils.getSortDirection(search, 'category')
+    },
+    {
       title: <FormattedMessage
         id="Grid.description"
         defaultMessage="Description"

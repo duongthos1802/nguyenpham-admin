@@ -4,12 +4,12 @@ import { Tag } from 'antd'
 
 import { enumType } from '../../constants'
 
-const ProductStatus = ({ status }) => {
-  let currentStatus = enumType.userStatusEnum.find(
+const RecipeStatus = ({ status }) => {
+  let currentStatus = enumType.recipeStatusEnum.find(
     option => option.value === status)
   if (!currentStatus) {
-    currentStatus = enumType.userStatusEnum.find(
-      option => option.value === enumType.userStatus.Normal)
+    currentStatus = enumType.recipeStatusEnum.find(
+      option => option.value === enumType.recipeStatus.Published)
   }
 
   if (currentStatus) {
@@ -18,7 +18,7 @@ const ProductStatus = ({ status }) => {
         color={currentStatus.color}
       >
         <span className='text-uppercase'>
-          {currentStatus.label}
+          {currentStatus.description}
         </span>
       </Tag>
     )
@@ -26,8 +26,8 @@ const ProductStatus = ({ status }) => {
   return null
 }
 
-ProductStatus.propTypes = {
+RecipeStatus.propTypes = {
   status: PropTypes.string
 }
 
-export default ProductStatus
+export default RecipeStatus

@@ -8,7 +8,8 @@ import {
   MIN_WIDTH_IMAGE,
   WIDTH_DEFAULT_AVATAR_IMAGE,
   WIDTH_DEFAULT_IMAGE,
-  BANNER_IMAGE_BASE_URL
+  BANNER_IMAGE_BASE_URL,
+  UPLOADS_IMAGE_URL
 } from '../constants'
 import { isUser } from '../extensions/user'
 import stringExtensions from '../extensions/string'
@@ -76,16 +77,11 @@ export const getImagePathByType = (type) => {
   switch (type) {
     case enumType.uploadType.Product:
       return enumType.imagePath.Product
-    case enumType.uploadType.Avatar:
-      return enumType.imagePath.Avatar
+    case enumType.uploadType.Recipe:
+      return enumType.imagePath.Recipe
     case enumType.uploadType.Banner:
       return enumType.imagePath.Banner
-    case enumType.uploadType.Chat:
-      return enumType.imagePath.Chat
-    case enumType.uploadType.Ping:
-      return enumType.imagePath.Ping
     default:
-      console.log('123123123')
       return enumType.imagePath.Product
   }
 }
@@ -93,6 +89,11 @@ export const getImagePathByType = (type) => {
 export const getDefaultImage = (path) => {
   switch (path) {
     case enumType.imagePath.Product:
+      return {
+        width: WIDTH_DEFAULT_IMAGE,
+        height: HEIGHT_DEFAULT_IMAGE
+      }
+    case enumType.imagePath.Recipe:
       return {
         width: WIDTH_DEFAULT_IMAGE,
         height: HEIGHT_DEFAULT_IMAGE
@@ -117,36 +118,12 @@ export const getDefaultImage = (path) => {
 
 export const getPreviewImage = (
   {
-    width,
-    height,
     imagePath,
-    fileName,
-    autoSize,
-    fit
+    fileName
   }
 ) => {
   const keyName = `${imagePath}/${fileName}`
-
-  const _edits = {}
-
-  _edits.resize = {}
-
-  const defaultSize = getDefaultImage(imagePath)
-  if (!autoSize) {
-    _edits.resize.width = Number(width || defaultSize.width)
-    _edits.resize.height = Number(height || defaultSize.height)
-  }
-  _edits.resize.fit = fit ? fit : 'cover'
-  //'contain'
-  // Set up the request body
-  const request = {
-    bucket: process.env.REACT_APP_BUCKET_NAME,
-    key: keyName,
-    edits: _edits
-  }
-  const str = JSON.stringify(request)
-  const enc = btoa(unescape(encodeURIComponent(str)))
-  return `${process.env.REACT_APP_CLOUD_FRONT_END_URL}/${enc}`
+  return `${UPLOADS_IMAGE_URL}/${keyName}`
 }
 
 export const getImageUrlByFilename = (
@@ -158,7 +135,7 @@ export const getImageUrlByFilename = (
   }) => {
   if (!fileName) return defaultImage
   if (checkHttpUrl(fileName)) return fileName
-  return USE_AWS
+  return true
     ? getPreviewImage({
       fileName: fileName,
       imagePath: type,
@@ -190,9 +167,9 @@ export const getUrlImageProduct = (url) => {
 }
 
 //lấy link banner
-export const getBannerUrl = (url) => {
+export const getBannerUrl = (url, type) => {
   return getImageUrlByFilename({
-    type: enumType.imagePath.Banner,
+    type: type || enumType.imagePath.Banner,
     defaultImage: DEFAULT_IMAGE_BG_PROFILE,
     fileName: url
   })

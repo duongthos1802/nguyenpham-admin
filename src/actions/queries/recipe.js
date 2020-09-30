@@ -2,23 +2,26 @@ export default {
   loadData(queryClause) {
     return `
     query {
-        recipe(${queryClause}) {
+      recipe(${queryClause}) {
+        _id
+        name
+        description
+        slug
+        status
+        videoUrl
+        category {
           _id
+          index
           name
           description
-          slug
-          status
-          category {
-            index
-            name
-            description
-          }
-          ingredient
-          method
-          level
-          viewCount
         }
-      }`
+        pictures
+        ingredient
+        method
+        level
+        viewCount
+      }
+    }`
   },
 
   loadDataPager(queryClause) {
@@ -30,11 +33,14 @@ export default {
         description
         slug
         status
+        pictures
         category {
+          _id
           index
           name
           description
         }
+        videoUrl
         ingredient
         method
         level

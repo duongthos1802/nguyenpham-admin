@@ -151,6 +151,8 @@ const UploadImage = (props) => {
     })
   }
 
+
+  // custom request
   const handleCustomRequest = async(options) => {
     setLoading(true)
     setFirstLoad(false)

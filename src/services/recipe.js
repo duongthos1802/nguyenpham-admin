@@ -1,3 +1,4 @@
+import { enumType } from '../constants'
 import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
 
 export default {
@@ -45,11 +46,10 @@ export default {
     }
 
     if (values.slug) {
-      const slug = stringHelper.generateSlug(stringHelper.removeEscapeCharacter(values.slug))
+      const slug = values.slug
       queryClause += `, slug: "${slug}"`
     } else if (values.name) {
-      const name = stringHelper.removeEscapeCharacter(values.name)
-      queryClause += `, slug: ${stringHelper.removeEscapeCharacter(name)}`
+      queryClause += `, slug: ${stringHelper.generateSlug(values.name)}`
     } else {
       queryClause += `, slug: null`
     }
@@ -58,6 +58,18 @@ export default {
       queryClause += `, description: "${values.description}"`
     } else {
       queryClause += `, description: ""`
+    }
+
+    if (values.videoUrl) {
+      queryClause += `, videoUrl: "${values.videoUrl}"`
+    } else {
+      queryClause += `, videoUrl: ""`
+    }
+
+    if (values.category) {
+      queryClause += `, category: "${values.category.key}"`
+    } else {
+      queryClause += `, category: ""`
     }
 
     if (values.ingredient) {
@@ -124,5 +136,9 @@ export default {
     queryClause += `, status: ${values.status}`
 
     return `record: {${queryClause}}`
-  }
+  },
+
+  initQueryDeleteRecipe(data) {
+    return ` record: {_id: "${data._id}", status: ${enumType.recipeStatus.Deleted}}`
+  },
 }

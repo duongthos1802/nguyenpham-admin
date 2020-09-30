@@ -74,6 +74,7 @@ class CKEditor extends React.Component {
       config.ignoreEmptyParagraph = true
       config.fillEmptyBlocks = false
       config.language = 'en'
+      config.imageType = this.props.imageType
 
       if (this.props.customConfig) {
         config = {

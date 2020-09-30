@@ -4,6 +4,7 @@ import { openInsertVideo } from './plugins/VideoYoutube'
 import { enumType } from '../constants'
 
 export const addPlugins = (editor) => {
+  console.log('editor..........................', editor)
   //add button insert image
   editor.addCommand('insertImage', {
     exec: function (edt) {

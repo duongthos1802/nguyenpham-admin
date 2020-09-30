@@ -11,7 +11,8 @@ const Editor = (props) => {
     placeholder,
     editorConfig,
     element,
-    customConfig
+    customConfig,
+    imageType
   } = props
 
   const [content, setContent] = useState(data || '')
@@ -25,6 +26,7 @@ const Editor = (props) => {
 
   return (
     <CKEditor
+      imageType={imageType}
       customConfig={customConfig}
       editorConfig={editorConfig}
       element={element || 'ckeditorContent'}

@@ -107,8 +107,9 @@ const customSearch = withSearch({
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)
   },
-  deleteData: (values, { deleteDataCallback }) => {
-    const queryClause = `_id: "${values._id}"`
+  deleteData: (values, { updateDataCallback }) => {
+    const queryClause = recipeService.initQueryDeleteRecipe(values)
+    updateDataCallback(queryClause)
   }
 })
 

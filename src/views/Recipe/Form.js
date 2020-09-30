@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 // lib
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
-import { Form as AntForm, Input, Row, Col, InputNumber } from 'antd'
+import { Form as AntForm, Input, Row, Col } from 'antd'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 // constants
@@ -32,32 +32,41 @@ const customFormik = withFormik({
     status: yupHelper.stringRequired,
     level: yupHelper.stringRequired,
   }),
-  mapPropsToValues: ({ data }) => ({
-    _id: formikHelper.getDefaultValueField(data, '_id', null),
-    name: formikHelper.getDefaultValueField(data, 'name', null),
-    slug: formikHelper.getDefaultValueField(data, 'slug', null),
-    videoUrl: formikHelper.getDefaultValueField(data, 'videoUrl', null),
-    category: utils.formatObjectSelect(
-      data ? data.category : null,
-      '_id',
-      'name'
-    ),
-    description: stringHelper.handleShowLineBreakTextarea(
-      formikHelper.getDefaultValueField(data, 'description', null)
-    ),
-    ingredient: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'ingredient', null)
-    ),
-    method: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'method', null)
-    ),
-    image: formikHelper.getImageValueField(data, 'image',
-      enumType.imagePath.Banner),
-    level: formikHelper.getDefaultValueField(data, 'level',
-      enumType.recipeLevel.Medium),
-    status: formikHelper.getDefaultValueField(data, 'status',
-      enumType.recipeStatus.Published),
-  }),
+  mapPropsToValues: ({ data }) => {
+    const productPictures = formikHelper.getListImageValueField({
+      data: data,
+      fieldName: 'pictures',
+      imageType: enumType.imagePath.Recipe,
+      fileNameField: 'filename',
+    })
+
+    const fileUpload = productPictures && productPictures.length > 0 ? productPictures : []
+    return {
+      _id: formikHelper.getDefaultValueField(data, '_id', null),
+      name: formikHelper.getDefaultValueField(data, 'name', null),
+      slug: formikHelper.getDefaultValueField(data, 'slug', null),
+      videoUrl: formikHelper.getDefaultValueField(data, 'videoUrl', null),
+      category: utils.formatObjectSelect(
+        data ? data.category : null,
+        '_id',
+        'name'
+      ),
+      description: stringHelper.handleShowLineBreakTextarea(
+        formikHelper.getDefaultValueField(data, 'description', null)
+      ),
+      ingredient: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'ingredient', null)
+      ),
+      method: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'method', null)
+      ),
+      fileUpload: fileUpload,
+      level: formikHelper.getDefaultValueField(data, 'level',
+        enumType.recipeLevel.Medium),
+      status: formikHelper.getDefaultValueField(data, 'status',
+        enumType.recipeStatus.Published),
+    }
+  },
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
   },
@@ -223,7 +232,7 @@ const Form = (props) => {
                   placeholder => (
                     <Input
                       placeholder={placeholder}
-                      value={values.url}
+                      value={values.videoUrl}
                       onChange={(input) => {
                         setFieldValue('videoUrl', input.target.value)
                       }}
@@ -310,6 +319,7 @@ const Form = (props) => {
                 handleChange={(value) => setFieldValue('method', value)}
                 handleBlur={() => setFieldTouched('method', true)}
                 editorConfig='content'
+                imageType={enumType.uploadType.Recipe}
               // element='html-block-editor'
               />
               <ErrorMessage
@@ -335,6 +345,7 @@ const Form = (props) => {
                 handleChange={(value) => setFieldValue('ingredient', value)}
                 handleBlur={() => setFieldTouched('ingredient', true)}
                 editorConfig='content'
+                imageType={enumType.uploadType.Recipe}
               // element='html-block-editor'
               />
               <ErrorMessage
@@ -360,13 +371,13 @@ const Form = (props) => {
             >
               <UploadImage
                 name={'icon'}
-                data={values.image}
-                multiple={false}
-                handleUploadFile={(file) => setFieldValue('image', file)}
-                handleChangeFile={(fileList) => setFieldValue('image',
+                data={values.fileUpload}
+                multiple={true}
+                handleUploadFile={(file) => setFieldValue('fileUpload', file)}
+                handleChangeFile={(fileList) => setFieldValue('fileUpload',
                   fileList)}
                 showUploadList={true}
-                type={enumType.uploadType.Banner}
+                type={enumType.uploadType.Recipe}
                 showSingleImage={false}
               />
             </FormItem>

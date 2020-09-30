@@ -10,19 +10,19 @@ export default {
 
     let operations = {
       query: `
-       uploadFile (file: $file, fileType: ${fileType}, createdBy: "${createdBy}") {
-            id
-            mimeType
-            fileExtension
-            encoding
-            contentType
-            originalUrl
-            cdnUrl
-            uri
-            isDeleted
-            createdAt
-            createdBy
-          }
+      uploadFile (file: $file, fileType: ${fileType}, createdBy: "${createdBy}") {
+        id
+        mimeType
+        fileExtension
+        encoding
+        contentType
+        originalUrl
+        cdnUrl
+        uri
+        isDeleted
+        createdAt
+        createdBy
+      }
       `,
       variables: {
         file: null
@@ -58,10 +58,13 @@ export default {
   },
 
   async uploadFile(file, type) {
+    console.log('custom request......', file)
     // form data
     let formData = new FormData()
+    console.log('formData...', formData)
     formData.append('file', file)
     // upload
+    console.log('formData.append..', formData)
     return await axios
       .post(API_UPLOAD_URL, formData, {
         headers: {
@@ -72,9 +75,11 @@ export default {
         }
       })
       .then((res) => {
+        console.log('resss....... upload File', res.data)
         return Promise.resolve(res.data)
       })
       .catch((error) => {
+        console.log('errorerror...', error)
         return Promise.reject(error)
       })
   }

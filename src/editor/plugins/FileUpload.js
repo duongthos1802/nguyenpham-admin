@@ -9,14 +9,15 @@ const IMAGE_EDITOR_PATH = enumType.imagePath.Banner
 
 const FileUpload = (props) => {
 
+  const { handleSave, imageType } = props
   const inputRef = useRef(null)
-
+  
   const onChangeFile = async(event) => {
     event.stopPropagation()
     event.preventDefault()
     const file = event.target.files[0]
 
-    const resultData = await upload.uploadFile(file, IMAGE_EDITOR_PATH)
+    const resultData = await upload.uploadFile(file, imageType)
     if (resultData && resultData.length > 0) {
       const file = resultData[0]
       const fileUpload = {
@@ -24,12 +25,12 @@ const FileUpload = (props) => {
         status: 'done',
         filename: file.filename,
         url: `${getPreviewImage({
-          imagePath: getImagePathByType(IMAGE_EDITOR_PATH),
+          imagePath: getImagePathByType(imageType),
           fileName: file.filename
         })}`
       }
-      if (props.handleSave) {
-        props.handleSave(fileUpload)
+      if (handleSave) {
+        handleSave(fileUpload)
       }
     } else {
       Modal.error({

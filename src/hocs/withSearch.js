@@ -361,9 +361,7 @@ export const withSearch =
           setSelectedRows(selectedRows)
         }
       }
-
-
-      console.log('auth................', state)
+      
       return (
         <CustomSpin
           spinning={state.isLoading}

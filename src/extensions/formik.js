@@ -47,7 +47,6 @@ export default {
     }
 
     const dataField = data[fieldName]
-
     return dataField.map(image => {
       const fileName = fileNameField && image[fileNameField]
         ? image[fileNameField]

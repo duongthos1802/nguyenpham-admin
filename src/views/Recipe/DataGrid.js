@@ -12,10 +12,12 @@ import { CustomTable } from '../../components'
 import { ProductImage } from '../../components/Image'
 // extensions
 import { numberHelper } from '../../extensions'
+import htmlHelper from '../../extensions/html'
 // utils
 import { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
+import RecipeStatus from '../../components/Tag/RecipeStatus'
 
 const DataGrid = (props) => {
 
@@ -38,19 +40,21 @@ const DataGrid = (props) => {
         defaultMessage="Index"
       />,
       width: 100,
+      align: 'center',
       dataIndex: 'index',
       key: 'index',
       render: (text) => numberHelper.formatNumber(text, false)
     },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
-      dataIndex: 'imageCategory',
-      width: 80,
+      dataIndex: 'pictures',
+      width: 200,
+      align: 'center',
       render: (text, record) => {
         return (
           <ProductImage
-            src={imageUtils.getBannerUrl(record.image)}
-            alt='category-image'
+            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Recipe)}
+            alt='recipe-pictures'
           />
         )
       }
@@ -61,39 +65,17 @@ const DataGrid = (props) => {
         defaultMessage="Name"
       />,
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
+      align: 'center'
     },
     {
       title: <FormattedMessage
         id="Grid.description"
         defaultMessage="Description"
       />,
+      align: 'center',
       dataIndex: 'description',
       key: 'description'
-    },
-    {
-      title: <FormattedMessage
-        id="Grid.priority"
-        defaultMessage="Priority"
-      />,
-      dataIndex: 'priority',
-      key: 'priority'
-    },
-    {
-      title: <FormattedMessage
-        id="Grid.ingredient"
-        defaultMessage="Ingredient"
-      />,
-      dataIndex: 'ingredient',
-      key: 'ingredient'
-    },
-    {
-      title: <FormattedMessage
-        id="Grid.method"
-        defaultMessage="Method"
-      />,
-      dataIndex: 'method',
-      key: 'method'
     },
     {
       title: <FormattedMessage
@@ -101,7 +83,8 @@ const DataGrid = (props) => {
         defaultMessage="Level"
       />,
       dataIndex: 'level',
-      key: 'level'
+      key: 'level',
+      align: 'center'
     },
     {
       title: <FormattedMessage
@@ -109,20 +92,21 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
-      key: 'status'
+      align: 'center',
+      key: 'status',
+      render: (text) => <RecipeStatus status={text}/>
     },
     {
       title: <FormattedMessage
         id="Grid.Action"
         defaultMessage="Action"
       />,
-      className: 'text-center',
+      align: 'center',
       key: 'action',
-      render: (text, record) => (
+      render: (text, record) => {
+        return (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
-            resource={resource.MENU_MANAGEMENT_RECIPES}
-            action={enumType.action.View}
             customClass='bg-transparent border-0 text-primary px-0'
             buttonName={
               <FormattedMessage
@@ -130,21 +114,30 @@ const DataGrid = (props) => {
                 defaultMessage="View"
               />
             }
+            handleClickButton={() => redirectPath(
+              `${routes.ROUTE_RECIPES_EDIT}/${record._id}`)}
           />
-          <Divider
-            type='vertical'
-          />
-          <ButtonDelete
-            type={enumType.buttonTypeComponent.Link}
-            isHiddenIcon={true}
-            resource={resource.MENU_MANAGEMENT_RECIPES}
-            action={enumType.action.Write}
-            record={record}
-            handleChangeItemUpdate={handleChangeItemUpdate}
-            customClass='px-0'
-          />
+          {record.status !== enumType.recipeStatus.Deleted
+            ? (
+              <div>
+                <Divider
+                  type='vertical'
+                />
+                <ButtonDelete
+                  type={enumType.buttonTypeComponent.Link}
+                  isHiddenIcon={true}
+                  resource={resource.MENU_MANAGEMENT_RECIPES}
+                  action={enumType.action.Write}
+                  record={record}
+                  handleChangeItemUpdate={handleChangeItemUpdate}
+                  customClass='px-0'
+                />
+              </div>
+            )
+            : null
+          }
         </div>
-      )
+      )}
     }
   ]
 
@@ -163,8 +156,8 @@ const DataGrid = (props) => {
       handleChangePageIndex={handleChangePageIndex}
       handleChangePageSize={handleChangePageSize}
       onChangeTable={handleChangeTable}
-      onRowClick={(record) => redirectPath(
-        `${routes.ROUTE_RECIPES_EDIT}/${record._id}`)}
+      // onRowClick={(record) => redirectPath(
+      //   `${routes.ROUTE_RECIPES_EDIT}/${record._id}`)}
     />
   )
 }

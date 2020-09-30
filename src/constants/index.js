@@ -36,6 +36,8 @@ export const RESIZE_IMAGE_URL = `${process.env.REACT_APP_API_BASE_URL}/resize`
 
 export const CROP_IMAGE_URL = `${process.env.REACT_APP_API_BASE_URL}/crop`
 
+export const UPLOADS_IMAGE_URL = `${process.env.REACT_APP_API_BASE_URL}/uploads`
+
 export const LANGUAGE = 'LANGUAGE'
 
 export const DEFAULT_FORMAT_DATE_TIME = 'DD.MM.YYYY HH:mm'

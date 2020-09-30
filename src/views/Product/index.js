@@ -4,35 +4,86 @@ import { FormattedMessage } from 'react-intl'
 // HoCs
 import { withSearch } from '../../hocs/withSearch'
 // constant
-import { DEFAULT_PAGE_SIZE, queryPath, enumType } from '../../constants'
+import { DEFAULT_PAGE_SIZE, queryPath, enumType, DEFAULT_ISO_FORMAT_DATE } from '../../constants'
 import { resource, routes } from '../../routes'
 // extensions
 import extensions, { queryStringHelper } from '../../extensions'
 // services
 import { productService } from '../../services'
 // components
-import { ColSearch, CustomCard, SearchBox } from '../../components'
+import { ColSearch, CustomCard, SearchBox, DateRangePicker } from '../../components'
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
+import { CategorySelect, EnumSelect } from '../../components/Select'
 
-const Search = ({ search, handleSearchClick }) => (
+const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
   <div className='row'>
     <ColSearch
-      customCol='col-xl-5 ml-auto'
+      label='Keyword'
+      customCol='col-lg-3'
     >
-      <div className='d-flex'>
-        <CustomCreateButton
-          resource={resource.MENU_MANAGEMENT_PRODUCT}
-          action={enumType.action.Write}
-          linkUrl={routes.ROUTE_PRODUCT_CREATE}
-          labelName='Create Product'
-        />
-        <SearchBox
-          placeholder="Search product"
-          value={search.keyword}
-          onChange={(value) => handleSearchClick('keyword', value)}
-        />
-      </div>
+      <FormattedMessage
+        id="Placeholder.Keyword"
+        defaultMessage="Keyword"
+      >
+        {
+          placeholder => (
+            <SearchBox
+              placeholder={placeholder}
+              value={search.keyword}
+              onChange={(keyword) => handleSearchClick('keyword', keyword)}
+            />
+          )
+        }
+      </FormattedMessage>
+    </ColSearch>
+    <ColSearch
+      label='Category'
+      customCol='col-lg-3'
+    >
+      <CategorySelect
+        isProduct={true}
+        value={search.category}
+        isClearable={true}
+        path='category'
+        onChange={(path, value) => handleSearchClick(path,
+          value && value.value ? value.value : null)}
+      />
+    </ColSearch>
+    <ColSearch
+      label='Date Listed'
+      customCol='col-lg-4'
+    >
+      <DateRangePicker
+        dateFormat={DEFAULT_ISO_FORMAT_DATE}
+        startDate={search.startDate}
+        endDate={search.endDate}
+        startDateField='startDate'
+        endDateField='endDate'
+        enableClear={true}
+        onChange={handleChangeDateRange}
+      />
+    </ColSearch>
+    <ColSearch
+      label='Status'
+    >
+      <FormattedMessage
+        id="Placeholder.ProductStatus"
+        defaultMessage="Product Status"
+      >
+        {
+          placeholder => (
+            <EnumSelect
+              isClearable={true}
+              placeholder={placeholder}
+              value={search.status}
+              labelField='description'
+              onChange={(value) => handleSearchClick('status', value)}
+              options={enumType.productStatusEnum}
+            />
+          )
+        }
+      </FormattedMessage>
     </ColSearch>
   </div>
 )
@@ -73,6 +124,14 @@ const Index = (props) => {
             defaultMessage="Product"
           />
         </strong>
+      }
+      buttonGroup={
+        <CustomCreateButton
+          resource={resource.MENU_MANAGEMENT_PRODUCT}
+          action={enumType.action.Write}
+          linkUrl={routes.ROUTE_PRODUCT_CREATE}
+          labelName='Create Product'
+        />
       }
     >
       <Search

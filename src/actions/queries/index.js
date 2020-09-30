@@ -14,6 +14,9 @@ import productQuery from './product'
 // RECIPE
 import recipeQuery from './recipe'
 
+// HTML BLOCK
+import htmlBlockQuery from './htmlBlock'
+
 // SELECT
 import select from './select'
 
@@ -28,5 +31,7 @@ export default {
 
   productQuery,
 
-  recipeQuery
+  recipeQuery,
+
+  htmlBlockQuery,
 }

@@ -6,16 +6,14 @@ import { Divider } from 'antd'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
-// component
-import { ButtonDelete, ButtonAction } from '../../components/Button'
-import { CustomTable } from '../../components'
-import { ProductImage } from '../../components/Image'
-// extensions
-import { numberHelper } from '../../extensions'
 // utils
-import utils, { imageUtils } from '../../utils'
-//actions
+import utils from '../../utils'
+// component
+import { ButtonAction, ButtonDelete } from '../../components/Button'
+import { CustomTable } from '../../components'
+// extensions
 import { redirectPath } from '../../actions/commonAction'
+import { numberHelper } from '../../extensions'
 
 const DataGrid = (props) => {
 
@@ -27,65 +25,29 @@ const DataGrid = (props) => {
     pageIndex,
     handleChangePageSize,
     handleChangePageIndex,
-    handleChangeTable,
-    handleChangeItemUpdate
+    handleChangeItemUpdate,
+    handleChangeTable
   } = props
 
   let header = [
-    // {
-    //   title: <FormattedMessage
-    //     id="Grid.Index"
-    //     defaultMessage="Index"
-    //   />,
-    //   width: 100,
-    //   dataIndex: 'index',
-    //   key: 'index',
-    //   render: (text) => numberHelper.formatNumber(text, false)
-    // },
     {
-      title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
-      dataIndex: 'imageCategory',
-      width: 80,
-      render: (text, record) => {
-        return (
-          <ProductImage
-            src={imageUtils.getBannerUrl(record.image)}
-            alt='product-image'
-          />
-        )
-      }
+      title: <FormattedMessage
+        id="Grid.Index"
+        defaultMessage="Index"
+      />,
+      dataIndex: 'index',
+      key: 'index',
+      render: (text) => numberHelper.formatNumber(text, false)
     },
     {
       title: <FormattedMessage
-        id="Grid.name"
-        defaultMessage="Name"
+        id="Grid.Code"
+        defaultMessage="Code"
       />,
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: <FormattedMessage
-        id="Grid.Slug"
-        defaultMessage="Slug"
-      />,
-      dataIndex: 'slug',
-      key: 'slug'
-    },
-    {
-      title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
-      dataIndex: 'category',
-      key: 'category',
+      dataIndex: 'code',
+      key: 'code',
       sorter: true,
-      render: (text) => text ? text.name : null,
-      sortOrder: utils.getSortDirection(search, 'category')
-    },
-    {
-      title: <FormattedMessage
-        id="Grid.Status"
-        defaultMessage="Status"
-      />,
-      dataIndex: 'status',
-      key: 'status'
+      sortOrder: utils.getSortDirection(search, 'code')
     },
     {
       title: <FormattedMessage
@@ -97,15 +59,15 @@ const DataGrid = (props) => {
       render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
-            resource={resource.MENU_MANAGEMENT_PRODUCT}
+            resource={resource.MENU_HTML_BLOCK_MANAGEMENT}
             action={enumType.action.View}
-            customClass='bg-transparent border-0 text-primary px-0'
             buttonName={
               <FormattedMessage
-                id='Button.View'
+                id="Button.View"
                 defaultMessage="View"
               />
             }
+            customClass='bg-transparent border-0 text-primary px-0'
           />
           <Divider
             type='vertical'
@@ -113,7 +75,7 @@ const DataGrid = (props) => {
           <ButtonDelete
             type={enumType.buttonTypeComponent.Link}
             isHiddenIcon={true}
-            resource={resource.MENU_MANAGEMENT_PRODUCT}
+            resource={resource.MENU_HTML_BLOCK_MANAGEMENT}
             action={enumType.action.Write}
             record={record}
             handleChangeItemUpdate={handleChangeItemUpdate}
@@ -127,6 +89,7 @@ const DataGrid = (props) => {
   const dataGrid = data && data.length > 0
     ? data
     : []
+
   return (
     <CustomTable
       rowKey={record => record._id}
@@ -140,7 +103,7 @@ const DataGrid = (props) => {
       handleChangePageSize={handleChangePageSize}
       onChangeTable={handleChangeTable}
       onRowClick={(record) => redirectPath(
-        `${routes.ROUTE_PRODUCT_EDIT}/${record._id}`)}
+        `${routes.ROUTE_HTML_BLOCK_EDIT}/${record._id}`)}
     />
   )
 }

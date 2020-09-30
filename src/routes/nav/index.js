@@ -6,6 +6,7 @@ import { LoadableRoute } from '../../components'
 import { navCategories, resourceCategories } from './navCategories'
 import { navProduct, resourceProduct } from './navProduct'
 import { navRecipes, resourceRecipes } from './navRecipes'
+import { navHtmlBlock, resourceHtmlBlock } from './navHtmlBlock'
 
 export const navAdmin = [
   {
@@ -83,6 +84,22 @@ export const navAdmin = [
     resource: resourceRecipes.MENU_MANAGEMENT_RECIPES,
     key: 'recipes',
     children: navRecipes
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.HtmlBlock'
+        defaultMessage='Html Block'
+      />
+    ),
+    path: mainRoutes.ADMIN_HTML_BLOCK,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-embed2',
+    actionType: enumType.action.View,
+    resource: resourceHtmlBlock.MENU_HTML_BLOCK_MANAGEMENT,
+    key: 'html-block',
+    children: navHtmlBlock
   },
 ]
 

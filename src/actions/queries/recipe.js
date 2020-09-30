@@ -38,7 +38,6 @@ export default {
           _id
           index
           name
-          description
         }
         videoUrl
         ingredient

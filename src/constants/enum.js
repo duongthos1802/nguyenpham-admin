@@ -290,6 +290,7 @@ const recipeLevelEnum = [
       id="Enum.recipeLevel.Easy"
       defaultMessage="Easy"
     />,
+    color: 'green',
     description: <FormattedMessage
       id="Label.Easy"
       defaultMessage="Easy"
@@ -302,6 +303,7 @@ const recipeLevelEnum = [
       id="Enum.recipeLevel.Medium"
       defaultMessage="Medium"
     />,
+    color: 'orange',
     description: <FormattedMessage
       id="Label.Medium"
       defaultMessage="Medium"
@@ -313,9 +315,43 @@ const recipeLevelEnum = [
       id="Enum.recipeLevel.Difficult"
       defaultMessage="Difficult"
     />,
+    color: 'red',
     description: <FormattedMessage
       id="Label.Difficult"
       defaultMessage="Difficult"
+    />
+  }
+]
+
+const recipePriority = {
+  Yes: true,
+  No: false,
+}
+
+const recipePriorityEnum = [
+  {
+    value: recipePriority.Yes,
+    label: <FormattedMessage
+      id="Enum.recipePriority.Yes"
+      defaultMessage="Yes"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Yes"
+      defaultMessage="Yes"
+    />
+
+  },
+  {
+    value: recipePriority.No,
+    label: <FormattedMessage
+      id="Enum.recipePriority.No"
+      defaultMessage="No"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.No"
+      defaultMessage="No"
     />
   }
 ]
@@ -430,5 +466,7 @@ export default {
   recipeStatus,
   recipeStatusEnum,
   recipeLevel,
-  recipeLevelEnum
+  recipeLevelEnum,
+  recipePriority,
+  recipePriorityEnum
 }

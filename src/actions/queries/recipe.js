@@ -9,6 +9,7 @@ export default {
         slug
         status
         videoUrl
+        isPriority
         category {
           _id
           index
@@ -33,6 +34,7 @@ export default {
         description
         slug
         status
+        isPriority
         pictures
         category {
           _id

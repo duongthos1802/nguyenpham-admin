@@ -86,9 +86,7 @@ export default {
       queryClause += `, method: null`
     }
 
-    // if (values.priority) {
-    //   queryClause += `, priority: ${values.priority}`
-    // }
+      queryClause += `, isPriority: ${!!values.isPriority}`
 
     if (values.level) {
       queryClause += `, level: ${values.level}`

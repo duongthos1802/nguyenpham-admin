@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
 import { Form as AntForm, Input, Row, Col } from 'antd'
+import Checkbox from 'antd/lib/checkbox'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 // constants
@@ -65,6 +66,7 @@ const customFormik = withFormik({
         enumType.recipeLevel.Medium),
       status: formikHelper.getDefaultValueField(data, 'status',
         enumType.recipeStatus.Published),
+      isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false)
     }
   },
   handleSubmit: (values, { props }) => {
@@ -124,6 +126,14 @@ const Form = (props) => {
     },
     [formError]
   )
+
+  const onChangeIsPriority = ({target: {checked}}) => {
+    const {setValues, values} = props
+    setValues({
+      ...values,
+      isPriority: checked,
+    })
+  }
 
   return (
     <CustomForm
@@ -433,8 +443,21 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Priority"
+                  defaultMessage="Priority"
+                />
+              }
+              className='mb-0'
+            >
+              <Checkbox
+                onChange={onChangeIsPriority}
+                checked={values.isPriority}
+              />
+            </FormItem>
           </Col>
-
         </Row>
         <FooterForm
           handleSubmit={handleSubmit}

@@ -10,14 +10,15 @@ import { routes, resource } from '../../routes'
 import { ButtonDelete, ButtonAction } from '../../components/Button'
 import { CustomTable } from '../../components'
 import { ProductImage } from '../../components/Image'
+import RecipeStatus from '../../components/Tag/RecipeStatus'
+import RecipeLevel from '../../components/Tag/RecipeLevel'
 // extensions
 import { numberHelper } from '../../extensions'
-import htmlHelper from '../../extensions/html'
 // utils
 import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
-import RecipeStatus from '../../components/Tag/RecipeStatus'
+import RecipePriority from '../../components/Tag/RecipePriority'
 
 const DataGrid = (props) => {
 
@@ -48,7 +49,7 @@ const DataGrid = (props) => {
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
       dataIndex: 'pictures',
-      width: 200,
+      width: 100,
       align: 'center',
       render: (text, record) => {
         return (
@@ -92,7 +93,8 @@ const DataGrid = (props) => {
       />,
       dataIndex: 'level',
       key: 'level',
-      align: 'center'
+      align: 'center',
+      render: (text) => <RecipeLevel status={text} />
     },
     {
       title: <FormattedMessage
@@ -103,6 +105,16 @@ const DataGrid = (props) => {
       align: 'center',
       key: 'status',
       render: (text) => <RecipeStatus status={text}/>
+    },
+    {
+      title: <FormattedMessage
+        id="Grid.Priority"
+        defaultMessage="Priority"
+      />,
+      dataIndex: 'isPriority',
+      align: 'center',
+      key: 'isPriority',
+      render: (text) => <RecipePriority status={text}/>
     },
     {
       title: <FormattedMessage

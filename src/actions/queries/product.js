@@ -8,6 +8,8 @@ export default {
           images
           description,
           attribute
+          isPriority
+          pictures
           category {
             _id
             name
@@ -29,7 +31,10 @@ export default {
         images
         description,
         attribute
+        isPriority
+        pictures
         category {
+          _id
           name
         }
         slug

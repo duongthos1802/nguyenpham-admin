@@ -32,16 +32,16 @@ const DataGrid = (props) => {
   } = props
 
   let header = [
-    // {
-    //   title: <FormattedMessage
-    //     id="Grid.Index"
-    //     defaultMessage="Index"
-    //   />,
-    //   width: 100,
-    //   dataIndex: 'index',
-    //   key: 'index',
-    //   render: (text) => numberHelper.formatNumber(text, false)
-    // },
+    {
+      title: <FormattedMessage
+        id="Grid.Index"
+        defaultMessage="Index"
+      />,
+      width: 100,
+      dataIndex: 'index',
+      key: 'index',
+      render: (text) => numberHelper.formatNumber(text, false)
+    },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
       dataIndex: 'imageCategory',
@@ -49,7 +49,7 @@ const DataGrid = (props) => {
       render: (text, record) => {
         return (
           <ProductImage
-            src={imageUtils.getBannerUrl(record.image)}
+            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Product)}
             alt='product-image'
           />
         )

@@ -69,16 +69,42 @@ export default {
       queryClause += `, description: ""`
     }
 
-    if (values.image) {
-      if (values.image.filename) {
-        queryClause += `, image: "${values.image.filename}"`
-      }
-      if (values.image.uid) {
-        queryClause += `, imageFile: "${values.image.uid}"`
+    // query upload image
+    let productImages = []
+    if (values.thumbnail) {
+      productImages.push(values.thumbnail)
+    }
+    if (values.fileUpload && values.fileUpload.length > 0) {
+      productImages = productImages.concat(values.fileUpload)
+    }
+    if (productImages.length > 0) {
+      let queryClauseThumbnails = ``
+      let queryClausePictures = ``
+      queryClause += `, images: [`
+      productImages.forEach((item) => {
+        if (item.id) {
+          queryClause += `"${item.id}", `
+        }
+        queryClausePictures += `"${item.filename}", `
+        queryClauseThumbnails += `"${item.filename}", `
+      })
+      queryClause += `], `
+
+      queryClause += `, picturesThumbnails: [${queryClauseThumbnails}]`
+
+      queryClause += `, pictures: [${queryClausePictures}]`
+    } else {
+      queryClause += `, picturesThumbnails: []`
+      queryClause += `, pictures: []`
+      queryClause += `, images: []`
+    }
+    // logo
+    if (values.logo) {
+      if (values.logo.filename) {
+        queryClause += `, logo: "${values.logo.filename}"`
       }
     } else {
-      queryClause += `, images: null`
-      // queryClause += `, imageFile: null`
+      queryClause += `, logo: null`
     }
 
     if (values.category) {
@@ -120,6 +146,7 @@ export default {
     }
 
     queryClause += `, status: ${values.status}`
+    queryClause += `, isPriority: ${!!values.isPriority}`
     return `record: {${queryClause}}`
   }
 }

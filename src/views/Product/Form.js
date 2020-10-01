@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react'
 // lib
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
-import { Form as AntForm, Input, Row, Col, InputNumber } from 'antd'
+import { Form as AntForm, Input, Row, Col } from 'antd'
+import Checkbox from 'antd/lib/checkbox'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 // constant
@@ -31,33 +32,43 @@ const customFormik = withFormik({
     slug: yupHelper.stringRequired,
     status: yupHelper.stringRequired
   }),
-  mapPropsToValues: ({ data }) => ({
-    _id: formikHelper.getDefaultValueField(data, '_id', null),
-    name: formikHelper.getDefaultValueField(data, 'name', null),
-    slug: formikHelper.getDefaultValueField(data, 'slug', null),
-    description: stringHelper.handleShowLineBreakTextarea(
-      formikHelper.getDefaultValueField(data, 'description', null)
-    ),
-    category: utils.formatObjectSelect(
-      data ? data.category : null,
-      '_id',
-      'name'
-    ),
-    logo: formikHelper.getImageValueField(data, 'logo', enumType.imagePath.Banner),
-    image: formikHelper.getImageValueField(data, 'image',
-      enumType.imagePath.Banner),
-    packing: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'packing', null)
-    ),
-    tutorial: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'tutorial', null)
-    ),
-    attribute: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'attribute', null)
-    ),
-    status: formikHelper.getDefaultValueField(data, 'status',
-      enumType.categoryStatus.PUBLISHED),
-  }),
+  mapPropsToValues: ({ data }) => {
+    const productPictures = formikHelper.getListImageValueField({
+      data: data,
+      fieldName: 'pictures',
+      imageType: enumType.imagePath.Product,
+      fileNameField: 'filename',
+    })
+    const fileUpload = productPictures && productPictures.length > 0 ? productPictures : []
+
+    return {
+      _id: formikHelper.getDefaultValueField(data, '_id', null),
+      name: formikHelper.getDefaultValueField(data, 'name', null),
+      slug: formikHelper.getDefaultValueField(data, 'slug', null),
+      description: stringHelper.handleShowLineBreakTextarea(
+        formikHelper.getDefaultValueField(data, 'description', null)
+      ),
+      category: utils.formatObjectSelect(
+        data ? data.category : null,
+        '_id',
+        'name'
+      ),
+      logo: formikHelper.getImageValueField(data, 'logo', enumType.imagePath.Banner),
+      fileUpload: fileUpload,
+      packing: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'packing', null)
+      ),
+      tutorial: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'tutorial', null)
+      ),
+      attribute: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'attribute', null)
+      ),
+      status: formikHelper.getDefaultValueField(data, 'status',
+        enumType.categoryStatus.PUBLISHED),
+      isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false)
+    }
+  },
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
   },
@@ -79,8 +90,6 @@ const Form = (props) => {
     resetForm,
     handleCancel
   } = props
-
-  console.log({ data, values })
 
   const nameRef = useRef(null)
   const slugRef = useRef(null)
@@ -117,6 +126,14 @@ const Form = (props) => {
     },
     [formError]
   )
+
+  const onChangeIsPriority = ({target: {checked}}) => {
+    const {setValues, values} = props
+    setValues({
+      ...values,
+      isPriority: checked,
+    })
+  }
 
   return (
     <CustomForm
@@ -260,8 +277,8 @@ const Form = (props) => {
             <FormItem
               label={
                 <FormattedMessage
-                  id="Label.attribute"
-                  defaultMessage="attribute"
+                  id="Label.Attribute"
+                  defaultMessage="Attribute"
                 />
               }
               className='mb-0'
@@ -284,8 +301,8 @@ const Form = (props) => {
             <FormItem
               label={
                 <FormattedMessage
-                  id="Label.tutorial"
-                  defaultMessage="tutorial"
+                  id="Label.Tutorial"
+                  defaultMessage="Tutorial"
                 />
               }
               className='mb-0'
@@ -309,8 +326,8 @@ const Form = (props) => {
               required={true}
               label={
                 <FormattedMessage
-                  id="Label.packing"
-                  defaultMessage="packing"
+                  id="Label.Packing"
+                  defaultMessage="Packing"
                 />
               }
               className='mb-0'
@@ -344,13 +361,13 @@ const Form = (props) => {
             >
               <UploadImage
                 name={'icon'}
-                data={values.image}
-                multiple={false}
-                handleUploadFile={(file) => setFieldValue('image', file)}
-                handleChangeFile={(fileList) => setFieldValue('image',
+                data={values.fileUpload}
+                multiple={true}
+                handleUploadFile={(file) => setFieldValue('fileUpload', file)}
+                handleChangeFile={(fileList) => setFieldValue('fileUpload',
                   fileList)}
                 showUploadList={true}
-                type={enumType.uploadType.Banner}
+                type={enumType.uploadType.Product}
                 showSingleImage={false}
               />
             </FormItem>
@@ -394,6 +411,20 @@ const Form = (props) => {
                 labelField="description"
               />
               <div className="custom-error" />
+            </FormItem>
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Priority"
+                  defaultMessage="Priority"
+                />
+              }
+              className='mb-0'
+            >
+              <Checkbox
+                onChange={onChangeIsPriority}
+                checked={values.isPriority}
+              />
             </FormItem>
           </Col>
 

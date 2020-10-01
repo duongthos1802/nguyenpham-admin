@@ -34,14 +34,14 @@ const customFormik = withFormik({
     level: yupHelper.stringRequired,
   }),
   mapPropsToValues: ({ data }) => {
-    const productPictures = formikHelper.getListImageValueField({
+    const recipePictures = formikHelper.getListImageValueField({
       data: data,
       fieldName: 'pictures',
       imageType: enumType.imagePath.Recipe,
       fileNameField: 'filename',
     })
 
-    const fileUpload = productPictures && productPictures.length > 0 ? productPictures : []
+    const fileUpload = recipePictures && recipePictures.length > 0 ? recipePictures : []
     return {
       _id: formikHelper.getDefaultValueField(data, '_id', null),
       name: formikHelper.getDefaultValueField(data, 'name', null),
@@ -134,7 +134,6 @@ const Form = (props) => {
       isPriority: checked,
     })
   }
-
   return (
     <CustomForm
       title={

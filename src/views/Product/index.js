@@ -50,7 +50,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
           value && value.value ? value.value : null)}
       />
     </ColSearch>
-    <ColSearch
+    {/* <ColSearch
       label='Date Listed'
       customCol='col-lg-4'
     >
@@ -63,7 +63,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
         enableClear={true}
         onChange={handleChangeDateRange}
       />
-    </ColSearch>
+    </ColSearch> */}
     <ColSearch
       label='Status'
     >

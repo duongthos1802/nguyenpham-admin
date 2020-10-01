@@ -196,13 +196,13 @@ const productStatusEnum = [
   {
     value: productStatus.Suspended,
     label: <FormattedMessage
-      id="Enum.ProductStatus.Removed"
-      defaultMessage="Removed"
+      id="Enum.ProductStatus.Suspended"
+      defaultMessage="Suspended"
     />,
     color: 'orange',
     description: <FormattedMessage
-      id="Label.Removed"
-      defaultMessage="Removed"
+      id="Label.Suspended"
+      defaultMessage="Suspended"
     />
   },
   {

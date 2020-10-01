@@ -20,7 +20,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
   <div className='row'>
     <ColSearch
       label='Keyword'
-      customCol='col-lg-3'
+      customCol='col-lg-4'
     >
       <FormattedMessage
         id="Placeholder.Keyword"
@@ -39,7 +39,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
     </ColSearch>
     <ColSearch
       label='Category'
-      customCol='col-lg-3'
+      customCol='col-lg-4'
     >
       <CategorySelect
         isProduct={true}
@@ -66,6 +66,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
     </ColSearch> */}
     <ColSearch
       label='Status'
+      customCol='col-lg-4'
     >
       <FormattedMessage
         id="Placeholder.ProductStatus"

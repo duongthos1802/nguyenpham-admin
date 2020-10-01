@@ -38,6 +38,13 @@ export default {
       queryClause += `, code: null`
     }
 
+    if (values.title) {
+      const title = htmlHelper.encodeContent(values.title)
+      queryClause += `, title: "${title}"`
+    } else {
+      queryClause += `, title: null`
+    }
+
     if (values.content) {
       const content = htmlHelper.encodeContent(values.content)
       queryClause += `, content: "${content}"`

@@ -5,6 +5,7 @@ export default {
       htmlBlocks(${queryClause.whereClause}) {
         _id
         code
+        title
         content
       }
       htmlBlocksCount(${queryClause.whereConnectionClause})
@@ -17,6 +18,7 @@ export default {
     query {
       htmlBlock(${queryClause}) {
         _id
+        title
         code
         content
       }

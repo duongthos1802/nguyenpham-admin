@@ -41,6 +41,9 @@ const customFormik = withFormik({
   mapPropsToValues: ({ data }) => ({
     id: formikHelper.getDefaultValueField(data, '_id', null),
     code: formikHelper.getDefaultValueField(data, 'code', null),
+    title: htmlHelper.decodeContent(
+      formikHelper.getDefaultValueField(data, 'title', null)
+    ),
     content: htmlHelper.decodeContent(
       formikHelper.getDefaultValueField(data, 'content', null)
     )
@@ -92,16 +95,16 @@ const Form = (props) => {
     <CustomForm
       title={
         <span>
-         {
-           utils.initTitleForm(
-             <FormattedMessage
-               id="Page.HtmlBlock"
-               defaultMessage="Html Block"
-             />,
-             mode
-           )
-         }
-       </span>
+          {
+            utils.initTitleForm(
+              <FormattedMessage
+                id="Page.HtmlBlock"
+                defaultMessage="Html Block"
+              />,
+              mode
+            )
+          }
+        </span>
       }
     >
       <AntForm
@@ -137,6 +140,26 @@ const Form = (props) => {
             isValidate={true}
           />
         </FormItem>
+
+        <FormItem
+          required={true}
+          label={
+            <FormattedMessage
+              id="Label.Title"
+              defaultMessage="Title"
+            />
+          }
+          className='mb-0'
+        >
+          <Editor
+            data={values.title}
+            handleChange={(value) => setFieldValue('title', value)}
+            handleBlur={() => setFieldTouched('title', true)}
+            editorConfig='content'
+          // element='html-block-editor'
+          />
+        </FormItem>
+
         <FormItem
           required={true}
           label={
@@ -152,7 +175,7 @@ const Form = (props) => {
             handleChange={(value) => setFieldValue('content', value)}
             handleBlur={() => setFieldTouched('content', true)}
             editorConfig='content'
-            element='html-block-editor'
+          // element='html-block-editor'
           />
           <ErrorMessage
             fieldName='content'

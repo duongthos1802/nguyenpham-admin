@@ -57,7 +57,7 @@ export default {
     if (values.categoryParent) {
       queryClause += `, parentId: "${values.categoryParent.value}"`
     } else {
-      queryClause += `, parentId: ""`
+      queryClause += `, parentId: null`
     }
 
     if (values.metaTitle) {
@@ -103,8 +103,8 @@ export default {
       queryClause += `, banner: null`
     }
 
-    queryClause += `, status: ${values.status}`
-    queryClause += `, index: ${values.index}`
-    return `record: {${queryClause}}`
+    queryClause += `, status: ${values.status} `
+    queryClause += `, index: ${values.index} `
+    return `record: { ${queryClause} } `
   }
 }

@@ -8,7 +8,11 @@ export default {
           name
           image
           description,
-          parentId
+          parentId {
+            _id
+            name
+            index
+          }
           banner
           slug
           metaTitle

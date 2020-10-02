@@ -7,6 +7,7 @@ import { navCategories, resourceCategories } from './navCategories'
 import { navProduct, resourceProduct } from './navProduct'
 import { navRecipes, resourceRecipes } from './navRecipes'
 import { navHtmlBlock, resourceHtmlBlock } from './navHtmlBlock'
+import { navBannerGroup, resourceBanner } from './navBannerGroup'
 
 export const navAdmin = [
   {
@@ -36,6 +37,22 @@ export const navAdmin = [
     resource: 'MENU-DASHBOARD',
     key: 'dashboard',
     component: LoadableRoute(() => import('../../views/Admin/Dashboard'))
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.BannerGroup'
+        defaultMessage='Banner Group'
+      />
+    ),
+    path: mainRoutes.ADMIN_BANNER_GROUP,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-images',
+    actionType: enumType.action.View,
+    resource: resourceBanner.MENU_MANAGEMENT_BANNER,
+    key: 'bannerGroup',
+    children: navBannerGroup
   },
   {
     name: (

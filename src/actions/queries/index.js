@@ -17,6 +17,13 @@ import recipeQuery from './recipe'
 // HTML BLOCK
 import htmlBlockQuery from './htmlBlock'
 
+
+// BANNERS
+import bannersQuery from './banners'
+
+// GROUP BANNERS
+import groupBannersQuery from './groupBanner'
+
 // SELECT
 import select from './select'
 
@@ -34,4 +41,8 @@ export default {
   recipeQuery,
 
   htmlBlockQuery,
+
+  bannersQuery,
+
+  groupBannersQuery
 }

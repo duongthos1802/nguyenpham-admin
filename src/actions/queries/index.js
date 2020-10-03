@@ -24,6 +24,9 @@ import bannersQuery from './banners'
 // GROUP BANNERS
 import groupBannersQuery from './groupBanner'
 
+// PAGE
+import managePagesQuery from './managePages'
+
 // SELECT
 import select from './select'
 
@@ -44,5 +47,7 @@ export default {
 
   bannersQuery,
 
-  groupBannersQuery
+  groupBannersQuery,
+
+  managePagesQuery
 }

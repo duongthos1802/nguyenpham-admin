@@ -14,6 +14,7 @@ const BANNER_GROUP = 'banner-group'
 const RESOURCE = 'resource'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
+const SUPPORT = 'support'
 
 
 export default {
@@ -31,4 +32,6 @@ export default {
   ADMIN_HTML_BLOCK: `/${HTML_BLOCK}`,
   ADMIN_HTML_BLOCK: `/${HTML_BLOCK}`,
   ADMIN_BANNER_GROUP: `/${BANNER_GROUP}`,
+  ADMIN_MANAGE_PAGES: `/${MANAGE_PAGES}`,
+  ADMIN_SUPPORT: `/${SUPPORT}`,
 }

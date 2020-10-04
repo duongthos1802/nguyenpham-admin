@@ -141,6 +141,7 @@ const uploadType = {
   Product: 'product',
   Banner: 'banner',
   Recipe: 'recipe',
+  Html_Block: 'htmlBlock',
   Category: 'category',
 }
 
@@ -149,6 +150,7 @@ const imagePath = {
   Avatar: 'profile_pictures',
   Banner: 'banner_pictures',
   Recipe: 'recipe_pictures',
+  Html_Block: 'html_block_pictures',
   Chat: 'chat_pictures',
   Ping: 'ping_pictures',
   Category: 'category_pictures'

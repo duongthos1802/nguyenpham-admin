@@ -8,6 +8,7 @@ import { navProduct, resourceProduct } from './navProduct'
 import { navRecipes, resourceRecipes } from './navRecipes'
 import { navHtmlBlock, resourceHtmlBlock } from './navHtmlBlock'
 import { navBannerGroup, resourceBanner } from './navBannerGroup'
+import { navManagePages, resourceManagePages } from './navManagePages'
 
 export const navAdmin = [
   {
@@ -117,6 +118,38 @@ export const navAdmin = [
     resource: resourceHtmlBlock.MENU_HTML_BLOCK_MANAGEMENT,
     key: 'html-block',
     children: navHtmlBlock
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.ManagePages'
+        defaultMessage='Manage Pages'
+      />
+    ),
+    path: mainRoutes.ADMIN_MANAGE_PAGES,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-stack',
+    actionType: enumType.action.View,
+    resource: resourceManagePages.MENU_MANAGEMENT_PAGES,
+    key: 'manage-pages',
+    children: navManagePages
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Supports'
+        defaultMessage='Support'
+      />
+    ),
+    path: mainRoutes.ADMIN_SUPPORT,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-stack',
+    actionType: enumType.action.View,
+    resource: 'MENU_MANAGEMENT_SUPPORT',
+    key: 'support',
+    component: LoadableRoute(() => import('../../views/support'))
   },
 ]
 

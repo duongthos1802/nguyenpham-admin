@@ -81,6 +81,8 @@ export const getImagePathByType = (type) => {
       return enumType.imagePath.Recipe
     case enumType.uploadType.Banner:
       return enumType.imagePath.Banner
+    case enumType.uploadType.Html_Block:
+      return enumType.imagePath.Html_Block
     default:
       return enumType.imagePath.Product
   }
@@ -122,6 +124,7 @@ export const getPreviewImage = (
     fileName
   }
 ) => {
+  console.log('imagePath', imagePath)
   const keyName = `${imagePath}/${fileName}`
   return `${UPLOADS_IMAGE_URL}/${keyName}`
 }
@@ -135,6 +138,7 @@ export const getImageUrlByFilename = (
   }) => {
   if (!fileName) return defaultImage
   if (checkHttpUrl(fileName)) return fileName
+  console.log('type...', type)
   return true
     ? getPreviewImage({
       fileName: fileName,

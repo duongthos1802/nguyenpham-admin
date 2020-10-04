@@ -417,7 +417,7 @@ const Form = (props) => {
               label={
                 <FormattedMessage
                   id="Label.Logo"
-                  defaultMessage="Logo Hãng"
+                  defaultMessage="Chứng chỉ"
                 />
               }
               className='mb-0'

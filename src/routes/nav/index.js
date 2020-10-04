@@ -135,6 +135,22 @@ export const navAdmin = [
     key: 'manage-pages',
     children: navManagePages
   },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Supports'
+        defaultMessage='Support'
+      />
+    ),
+    path: mainRoutes.ADMIN_SUPPORT,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-stack',
+    actionType: enumType.action.View,
+    resource: 'MENU_MANAGEMENT_SUPPORT',
+    key: 'support',
+    component: LoadableRoute(() => import('../../views/support'))
+  },
 ]
 
 export default navAdmin

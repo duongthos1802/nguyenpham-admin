@@ -220,7 +220,7 @@ const Form = (props) => {
             >
               <UploadImage
                 name={'icon'}
-                data={values.image}
+                data={values.fileUpload}
                 multiple={false}
                 handleUploadFile={(file) => setFieldValue('image', file)}
                 handleChangeFile={(fileList) => setFieldValue('image',

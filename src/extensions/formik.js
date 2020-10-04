@@ -45,7 +45,6 @@ export default {
     if (!data || !data[fieldName] || data[fieldName].length === 0) {
       return []
     }
-
     const dataField = data[fieldName]
     return dataField.map(image => {
       const fileName = fileNameField && image[fileNameField]

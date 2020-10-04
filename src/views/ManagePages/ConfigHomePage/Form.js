@@ -29,6 +29,8 @@ const customFormik = withFormik({
       configPartnerThird: formikHelper.getDefaultValueField(dataConfigHome, 'configPartnerThird', null),
       configCategoryFour: formikHelper.getDefaultValueField(dataConfigHome, 'configCategoryFour', null),
       configService: formikHelper.getDefaultValueField(dataConfigHome, 'configService', null),
+      configEventLeft: formikHelper.getDefaultValueField(dataConfigHome, 'configEventLeft', null),
+      configEventRight: formikHelper.getDefaultValueField(dataConfigHome, 'configEventRight', null),
     }
   },
   handleSubmit: (values, { props }) => {
@@ -109,7 +111,6 @@ const FormAction = (props) => {
         }
         className="mb-0"
       >
-
         <div className="d-flex">
           <div className="mr-2 w-100">
             <FormattedMessage
@@ -130,33 +131,81 @@ const FormAction = (props) => {
               }
             </FormattedMessage>
           </div>
-          {/* <div className="ml-2 w-100">
-            <FormattedMessage
-              id="Label.BannerFeatureUser"
-              defaultMessage="Banner Feature User"
-            >
-              {
-                (placeholder) => (
-                  <BannerSelect
-                    placeholder={placeholder}
-                    value={values.configFeatureBanner}
-                    onChange={setFieldValue}
-                    onBlur={setFieldTouched}
-                    path={'configFeatureBanner'}
-                  />
-                )
-              }
-            </FormattedMessage>
-          </div> */}
         </div>
 
         <ErrorMessage
-          fieldName='configFeature'
+          fieldName='configService'
           touched={touched}
           errors={errors}
           isValidate={true}
         />
       </FormItem>
+
+
+      <FormItem
+        required={true}
+        label={
+          <FormattedMessage
+            id="Label.Event.Left"
+            defaultMessage="Event Left"
+          />
+        }
+      >
+        <div className="d-flex">
+          <div className="mr-2 w-100">
+            <FormattedMessage
+              id="Label.Event.Left"
+              defaultMessage="Event left"
+
+            >
+              {
+                (placeholder) => (
+                  <HtmlBlockSelect
+                    placeholder={placeholder}
+                    value={values.configEventLeft}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    path={'configEventLeft'}
+                  />
+                )
+              }
+            </FormattedMessage>
+          </div>
+        </div>
+      </FormItem>
+
+      <FormItem
+        required={true}
+        label={
+          <FormattedMessage
+            id="Label.Event"
+            defaultMessage="Event Right"
+          />
+        }
+      >
+        <div className="d-flex">
+          <div className="mr-2 w-100">
+            <FormattedMessage
+              id="Label.Event.Right"
+              defaultMessage="Event Right"
+
+            >
+              {
+                (placeholder) => (
+                  <HtmlBlockSelect
+                    placeholder={placeholder}
+                    value={values.configEventRight}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    path={'configEventRight'}
+                  />
+                )
+              }
+            </FormattedMessage>
+          </div>
+        </div>
+      </FormItem>
+
 
       <FormItem
         required={true}
@@ -298,111 +347,6 @@ const FormAction = (props) => {
           isValidate={true}
         />
       </FormItem>
-
-      {/*Partner */}
-      {/* <FormItem
-        required={true}
-        label={
-          <FormattedMessage
-            id="Label.Partner"
-            defaultMessage="Partner"
-          />
-        }
-        className='mb-0'
-      >
-        <FormattedMessage
-          id="Label.Partner"
-          defaultMessage="Partner"
-        >
-          {
-            (placeholder) => (
-              <UserSelect
-                placeholder={placeholder}
-                value={values.configPartner}
-                onChange={setFieldValue}
-                onBlur={setFieldTouched}
-                path={'configPartner'}
-              />
-            )
-          }
-        </FormattedMessage>
-        <ErrorMessage
-          fieldName='configPartner'
-          errors={errors}
-          touched={touched}
-          isValidate={true}
-        />
-      </FormItem> */}
-
-      {/*Partner 2*/}
-      {/* <FormItem
-        required={true}
-        label={
-          <FormattedMessage
-            id="Label.Partner 2"
-            defaultMessage="Partner 2"
-          />
-        }
-        className='mb-0'
-      >
-        <FormattedMessage
-          id="Label.Partner 2"
-          defaultMessage="Partner 2"
-        >
-          {
-            (placeholder) => (
-              <UserSelect
-                placeholder={placeholder}
-                value={values.configPartnerSecond}
-                onChange={setFieldValue}
-                onBlur={setFieldTouched}
-                path={'configPartnerSecond'}
-              />
-            )
-          }
-        </FormattedMessage>
-        <ErrorMessage
-          fieldName='configPartnerSecond'
-          errors={errors}
-          touched={touched}
-          isValidate={true}
-        />
-      </FormItem> */}
-
-      {/*Partner 3*/}
-      {/* <FormItem
-        required={true}
-        label={
-          <FormattedMessage
-            id="Label.Partner 3"
-            defaultMessage="Partner 3"
-          />
-        }
-        className='mb-0'
-      >
-        <FormattedMessage
-          id="Label.Partner"
-          defaultMessage="Partner 3"
-        >
-          {
-            (placeholder) => (
-              <UserSelect
-                placeholder={placeholder}
-                value={values.configPartnerThird}
-                onChange={setFieldValue}
-                onBlur={setFieldTouched}
-                path={'configPartnerThird'}
-              />
-            )
-          }
-        </FormattedMessage>
-        <ErrorMessage
-          fieldName='configPartnerThird'
-          errors={errors}
-          touched={touched}
-          isValidate={true}
-        />
-      </FormItem> */}
 
       <FooterForm
         isHiddenCancel={true}

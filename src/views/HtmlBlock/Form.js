@@ -161,7 +161,6 @@ const Form = (props) => {
             </FormItem>
 
             <FormItem
-              required={true}
               label={
                 <FormattedMessage
                   id="Label.Title"

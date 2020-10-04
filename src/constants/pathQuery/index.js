@@ -44,6 +44,8 @@ export default {
 
   HTML_BLOCK_QUERY: 'htmlBlockQuery',
 
+  GROUP_HTML_BLOCK_QUERY: 'groupHtmlBlocksQuery',
+
   // MEDIA_QUERY: 'mediaQuery',
 
   MANAGE_PAGES_QUERY: 'managePagesQuery',

@@ -87,7 +87,8 @@ export default {
       configPartner: values.configPartner,
       configPartnerSecond: values.configPartnerSecond,
       configPartnerThird: values.configPartnerThird,
-      configCategoryFour: values.configCategoryFour
+      configCategoryFour: values.configCategoryFour,
+      configService: values.configService
     }
     let queryClause = `config: "${stringHelper.removeEscapeCharacter(
       JSON.stringify(initConfigHomePage))}"`

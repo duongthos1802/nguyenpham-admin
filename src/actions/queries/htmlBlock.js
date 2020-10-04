@@ -7,6 +7,7 @@ export default {
         code
         title
         content
+        images
       }
       htmlBlocksCount(${queryClause.whereConnectionClause})
     }
@@ -21,6 +22,8 @@ export default {
         title
         code
         content
+        images
+        image
       }
     }
     `

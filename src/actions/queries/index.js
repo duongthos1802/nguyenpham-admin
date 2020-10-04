@@ -27,6 +27,9 @@ import groupBannersQuery from './groupBanner'
 // PAGE
 import managePagesQuery from './managePages'
 
+// GROUP HTML_BLOCKS
+import groupHtmlBlocksQuery from './groupHtmlBlock'
+
 // SELECT
 import select from './select'
 
@@ -49,5 +52,7 @@ export default {
 
   groupBannersQuery,
 
-  managePagesQuery
+  managePagesQuery,
+
+  groupHtmlBlocksQuery
 }

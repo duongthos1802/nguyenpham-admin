@@ -15,3 +15,5 @@ export { default as UserSelect } from './UserSelect'
 export { default as BannerSelect } from './BannerSelect'
 
 export { default as ResourceSelect } from './ResourceSelect'
+
+export { default as HtmlBlockSelect } from './HtmlBlockSelect'

@@ -31,6 +31,11 @@ export default {
 
   initQueryCreateOrUpdateHtmlBlock(values) {
     let queryClause = ``
+
+    if (values.id) {
+      queryClause += `, _id: "${values.id}"`
+    }
+
     if (values.code) {
       const code = stringHelper.removeEscapeCharacter(values.code)
       queryClause += `, code: "${code}"`
@@ -39,7 +44,7 @@ export default {
     }
 
     if (values.title) {
-      const title = htmlHelper.encodeContent(values.title)
+      const title = stringHelper.removeEscapeCharacter(values.title)
       queryClause += `, title: "${title}"`
     } else {
       queryClause += `, title: null`
@@ -52,10 +57,29 @@ export default {
       queryClause += `, content: null`
     }
 
-    if (values.id) {
-      queryClause += `, _id: "${values.id}"`
-    }
+    console.log('fileUpload......', values.fileUpload);
 
+    let queryClauseImage = ``
+    queryClause += `, files: [`
+    if (values.fileUpload) {
+      if (values.fileUpload.uid) {
+        queryClause += `"${values.fileUpload.uid}", `
+      }
+      queryClauseImage += `"${values.fileUpload.filename}", `
+    }
+    if (values.fileUploadImageMobile) {
+      if (values.fileUploadImageMobile.uid) {
+        queryClause += `"${values.fileUploadImageMobile.uid}", `
+      }
+      queryClauseImage += `"${values.fileUploadImageMobile.filename}", `
+    }
+    queryClause += `]`
+    queryClause += `, images: [${queryClauseImage}],`
+    if (values.fileUpload) {
+      queryClause += `image: "${values.fileUpload.filename}",`
+    } else {
+      queryClause += `image: null,`
+    }
     return `record: {${queryClause}}`
   }
 }

@@ -40,13 +40,13 @@ const customFormik = withFormik({
   }),
   mapPropsToValues: ({ data }) => {
 
-    const htmlBlockPictures = formikHelper.getListImageValueField({
-      data: data,
-      fieldName: 'pictures',
-      imageType: enumType.imagePath.Html_Block,
-      fileNameField: 'filename',
-    })
-    const fileUpload = htmlBlockPictures && htmlBlockPictures.length > 0 ? htmlBlockPictures : []
+    // const htmlBlockPictures = formikHelper.getListImageValueField({
+    //   data: data,
+    //   fieldName: 'pictures',
+    //   imageType: enumType.imagePath.Html_Block,
+    //   fileNameField: 'filename',
+    // })
+    // const fileUpload = htmlBlockPictures && htmlBlockPictures.length > 0 ? htmlBlockPictures : []
 
 
     return {
@@ -56,9 +56,10 @@ const customFormik = withFormik({
       content: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'content', null)
       ),
-      fileUpload: fileUpload,
-      image: formikHelper.getImageValueField(data, 'image',
-        enumType.imagePath.Banner),
+      fileUpload: formikHelper.getImageValueField(data, 'images',
+        enumType.imagePath.Html_Block),
+      image: formikHelper.getImageValueField(data, 'images',
+        enumType.imagePath.Html_Block),
     }
 
   },
@@ -171,7 +172,7 @@ const Form = (props) => {
             >
               <Input
                 ref={codeRef}
-                value={values.code}
+                value={values.title}
                 onChange={(value) => setFieldValue('title', value.target.value)}
                 onBlur={() => setFieldTouched('title', true)}
                 className={
@@ -219,20 +220,18 @@ const Form = (props) => {
               className='mb-0'
             >
               <UploadImage
-                name={'icon'}
-                data={values.fileUpload}
-                multiple={false}
-                handleUploadFile={(file) => setFieldValue('image', file)}
-                handleChangeFile={(fileList) => setFieldValue('image',
-                  fileList)}
-                showUploadList={true}
                 type={enumType.uploadType.Html_Block}
-                showSingleImage={false}
+                name={'fileUpload'}
+                data={values.fileUpload}
+                showUploadList={true}
+                multiple={false}
+                handleUploadFile={(file) => setFieldValue('fileUpload', file)}
+                handleChangeFile={(fileList) => setFieldValue('fileUpload',
+                  fileList)}
               />
             </FormItem>
           </Col>
         </Row>
-
 
         <FooterForm
           handleSubmit={handleSubmit}

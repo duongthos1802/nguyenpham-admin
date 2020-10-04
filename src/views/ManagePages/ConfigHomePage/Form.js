@@ -10,7 +10,7 @@ import { resource } from '../../../routes'
 import { formikHelper } from '../../../extensions'
 // component
 import { ErrorMessage, FooterForm, UploadImage } from '../../../components'
-import { CategorySelect, UserSelect, BannerSelect } from '../../../components/Select'
+import { CategorySelect, UserSelect, BannerSelect, HtmlBlockSelect } from '../../../components/Select'
 
 const customFormik = withFormik({
   mapPropsToValues: ({ data }) => {
@@ -28,6 +28,7 @@ const customFormik = withFormik({
       configPartnerSecond: formikHelper.getDefaultValueField(dataConfigHome, 'configPartnerSecond', null),
       configPartnerThird: formikHelper.getDefaultValueField(dataConfigHome, 'configPartnerThird', null),
       configCategoryFour: formikHelper.getDefaultValueField(dataConfigHome, 'configCategoryFour', null),
+      configService: formikHelper.getDefaultValueField(dataConfigHome, 'configService', null),
     }
   },
   handleSubmit: (values, { props }) => {
@@ -102,8 +103,8 @@ const FormAction = (props) => {
         required={true}
         label={
           <FormattedMessage
-            id="Label.FeatureUser"
-            defaultMessage="Feature User"
+            id="Label.Service"
+            defaultMessage="Service"
           />
         }
         className="mb-0"
@@ -112,24 +113,24 @@ const FormAction = (props) => {
         <div className="d-flex">
           <div className="mr-2 w-100">
             <FormattedMessage
-              id="Label.FeatureUser"
-              defaultMessage="Feature User"
+              id="Label.Service"
+              defaultMessage="Service"
 
             >
               {
                 (placeholder) => (
-                  <UserSelect
+                  <HtmlBlockSelect
                     placeholder={placeholder}
-                    value={values.configFeature}
+                    value={values.configService}
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
-                    path={'configFeature'}
+                    path={'configService'}
                   />
                 )
               }
             </FormattedMessage>
           </div>
-          <div className="ml-2 w-100">
+          {/* <div className="ml-2 w-100">
             <FormattedMessage
               id="Label.BannerFeatureUser"
               defaultMessage="Banner Feature User"
@@ -146,7 +147,7 @@ const FormAction = (props) => {
                 )
               }
             </FormattedMessage>
-          </div>
+          </div> */}
         </div>
 
         <ErrorMessage

@@ -141,7 +141,7 @@ const uploadType = {
   Product: 'product',
   Banner: 'banner',
   Recipe: 'recipe',
-  Html_Block: 'html_block',
+  Html_Block: 'htmlBlock',
   Category: 'category',
 }
 

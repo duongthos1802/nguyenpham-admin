@@ -7,6 +7,7 @@ export default {
         code
         title
         content
+        description
         htmlBlockGroup { 
           _id
           name
@@ -25,6 +26,7 @@ export default {
         _id
         title
         code
+        description
         htmlBlockGroup { 
           _id
           name

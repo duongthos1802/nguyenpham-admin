@@ -45,12 +45,12 @@ const customFormik = withFormik({
       id: formikHelper.getDefaultValueField(data, '_id', null),
       code: formikHelper.getDefaultValueField(data, 'code', null),
       title: formikHelper.getDefaultValueField(data, 'title', null),
-      description: formikHelper.getDefaultValueField(data, 'description', null),
+      description: utils.handleShowLineBreakTextarea(
+        formikHelper.getDefaultValueField(data, 'description', null)
+      ),
       content: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'content', null)
       ),
-
-
       htmlBlockGroup: utils.formatObjectSelect(
         data ? data.htmlBlockGroup : null,
         '_id',
@@ -192,16 +192,16 @@ const Form = (props) => {
               }
               className='mb-0'
             >
-              <Input
+
+              <Input.TextArea
+                placeholder="Description"
+                rows={5}
+                className='height-auto'
                 value={values.description}
-                onChange={(value) => setFieldValue('description', value.target.value)}
-                onBlur={() => setFieldTouched('description', true)}
-                className={
-                  classNames({
-                    'has-error': formikHelper.checkFieldError(errors, touched,
-                      'description')
-                  })
-                }
+                onChange={(input) => {
+                  setFieldValue('description', input.target.value)
+                }}
+                onBlur={() => setFieldTouched('text', true)}
               />
             </FormItem>
 

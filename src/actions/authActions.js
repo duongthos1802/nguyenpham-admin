@@ -135,7 +135,8 @@ const authActions = {
             )
           }
         } else {
-
+          
+          console.log('Notifications', Notifications.error)
           dispatch(
             Notifications.error({
               title: `Error`,

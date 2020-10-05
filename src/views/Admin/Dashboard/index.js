@@ -77,7 +77,7 @@ const customSearch = withSearch({
       recentLogin: DEFAULT_LIMIT_RECENT_LOGIN
     })
 
-    loadDataCallback(queryClause)
+    // loadDataCallback(queryClause)
   }
 })
 

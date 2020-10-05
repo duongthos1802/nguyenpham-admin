@@ -252,6 +252,12 @@ const dataActions = {
               }
             )
           )
+          dispatch(
+            Notifications.success({
+              title: 'Success',
+              message: `Update success.`
+            })
+          )
         } else {
           dispatch(
             Notifications.error({

@@ -15,6 +15,7 @@ import { ColSearch, CustomCard, SearchBox, DateRangePicker } from '../../compone
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
 import { CategorySelect, EnumSelect } from '../../components/Select'
+import utils from '../../utils'
 
 const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
   <div className='row'>
@@ -106,15 +107,12 @@ const Index = (props) => {
   } = queryStringHelper.getSizeAndIndexPage(search, DEFAULT_PAGE_SIZE)
 
   const {
-    total,
+    countConnection,
     dataGrid
-  } = extensions.getDataAndCount({
-    data: data,
-    dataField: 'products',
-    connectionField: 'productsCount',
-    pageIndex: pageIndex,
-    pageSize: pageSize
-  })
+  } = utils.getCountAndDataGridItems(
+    data,
+    'searchProducts'
+  )
 
   return (
     <CustomCard
@@ -142,7 +140,7 @@ const Index = (props) => {
       <DataGrid
         search={search}
         data={dataGrid}
-        total={total}
+        total={countConnection}
         handleChangeItemUpdate={handleChangeItemUpdate}
         handleChangeTable={handleChangeTable}
         handleChangePageIndex={handleChangePageIndex}
@@ -167,9 +165,9 @@ const customSearch = withSearch({
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)
   },
-  deleteData: (values, { deleteDataCallback }) => {
-    const queryClause = `_id: "${values._id}"`
-    //  deleteDataCallback(queryClause)
+  deleteData: (values, { updateDataCallback }) => {
+    const queryClause = productService.initQueryDeleteRecipe(values)
+    updateDataCallback(queryClause)
   }
 })
 

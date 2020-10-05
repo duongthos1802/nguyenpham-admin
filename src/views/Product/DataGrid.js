@@ -16,6 +16,7 @@ import { numberHelper } from '../../extensions'
 import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
+import ProductStatus from '../../components/Tag/ProductStatus'
 
 const DataGrid = (props) => {
 
@@ -85,7 +86,8 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      render: (text) => <ProductStatus status={text}/>
     },
     {
       title: <FormattedMessage
@@ -107,18 +109,25 @@ const DataGrid = (props) => {
               />
             }
           />
-          <Divider
-            type='vertical'
-          />
-          <ButtonDelete
-            type={enumType.buttonTypeComponent.Link}
-            isHiddenIcon={true}
-            resource={resource.MENU_MANAGEMENT_PRODUCT}
-            action={enumType.action.Write}
-            record={record}
-            handleChangeItemUpdate={handleChangeItemUpdate}
-            customClass='px-0'
-          />
+          {record.status !== enumType.productStatus.Deleted
+            ? (
+              <div>
+                <Divider
+                  type='vertical'
+                />
+                <ButtonDelete
+                  type={enumType.buttonTypeComponent.Link}
+                  isHiddenIcon={true}
+                  resource={resource.MENU_MANAGEMENT_PRODUCT}
+                  action={enumType.action.Write}
+                  record={record}
+                  handleChangeItemUpdate={handleChangeItemUpdate}
+                  customClass='px-0'
+                />
+              </div>
+            )
+            : null
+          }
         </div>
       )
     }

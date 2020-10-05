@@ -28,26 +28,28 @@ export default {
   loadDataPager(queryClause) {
     return `
     query {
-      recipes(${queryClause.whereClause}) {
-        _id
-        name
-        description
-        slug
-        status
-        isPriority
-        pictures
-        category {
+      searchRecipes(${queryClause.whereClause}) {
+        items {
           _id
-          index
           name
+          description
+          slug
+          status
+          isPriority
+          pictures
+          category {
+            _id
+            index
+            name
+          }
+          videoUrl
+          ingredient
+          method
+          level
+          viewCount
         }
-        videoUrl
-        ingredient
-        method
-        level
-        viewCount
+        total
       }
-      recipesCount(${queryClause.whereConnectionClause})
     }
     `
   },

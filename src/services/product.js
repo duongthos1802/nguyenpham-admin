@@ -1,7 +1,8 @@
+import { enumType } from '../constants'
 import { queryStringHelper, stringHelper, htmlHelper, datetimeHelper } from '../extensions'
 
 export default {
-  initQuerySearchProduct(searchObject, defaultPageSize, unSearchAll) {
+  initQuerySearchProduct(searchObject, defaultPageSize) {
     const {
       pageSize,
       skip
@@ -14,33 +15,25 @@ export default {
       query += `keyword: "${keyword}"`
     }
 
-    // if (unSearchAll) {
-    //   query += `, isSearchAll: ${!unSearchAll}`
-    // } else {
-    //   query += `, isSearchAll: true`
-    // }
+    if (searchObject.category) {
+      query += `, category: "${searchObject.category}"`
+    }
 
-    // if (searchObject.category) {
-    //   query += `, categoryId: "${searchObject.category}"`
-    // }
+    if (searchObject.status) {
+      query += `, status: "${searchObject.status}"`
+    }
 
-    // if (searchObject.startDate && searchObject.endDate) {
-    //   const startDate = datetimeHelper.initNewVnDate(
-    //     searchObject.startDate
-    //   ).format()
-    //   const endDate = datetimeHelper.initNewVnDate(
-    //     searchObject.endDate
-    //   ).format()
-    //   query += `, fromDate: "${startDate}"`
-    //   query += `, endDate: "${endDate}"`
-    // }
+    let orderClause = 'date_ASC'
+    if (searchObject.sortField) {
+      if (searchObject.sortDirection === enumType.sortDirection.DESC) {
+        orderClause = `${searchObject.sortField}_DESC`
+      } else {
+        orderClause = `${searchObject.sortField}_ASC`
+      }
+    }
 
-    // if (searchObject.status) {
-    //   query += `, status: "${searchObject.status}"`
-    // }
     return {
-      whereClause: `filter: {${query}}, limit :${pageSize}, skip: ${skip}`,
-      whereConnectionClause: `filter: {${query}}`
+      whereClause: `where: {${query}}, first :${pageSize}, skip: ${skip}, sortBy: "${orderClause}"`
     }
   },
 
@@ -148,5 +141,8 @@ export default {
     queryClause += `, status: ${values.status}`
     queryClause += `, isPriority: ${!!values.isPriority}`
     return `record: {${queryClause}}`
-  }
+  },
+  initQueryDeleteRecipe(data) {
+    return ` record: {_id: "${data._id}", status: ${enumType.productStatus.Deleted}}`
+  },
 }

@@ -16,7 +16,6 @@ export default {
     const searchQuery = queryString.stringify(searchObject)
 
     const searchPath = searchQuery === '' ? '' : `?${searchQuery}`
-
     return `${originPath}${searchPath}`
   },
 

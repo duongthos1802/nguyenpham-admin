@@ -2,7 +2,8 @@ import React, { memo } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import { Divider } from 'antd'
+import Divider from 'antd/lib/divider'
+import Tag from 'antd/lib/tag'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
@@ -16,6 +17,7 @@ import { numberHelper } from '../../extensions'
 import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
+import ProductStatus from '../../components/Tag/ProductStatus'
 
 const DataGrid = (props) => {
 
@@ -39,7 +41,6 @@ const DataGrid = (props) => {
       />,
       width: 100,
       dataIndex: 'index',
-      key: 'index',
       render: (text) => numberHelper.formatNumber(text, false)
     },
     {
@@ -76,7 +77,17 @@ const DataGrid = (props) => {
       dataIndex: 'category',
       key: 'category',
       sorter: true,
-      render: (text) => text ? text.name : null,
+      render: (text) => {
+        return text 
+        ? text.name
+        : <Tag
+            color={'grey'}
+          >
+            <span className='text-uppercase'>
+              null
+            </span>
+          </Tag>
+      },
       sortOrder: utils.getSortDirection(search, 'category')
     },
     {
@@ -85,7 +96,8 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      render: (text) => <ProductStatus status={text}/>
     },
     {
       title: <FormattedMessage
@@ -107,18 +119,25 @@ const DataGrid = (props) => {
               />
             }
           />
-          <Divider
-            type='vertical'
-          />
-          <ButtonDelete
-            type={enumType.buttonTypeComponent.Link}
-            isHiddenIcon={true}
-            resource={resource.MENU_MANAGEMENT_PRODUCT}
-            action={enumType.action.Write}
-            record={record}
-            handleChangeItemUpdate={handleChangeItemUpdate}
-            customClass='px-0'
-          />
+          {record.status !== enumType.productStatus.Deleted
+            ? (
+              <div>
+                <Divider
+                  type='vertical'
+                />
+                <ButtonDelete
+                  type={enumType.buttonTypeComponent.Link}
+                  isHiddenIcon={true}
+                  resource={resource.MENU_MANAGEMENT_PRODUCT}
+                  action={enumType.action.Write}
+                  record={record}
+                  handleChangeItemUpdate={handleChangeItemUpdate}
+                  customClass='px-0'
+                />
+              </div>
+            )
+            : null
+          }
         </div>
       )
     }

@@ -134,8 +134,9 @@ export default {
         if (resultData.items && resultData.items.length > 0) {
           dataGrid = resultData.items.map((item, index) => ({
             ...item,
+            number: item.index || null,
             index: pageSize && pageIndex ? countConnection - (pageIndex - 1) *
-              pageSize - index : index
+              pageSize - index : index + 1
           }))
         }
       }

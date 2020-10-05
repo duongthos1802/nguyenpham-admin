@@ -10,10 +10,11 @@ import { routes, resource } from '../../routes'
 import { ButtonDelete, ButtonAction } from '../../components/Button'
 import { CustomTable } from '../../components'
 import { ProductImage } from '../../components/Image'
+import CategoryStatus from '../../components/Tag/CategoryStatus'
 // extensions
 import { numberHelper } from '../../extensions'
 // utils
-import { imageUtils } from '../../utils'
+import utils, { imageUtils } from '../../utils'
 //actions
 import { redirectPath } from '../../actions/commonAction'
 
@@ -39,14 +40,16 @@ const DataGrid = (props) => {
       />,
       width: 100,
       dataIndex: 'index',
-      key: 'index',
-      render: (text) => numberHelper.formatNumber(text, false)
+      sorter: true,
+      sortOrder: utils.getSortDirection(search, 'index'),
+      render: (text, record) => <spa>{record.number}</spa>
     },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
       dataIndex: 'imageCategory',
       width: 80,
       render: (text, record) => {
+        console.log('product record', record)
         return (
           <ProductImage
             src={imageUtils.getBannerUrl(record.image)}
@@ -77,7 +80,8 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      render: (text) => <CategoryStatus status={text}/>
     },
     {
       title: <FormattedMessage

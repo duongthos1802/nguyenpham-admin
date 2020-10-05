@@ -15,6 +15,7 @@ import {
 import { Menu, TopBar } from '../components/Layout'
 import AdminRoute from './AdminRoutes'
 import Breadcrumb from "../components/Layout/TopBar/Breadcrumb";
+import Notifications from '../components/Notification'
 
 const AntContent = AntLayout.Content
 const AntHeader = AntLayout.Header
@@ -153,6 +154,7 @@ const AdminArea = (props) => {
           </div>
         )}
       </ContainerQuery>
+      <Notifications/>
     </Fragment>
   )
 }

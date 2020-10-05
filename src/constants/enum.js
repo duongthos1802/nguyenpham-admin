@@ -412,12 +412,28 @@ const categoryStatus = {
 
 const categoryStatusEnum = [
   {
-    label: 'Published',
-    value: categoryStatus.PUBLISHED
+    value: categoryStatus.PUBLISHED,
+    label: <FormattedMessage
+      id="Enum.Category.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
   },
   {
-    label: 'Suspended',
-    value: categoryStatus.SUSPENDED
+    value: categoryStatus.SUSPENDED,
+    label: <FormattedMessage
+      id="Enum.Category.Suspended"
+      defaultMessage="Suspended"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Suspended"
+      defaultMessage="Suspended"
+    />
   }
 ]
 

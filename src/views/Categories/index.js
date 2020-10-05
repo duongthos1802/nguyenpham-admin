@@ -14,25 +14,51 @@ import { categoryService } from '../../services'
 import { ColSearch, CustomCard, SearchBox } from '../../components'
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
+import { EnumSelect } from '../../components/Select'
+import utils from '../../utils'
 
 const Search = ({ search, handleSearchClick }) => (
   <div className='row'>
     <ColSearch
-      customCol='col-xl-5 ml-auto'
+      label='Keyword'
+      customCol='col-lg-4'
     >
-      <div className='d-flex'>
-        <CustomCreateButton
-          resource={resource.MENU_MANAGEMENT_CATEGORIES}
-          action={enumType.action.Write}
-          linkUrl={routes.ROUTE_CATEGORIES_CREATE}
-          labelName='Create Category'
-        />
-        <SearchBox
-          placeholder="Search category"
-          value={search.keyword}
-          onChange={(value) => handleSearchClick('keyword', value)}
-        />
-      </div>
+      <FormattedMessage
+        id="Placeholder.Keyword"
+        defaultMessage="Keyword"
+      >
+        {
+          placeholder => (
+            <SearchBox
+              placeholder="Search category"
+              value={search.keyword}
+              onChange={(value) => handleSearchClick('keyword', value)}
+            />
+          )
+        }
+      </FormattedMessage>
+    </ColSearch>
+    <ColSearch
+      label='Status'
+      customCol='col-lg-4'
+    >
+      <FormattedMessage
+        id="Placeholder.ProductStatus"
+        defaultMessage="Product Status"
+      >
+        {
+          placeholder => (
+            <EnumSelect
+              isClearable={true}
+              placeholder={placeholder}
+              value={search.status}
+              labelField='description'
+              onChange={(value) => handleSearchClick('status', value)}
+              options={enumType.categoryStatusEnum}
+            />
+          )
+        }
+      </FormattedMessage>
     </ColSearch>
   </div>
 )
@@ -54,15 +80,12 @@ const Index = (props) => {
   } = queryStringHelper.getSizeAndIndexPage(search, DEFAULT_PAGE_SIZE)
 
   const {
-    total,
+    countConnection,
     dataGrid
-  } = extensions.getDataAndCount({
-    data: data,
-    dataField: 'categories',
-    connectionField: 'categoriesCount',
-    pageIndex: pageIndex,
-    pageSize: pageSize
-  })
+  } = utils.getCountAndDataGridItems(
+    data,
+    'searchCategories'
+  )
 
   return (
     <CustomCard
@@ -74,6 +97,14 @@ const Index = (props) => {
           />
         </strong>
       }
+      buttonGroup={
+        <CustomCreateButton
+          resource={resource.MENU_MANAGEMENT_CATEGORIES}
+          action={enumType.action.Write}
+          linkUrl={routes.ROUTE_CATEGORIES_CREATE}
+          labelName='Create Category'
+        />
+      }
     >
       <Search
         search={search}
@@ -82,7 +113,7 @@ const Index = (props) => {
       <DataGrid
         search={search}
         data={dataGrid}
-        total={total}
+        total={countConnection}
         handleChangeItemUpdate={handleChangeItemUpdate}
         handleChangeTable={handleChangeTable}
         handleChangePageIndex={handleChangePageIndex}
@@ -107,9 +138,9 @@ const customSearch = withSearch({
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)
   },
-  deleteData: (values, { deleteDataCallback }) => {
-    const queryClause = `_id: "${values._id}"`
-    //  deleteDataCallback(queryClause)
+  deleteData: (values, { updateDataCallback }) => {
+    const queryClause = categoryService.initQueryDeleteCategory(values)
+    updateDataCallback(queryClause)
   }
 })
 

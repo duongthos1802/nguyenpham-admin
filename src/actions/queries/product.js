@@ -25,24 +25,26 @@ export default {
   loadDataPager(queryClause) {
     return `
     query {
-      products(${queryClause.whereClause}) {
-        _id
-        name
-        images
-        description,
-        attribute
-        isPriority
-        pictures
-        category {
+      searchProducts(${queryClause.whereClause}) {
+        items {
           _id
           name
+          images
+          description,
+          attribute
+          isPriority
+          pictures
+          category {
+            _id
+            name
+          }
+          slug
+          packing
+          tutorial
+          status
         }
-        slug
-        packing
-        tutorial
-        status
+        total
       }
-      productsCount(${queryClause.whereConnectionClause})
     }
     `
   },

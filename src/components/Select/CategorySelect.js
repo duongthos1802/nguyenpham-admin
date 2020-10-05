@@ -136,8 +136,7 @@ const CustomSelect = (props) => {
         </div>
       )}
       suffixIcon={<Icon type='caret-down' />}
-      filterOption={(input, option) => option.props.children.toLowerCase().
-        indexOf(input.toLowerCase()) >= 0}
+      filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       onChange={handleChangeSelection}
       onBlur={handleBlurOption}
     >

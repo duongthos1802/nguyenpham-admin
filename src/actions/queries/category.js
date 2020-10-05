@@ -26,20 +26,22 @@ export default {
   loadDataPager(queryClause) {
     return `
     query {
-      categories(${queryClause.whereClause}) {
-        _id
-        index
-        name
-        image
-        description
-        banner
-        slug
-        metaTitle
-        metaDescription
-        metaKeyword
-        status
+      searchCategories(${queryClause.whereClause}) {
+        items {
+          _id
+          index
+          name
+          image
+          description
+          banner
+          slug
+          metaTitle
+          metaDescription
+          metaKeyword
+          status
+        }
+        total
       }
-      categoriesCount(${queryClause.whereConnectionClause})
     }
     `
   },

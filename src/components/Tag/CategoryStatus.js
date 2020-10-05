@@ -4,12 +4,12 @@ import { Tag } from 'antd'
 
 import { enumType } from '../../constants'
 
-const OrderStatus = ({ status }) => {
-  let currentStatus = enumType.orderTransactionStatusEnum.find(
+const CategoryStatus = ({ status }) => {
+  let currentStatus = enumType.categoryStatusEnum.find(
     option => option.value === status)
   if (!currentStatus) {
-    currentStatus = enumType.orderTransactionStatusEnum.find(
-      option => option.value === enumType.orderStatus.Placed)
+    currentStatus = enumType.categoryStatusEnum.find(
+      option => option.value === enumType.categoryStatus.PUBLISHED)
   }
 
   if (currentStatus) {
@@ -26,8 +26,8 @@ const OrderStatus = ({ status }) => {
   return null
 }
 
-OrderStatus.propTypes = {
+CategoryStatus.propTypes = {
   status: PropTypes.string
 }
 
-export default OrderStatus
+export default CategoryStatus

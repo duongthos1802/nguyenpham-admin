@@ -28,6 +28,7 @@ const customFormik = withFormik({
   validationSchema: Yup.object().shape({
     name: yupHelper.stringRequired,
     slug: yupHelper.stringRequired,
+    urlSlug: yupHelper.stringRequired,
     status: yupHelper.stringRequired,
     index: yupHelper.numberRequired
   }),
@@ -51,6 +52,8 @@ const customFormik = withFormik({
       formikHelper.getDefaultValueField(data, 'metaDescription', null)
     ),
     metaKeyword: formikHelper.getDefaultValueField(data, 'metaKeyword', null),
+    urlSlug: formikHelper.getDefaultValueField(data, 'urlSlug', null),
+    url: formikHelper.getDefaultValueField(data, 'url', null),
     image: formikHelper.getImageValueField(data, 'image',
       enumType.imagePath.Banner),
     status: formikHelper.getDefaultValueField(data, 'status',
@@ -200,6 +203,59 @@ const Form = (props) => {
               />
               <ErrorMessage
                 fieldName='slug'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
+
+            <FormItem
+              required={true}
+              label={
+                <FormattedMessage
+                  id="Label.Url.Slug"
+                  defaultMessage="Url slug"
+                />
+              }
+              className='mb-0'
+            >
+              <Input
+                value={values.urlSlug}
+                className={
+                  classNames({
+                    'has-error': formikHelper.checkFieldError(errors, touched,
+                      'urlSlug')
+                  })
+                }
+              />
+              <ErrorMessage
+                fieldName='urlSlug'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
+
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Url"
+                  defaultMessage="Url"
+                />
+              }
+              className='mb-0'
+            >
+              <Input
+                value={values.url}
+                className={
+                  classNames({
+                    'has-error': formikHelper.checkFieldError(errors, touched,
+                      'url')
+                  })
+                }
+              />
+              <ErrorMessage
+                fieldName='url'
                 touched={touched}
                 errors={errors}
                 isValidate={true}

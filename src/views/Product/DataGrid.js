@@ -2,7 +2,8 @@ import React, { memo } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import { Divider } from 'antd'
+import Divider from 'antd/lib/divider'
+import Tag from 'antd/lib/tag'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
@@ -76,7 +77,17 @@ const DataGrid = (props) => {
       dataIndex: 'category',
       key: 'category',
       sorter: true,
-      render: (text) => text ? text.name : null,
+      render: (text) => {
+        return text 
+        ? text.name
+        : <Tag
+            color={'grey'}
+          >
+            <span className='text-uppercase'>
+              null
+            </span>
+          </Tag>
+      },
       sortOrder: utils.getSortDirection(search, 'category')
     },
     {

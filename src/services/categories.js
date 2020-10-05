@@ -1,3 +1,4 @@
+import { enumType } from '../constants'
 import { queryStringHelper, stringHelper } from '../extensions'
 
 export default {
@@ -14,18 +15,21 @@ export default {
       query += `keyword: "${keyword}"`
     }
 
-    // let orderClause = 'priority_ASC'
-    // if (searchObject.sortField) {
-    //   if (searchObject.sortDirection === 'descend') {
-    //     orderClause = `${searchObject.sortField}_DESC`
-    //   } else {
-    //     orderClause = `${searchObject.sortField}_ASC`
-    //   }
-    // }
+    if (searchObject.status) {
+      query += `, status: "${searchObject.status}"`
+    }
+
+    let orderClause = 'date_ASC'
+    if (searchObject.sortField) {
+      if (searchObject.sortDirection === enumType.sortDirection.DESC) {
+        orderClause = `${searchObject.sortField}_DESC`
+      } else {
+        orderClause = `${searchObject.sortField}_ASC`
+      }
+    }
 
     return {
-      whereClause: `filter: {${query}}, limit :${pageSize}, skip: ${skip}`,
-      whereConnectionClause: `filter: {${query}}`
+      whereClause: `where: {${query}}, first :${pageSize}, skip: ${skip}, sortBy: "${orderClause}"`
     }
   },
 
@@ -106,5 +110,9 @@ export default {
     queryClause += `, status: ${values.status} `
     queryClause += `, index: ${values.index} `
     return `record: { ${queryClause} } `
-  }
+  },
+
+  initQueryDeleteCategory(data) {
+    return ` record: {_id: "${data._id}", status: ${enumType.categoryStatus.SUSPENDED}}`
+  },
 }

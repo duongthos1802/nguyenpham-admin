@@ -33,8 +33,7 @@ export default {
     }
 
     return {
-      whereClause: `where: {${query}}, first :${pageSize}, skip: ${skip}, sortBy: "${orderClause}"`,
-      whereConnectionClause: `filter: {${query}}`
+      whereClause: `where: {${query}}, first :${pageSize}, skip: ${skip}, sortBy: "${orderClause}"`
     }
   },
 

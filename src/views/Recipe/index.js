@@ -14,25 +14,86 @@ import { recipeService } from '../../services'
 import { ColSearch, CustomCard, SearchBox } from '../../components'
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
+import { CategorySelect, EnumSelect } from '../../components/Select'
+import utils from '../../utils'
 
 const Search = ({ search, handleSearchClick }) => (
   <div className='row'>
     <ColSearch
-      customCol='col-xl-5 ml-auto'
+      label='Keyword'
+      customCol='col-lg-3'
     >
-      <div className='d-flex'>
-        <CustomCreateButton
-          resource={resource.MENU_MANAGEMENT_RECIPES}
-          action={enumType.action.Write}
-          linkUrl={routes.ROUTE_RECIPES_CREATE}
-          labelName='Create Recipe'
-        />
-        <SearchBox
-          placeholder="Search recipe"
-          value={search.keyword}
-          onChange={(value) => handleSearchClick('keyword', value)}
-        />
-      </div>
+      <FormattedMessage
+        id="Placeholder.Keyword"
+        defaultMessage="Keyword"
+      >
+        {
+          placeholder => (
+            <SearchBox
+              placeholder="Search recipe"
+              value={search.keyword}
+              onChange={(value) => handleSearchClick('keyword', value)}
+            />
+          )
+        }
+      </FormattedMessage>
+    </ColSearch>
+    <ColSearch
+      label='Category'
+      customCol='col-lg-3'
+    >
+      <CategorySelect
+        isProduct={true}
+        value={search.category}
+        isClearable={true}
+        path='category'
+        onChange={(path, value) => handleSearchClick(path,
+          value && value.value ? value.value : null)}
+      />
+    </ColSearch>
+    <ColSearch
+      label='Status'
+      customCol='col-lg-3'
+    >
+      <FormattedMessage
+        id="Placeholder.ProductStatus"
+        defaultMessage="Product Status"
+      >
+        {
+          placeholder => (
+            <EnumSelect
+              isClearable={true}
+              placeholder={placeholder}
+              value={search.status}
+              labelField='description'
+              onChange={(value) => handleSearchClick('status', value)}
+              options={enumType.recipeStatusEnum}
+            />
+          )
+        }
+      </FormattedMessage>
+    </ColSearch>
+    <ColSearch
+      label='Level'
+      customCol='col-lg-3'
+    >
+      <FormattedMessage
+        id="Placeholder.ProductLevel"
+        defaultMessage="Product Level"
+      >
+        {
+          placeholder => (
+            <EnumSelect
+              isClearable={true}
+              placeholder={placeholder}
+              value={search.level}
+              labelField='description'
+              onChange={(value) => handleSearchClick('level', value)}
+              options={enumType.recipeLevelEnum}
+            />
+          )
+        }
+      </FormattedMessage>
     </ColSearch>
   </div>
 )
@@ -54,15 +115,12 @@ const Index = (props) => {
   } = queryStringHelper.getSizeAndIndexPage(search, DEFAULT_PAGE_SIZE)
 
   const {
-    total,
+    countConnection,
     dataGrid
-  } = extensions.getDataAndCount({
-    data: data,
-    dataField: 'recipes',
-    connectionField: 'recipesCount',
-    pageIndex: pageIndex,
-    pageSize: pageSize
-  })
+  } = utils.getCountAndDataGridItems(
+    data,
+    'searchRecipes'
+  )
 
   return (
     <CustomCard
@@ -74,6 +132,14 @@ const Index = (props) => {
           />
         </strong>
       }
+      buttonGroup={
+        <CustomCreateButton
+          resource={resource.MENU_MANAGEMENT_RECIPES}
+          action={enumType.action.Write}
+          linkUrl={routes.ROUTE_RECIPES_CREATE}
+          labelName='Create Recipe'
+        />
+      }
     >
       <Search
         search={search}
@@ -82,7 +148,7 @@ const Index = (props) => {
       <DataGrid
         search={search}
         data={dataGrid}
-        total={total}
+        total={countConnection}
         handleChangeItemUpdate={handleChangeItemUpdate}
         handleChangeTable={handleChangeTable}
         handleChangePageIndex={handleChangePageIndex}

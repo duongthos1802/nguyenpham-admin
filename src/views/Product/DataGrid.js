@@ -40,7 +40,6 @@ const DataGrid = (props) => {
       />,
       width: 100,
       dataIndex: 'index',
-      key: 'index',
       render: (text) => numberHelper.formatNumber(text, false)
     },
     {

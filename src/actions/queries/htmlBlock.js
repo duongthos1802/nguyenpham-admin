@@ -7,6 +7,10 @@ export default {
         code
         title
         content
+        htmlBlockGroup { 
+          _id
+          name
+        }
         images
       }
       htmlBlocksCount(${queryClause.whereConnectionClause})
@@ -21,6 +25,10 @@ export default {
         _id
         title
         code
+        htmlBlockGroup { 
+          _id
+          name
+        }
         content
         images
         image

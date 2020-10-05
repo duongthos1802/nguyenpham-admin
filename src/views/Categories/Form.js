@@ -221,6 +221,11 @@ const Form = (props) => {
             >
               <Input
                 value={values.urlSlug}
+                onChange={(value) => {
+                  const urlSlug = value.target.value
+                  setFieldValue('urlSlug', urlSlug)
+                }}
+                onBlur={() => setFieldTouched('urlSlug', true)}
                 className={
                   classNames({
                     'has-error': formikHelper.checkFieldError(errors, touched,
@@ -247,6 +252,12 @@ const Form = (props) => {
             >
               <Input
                 value={values.url}
+                onChange={(value) => {
+                  const url = value.target.value
+                  setFieldValue('url', url)
+                }}
+                onBlur={() => setFieldTouched('url', true)}
+
                 className={
                   classNames({
                     'has-error': formikHelper.checkFieldError(errors, touched,
@@ -277,6 +288,7 @@ const Form = (props) => {
                   <CategorySelect
                     isProduct={true}
                     value={values.categoryParent}
+                    isClearable={true}
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'categoryParent'}

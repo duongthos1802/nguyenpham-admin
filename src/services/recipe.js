@@ -80,7 +80,7 @@ export default {
     if (values.category) {
       queryClause += `, category: "${values.category.key}"`
     } else {
-      queryClause += `, category: ""`
+      queryClause += `, category: null`
     }
 
     if (values.ingredient) {
@@ -97,7 +97,7 @@ export default {
       queryClause += `, method: null`
     }
 
-      queryClause += `, isPriority: ${!!values.isPriority}`
+    queryClause += `, isPriority: ${!!values.isPriority}`
 
     if (values.level) {
       queryClause += `, level: ${values.level}`

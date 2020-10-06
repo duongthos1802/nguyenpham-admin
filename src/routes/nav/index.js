@@ -9,6 +9,7 @@ import { navRecipes, resourceRecipes } from './navRecipes'
 import { navHtmlBlock, resourceHtmlBlock } from './navHtmlBlock'
 import { navBannerGroup, resourceBanner } from './navBannerGroup'
 import { navManagePages, resourceManagePages } from './navManagePages'
+import { navBlogs, resourceBlogs } from './navBlog'
 
 export const navAdmin = [
   {
@@ -54,6 +55,22 @@ export const navAdmin = [
     resource: resourceBanner.MENU_MANAGEMENT_BANNER,
     key: 'bannerGroup',
     children: navBannerGroup
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Blog'
+        defaultMessage='Blog'
+      />
+    ),
+    path: mainRoutes.ADMIN_BLOG,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-images',
+    actionType: enumType.action.View,
+    resource: resourceBlogs.MENU_MANAGEMENT_BLOGS,
+    key: 'blog',
+    children: navBlogs
   },
   {
     name: (

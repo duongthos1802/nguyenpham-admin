@@ -437,6 +437,51 @@ const categoryStatusEnum = [
   }
 ]
 
+const blogStatus = {
+  Deleted: 'Deleted',
+  Published: 'Published',
+  Suspended: 'Suspended'
+}
+
+const blogStatusEnum = [
+  {
+    value: blogStatus.Suspended,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Removed"
+      defaultMessage="Removed"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Removed"
+      defaultMessage="Removed"
+    />
+  },
+  {
+    value: blogStatus.Published,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
+  },
+  {
+    value: blogStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
+
 
 // const productStatus = {
 //   PUBLISHED: 'Published',
@@ -486,5 +531,7 @@ export default {
   recipeLevel,
   recipeLevelEnum,
   recipePriority,
-  recipePriorityEnum
+  recipePriorityEnum,
+  blogStatus,
+  blogStatusEnum
 }

@@ -6,6 +6,7 @@ import { resourceHtmlBlock, routeHtmlBlock } from './nav/navHtmlBlock'
 import { resourceBanner, routeBanner } from './nav/navBanners'
 import { resourceBannerGroup, routeBannerGroup } from './nav/navBannerGroup'
 import { resourceManagePages, routeManagePages } from './nav/navManagePages'
+import { resourceBlogs, routeBlogs } from './nav/navBlog'
 
 export { default as navAdmin } from './nav'
 export const resource = {
@@ -21,7 +22,9 @@ export const resource = {
 
   ...resourceBannerGroup,
 
-  ...resourceManagePages
+  ...resourceManagePages,
+
+  ...resourceBlogs
 }
 
 export const routes = {
@@ -39,5 +42,7 @@ export const routes = {
 
   ...routeBannerGroup,
 
-  ...routeManagePages
+  ...routeManagePages,
+
+  ...routeBlogs
 }

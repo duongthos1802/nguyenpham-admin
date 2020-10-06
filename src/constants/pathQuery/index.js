@@ -36,6 +36,8 @@ export default {
 
   USER_ROLE_QUERY: 'userRoleQuery',
 
-  BLOG_QUERY: 'blogQuery'
+  BLOG_QUERY: 'blogQuery',
+
+  VIDEO_QUERY: 'videoQuery'
 
 }

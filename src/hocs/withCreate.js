@@ -106,6 +106,7 @@ export const withCreate =
         ...props,
         formError: state.formError,
         userId: auth && auth.user ? auth.user.id : null,
+        user: auth && auth.user ? auth.user : null,
         data: state.data,
         loadDataPagerCallback,
         loadDataCallback,

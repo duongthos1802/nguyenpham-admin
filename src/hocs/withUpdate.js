@@ -101,6 +101,7 @@ export const withUpdate =
       const initProps = {
         ...props,
         userId: auth && auth.user ? auth.user.id : null,
+        user: auth && auth.user ? auth.user : null,
         formError: state.formError,
         objectId,
         data: state.data,

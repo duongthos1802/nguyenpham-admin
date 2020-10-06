@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import { Divider } from 'antd'
+import { Divider, Tag } from 'antd'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
@@ -13,9 +13,8 @@ import { ButtonAction, ButtonDelete } from '../../components/Button'
 import { CustomTable } from '../../components'
 // extensions
 import { redirectPath } from '../../actions/commonAction'
-import { numberHelper } from '../../extensions'
 import { ProductImage } from '../../components/Image'
-import BlogStatus from '../../components/Tag/BlogStatus'
+import VideoStatus from '../../components/Tag/VideoStatus'
 
 const DataGrid = (props) => {
 
@@ -38,40 +37,48 @@ const DataGrid = (props) => {
         defaultMessage="Index"
       />,
       dataIndex: 'index',
-      key: 'index',
-      render: (text, record) => numberHelper.formatNumber(record.number, false)
+      key: 'index'
     },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
-      dataIndex: 'imageBlog',
+      dataIndex: 'pictures',
       width: 80,
       render: (text, record) => {
+        console.log('record. video', record)
         return (
           <ProductImage
-            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Blog)}
-            alt='blog-image'
+            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Video)}
+            alt='video-image'
           />
         )
       }
     },
     {
       title: <FormattedMessage
-        id="Grid.name"
-        defaultMessage="Name"
+        id="Grid.Title"
+        defaultMessage="Title"
       />,
-      dataIndex: 'name',  
-      key: 'name'
+      dataIndex: 'title',
+      align: 'center',
+      key: 'Title'
     },
     {
-      title: <FormattedMessage
-        id="Grid.Author"
-        defaultMessage="Author"
-      />,
-      render: (text, record) => {
-        return (
-          <span>{record.createdBy}</span>
-        )
-      }
+      title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
+      dataIndex: 'category',
+      key: 'category',
+      sorter: true,
+      render: (text) => {
+        return text 
+        ? text.name
+        : <Tag
+            color={'grey'}
+          >
+            <span className='text-uppercase'>
+              null
+            </span>
+          </Tag>
+      },
+      sortOrder: utils.getSortDirection(search, 'category')
     },
     {
       title: <FormattedMessage
@@ -79,8 +86,9 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
+      align: 'center',
       key: 'status',
-      render: (text) => <BlogStatus status={text}/>
+      render: (text) => <VideoStatus status={text}/>
     },
     {
       title: <FormattedMessage
@@ -92,7 +100,7 @@ const DataGrid = (props) => {
       render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
-            resource={resource.MENU_BLOGS}
+            resource={resource.MENU_VIDEOS}
             action={enumType.action.View}
             buttonName={
               <FormattedMessage
@@ -102,7 +110,7 @@ const DataGrid = (props) => {
             }
             customClass='bg-transparent border-0 text-primary px-0'
           />
-          {record.status !== enumType.blogStatus.Deleted
+          {record.status !== enumType.videoStatus.Deleted
             ? (
               <div>
                 <Divider
@@ -111,7 +119,7 @@ const DataGrid = (props) => {
                 <ButtonDelete
                   type={enumType.buttonTypeComponent.Link}
                   isHiddenIcon={true}
-                  resource={resource.MENU_BLOGS}
+                  resource={resource.MENU_VIDEOS}
                   action={enumType.action.Write}
                   record={record}
                   handleChangeItemUpdate={handleChangeItemUpdate}
@@ -143,7 +151,7 @@ const DataGrid = (props) => {
       handleChangePageSize={handleChangePageSize}
       onChangeTable={handleChangeTable}
       onRowClick={(record) => redirectPath(
-        `${routes.ROUTE_BLOGS_EDIT}/${record._id}`)}
+        `${routes.ROUTE_VIDEOS_EDIT}/${record._id}`)}
     />
   )
 }

@@ -8,14 +8,14 @@ export const routeBlogs = {
 }
 
 export const resourceBlogs = {
-  MENU_MANAGEMENT_BLOGS: 'MENU_MANAGEMENT_BLOGS'
+  MENU_BLOGS: 'MENU_BLOGS'
 }
 
 export const navBlogs = [
   {
     name: null,
     key: 'blogs-create',
-    resource: resourceBlogs.MENU_MANAGEMENT_BLOGS,
+    resource: resourceBlogs.MENU_BLOGS,
     path: routeBlogs.ROUTE_BLOGS_CREATE,
     component: LoadableRoute(() =>
       import('../../views/Blog/create')
@@ -27,7 +27,7 @@ export const navBlogs = [
   {
     name: null,
     key: 'blogs-edit',
-    resource: resourceBlogs.MENU_MANAGEMENT_BLOGS,
+    resource: resourceBlogs.MENU_BLOGS,
     path: `${routeBlogs.ROUTE_BLOGS_EDIT}/:id`,
     component: LoadableRoute(() =>
       import('../../views/Blog/edit')
@@ -39,7 +39,7 @@ export const navBlogs = [
   {
     name: null,
     key: 'blogs',
-    resource: resourceBlogs.MENU_MANAGEMENT_BLOGS,
+    resource: resourceBlogs.MENU_BLOGS,
     path: mainRoute.ADMIN_BLOG,
     component: LoadableRoute(() =>
       import('../../views/Blog')

@@ -127,6 +127,7 @@ export default {
 
     queryClause += `, status: ${values.status}`
     queryClause += `, index: ${values.index} `
+    queryClause += `, createdBy: "${values.createdBy}"`
 
     return `record: {${queryClause}}`
   },

@@ -2,7 +2,7 @@ import React from 'react'
 import { withCreate } from '../../hocs/withCreate'
 import { enumType, queryPath } from '../../constants'
 import Form from './Form'
-import { blogServices } from '../../services'
+import { videoServices } from '../../services'
 
 const Create = (props) => {
   const {
@@ -17,15 +17,14 @@ const Create = (props) => {
       mode={enumType.mode.create}
       handleSubmit={handleSubmitForm}
       handleCancel={handleCancelForm}
-      user={user}
     />
   )
 }
 
 const customCreate = withCreate({
-  pathName: queryPath.BLOG_QUERY,
+  pathName: queryPath.VIDEO_QUERY,
   createData: (values, { createDataCallback }) => {
-    const queryClause = blogServices.initQueryCreateOrUpdateBlogs({
+    const queryClause = videoServices.initQueryCreateOrUpdateVideos({
       values: values
     })
     createDataCallback(queryClause)

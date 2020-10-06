@@ -10,6 +10,7 @@ const CATEGORIES = 'categories'
 const SYSTEMS = 'systems'
 const BANNER_GROUP = 'banner-group'
 const BLOG = 'blog'
+const VIDEO = 'video'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
 const SUPPORT = 'support'
@@ -31,5 +32,6 @@ export default {
   ADMIN_BANNER_GROUP: `/${BANNER_GROUP}`,
   ADMIN_MANAGE_PAGES: `/${MANAGE_PAGES}`,
   ADMIN_SUPPORT: `/${SUPPORT}`,
-  ADMIN_BLOG: `/${BLOG}`
+  ADMIN_BLOG: `/${BLOG}`,
+  ADMIN_VIDEO: `/${VIDEO}`
 }

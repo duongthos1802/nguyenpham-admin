@@ -46,7 +46,7 @@ const ProfileMenu = () => {
           user
         } = state.auth
         setUserInfo({
-          userName: user.name,
+          userName: user.username,
           email: user.mail,
           id: user._id
           //email: stringHelper.decodeEmailAddress(user.emailEncrypt)
@@ -70,12 +70,6 @@ const ProfileMenu = () => {
       <Menu.Item>
         <div className="rfq__widget__system-status__item">
           <strong>Hello, {userInfo.userName}</strong>
-        </div>
-      </Menu.Item>
-      <Menu.Divider/>
-      <Menu.Item>
-        <div className="rfq__widget__system-status__item">
-          <strong>Email:</strong> {userInfo.email}
         </div>
       </Menu.Item>
       <Menu.Divider/>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { withUpdate } from '../../hocs/withUpdate'
 import { enumType, queryPath } from '../../constants'
-import { blogServices } from '../../services'
+import { videoServices } from '../../services'
 import Form from './Form'
 import { routes } from '../../routes'
 
@@ -17,38 +17,37 @@ const Edit = (props) => {
 
   const { id } = match.params
 
-  const blockDetail = data && data.blog && data.blog._id === id
-    ? data.blog
+  const videoDetail = data && data.video && data.video._id === id
+    ? data.video
     : null
-  return blockDetail
+  return videoDetail
     ? (
       <Form
         formError={formError}
-        data={blockDetail}
+        data={videoDetail}
         mode={enumType.mode.edit}
         handleCancel={handleCancelForm}
         handleSubmit={handleSubmitForm}
-        user={user}
       />
     )
     : null
 }
 
 const customUpdate = withUpdate({
-  pathName: queryPath.BLOG_QUERY,
+  pathName: queryPath.VIDEO_QUERY,
   loadData: (values, { loadDataCallback }) => {
     const query = `_id: "${values}"`
     loadDataCallback(query)
   },
   updateData: (values, { updateDataCallback }) => {
     console.log('values', values)
-    const query = blogServices.initQueryCreateOrUpdateBlogs({
+    const query = videoServices.initQueryCreateOrUpdateVideos({
       values: values,
-      blogId: values._id  
+      videoId: values._id  
     })
     updateDataCallback(query)
   },
-  pathRedirect: routes.ADMIN_BLOG
+  pathRedirect: routes.ADMIN_VIDEO
 })
 
 export default customUpdate(Edit)

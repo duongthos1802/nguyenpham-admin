@@ -15,6 +15,8 @@ export default {
           }
           banner
           slug
+          urlSlug
+          url
           metaTitle
           metaDescription
           metaKeyword
@@ -35,6 +37,8 @@ export default {
           description
           banner
           slug
+          urlSlug
+          url
           metaTitle
           metaDescription
           metaKeyword

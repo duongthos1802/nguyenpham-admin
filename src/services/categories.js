@@ -52,6 +52,18 @@ export default {
     }
 
 
+    if (values.urlSlug) {
+      queryClause += `, urlSlug: "${values.urlSlug}"`
+    } else {
+      queryClause += `, urlSlug: ""`
+    }
+
+    if (values.url) {
+      queryClause += `, url: "${values.url}"`
+    } else {
+      queryClause += `, url: ""`
+    }
+
     if (values.description) {
       queryClause += `, description: "${values.description}"`
     } else {

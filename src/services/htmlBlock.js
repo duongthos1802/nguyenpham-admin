@@ -32,6 +32,8 @@ export default {
   initQueryCreateOrUpdateHtmlBlock(values) {
     let queryClause = ``
 
+    console.log('values.......', values);
+
     if (values.id) {
       queryClause += `, _id: "${values.id}"`
     }
@@ -48,6 +50,21 @@ export default {
       queryClause += `, title: "${title}"`
     } else {
       queryClause += `, title: null`
+    }
+
+    if (values.description) {
+      const description = stringHelper.removeEscapeCharacter(values.description)
+      queryClause += `, description: "${description}"`
+    } else {
+      queryClause += `, description: null`
+    }
+
+    console.log(values.htmlBlockGroup);
+
+    if (values.htmlBlockGroup) {
+      queryClause += `, htmlBlockGroup: "${values.htmlBlockGroup.key}"`
+    } else {
+      queryClause += `, htmlBlockGroup: null`
     }
 
     if (values.content) {

@@ -16,6 +16,7 @@ import utils from '../../utils'
 // components
 import { CustomForm, Editor, ErrorMessage, FooterForm, UploadImage } from '../../components'
 import { errorCode } from '../../constants/error'
+import { HtmlBlockSelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -40,21 +41,20 @@ const customFormik = withFormik({
   }),
   mapPropsToValues: ({ data }) => {
 
-    // const htmlBlockPictures = formikHelper.getListImageValueField({
-    //   data: data,
-    //   fieldName: 'pictures',
-    //   imageType: enumType.imagePath.Html_Block,
-    //   fileNameField: 'filename',
-    // })
-    // const fileUpload = htmlBlockPictures && htmlBlockPictures.length > 0 ? htmlBlockPictures : []
-
-
     return {
       id: formikHelper.getDefaultValueField(data, '_id', null),
       code: formikHelper.getDefaultValueField(data, 'code', null),
       title: formikHelper.getDefaultValueField(data, 'title', null),
+      description: utils.handleShowLineBreakTextarea(
+        formikHelper.getDefaultValueField(data, 'description', null)
+      ),
       content: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'content', null)
+      ),
+      htmlBlockGroup: utils.formatObjectSelect(
+        data ? data.htmlBlockGroup : null,
+        '_id',
+        'name'
       ),
       fileUpload: formikHelper.getImageValueField(data, 'images',
         enumType.imagePath.Html_Block),
@@ -184,6 +184,28 @@ const Form = (props) => {
             </FormItem>
 
             <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Description"
+                  defaultMessage="Description"
+                />
+              }
+              className='mb-0'
+            >
+
+              <Input.TextArea
+                placeholder="Description"
+                rows={5}
+                className='height-auto'
+                value={values.description}
+                onChange={(input) => {
+                  setFieldValue('description', input.target.value)
+                }}
+                onBlur={() => setFieldTouched('text', true)}
+              />
+            </FormItem>
+
+            <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -209,6 +231,37 @@ const Form = (props) => {
             </FormItem>
           </Col>
           <Col lg={8}>
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Html.Block.Group"
+                  defaultMessage="Html Block Group"
+                />
+              }
+              className="mb-0"
+            >
+              <div className="d-flex">
+                <div className="mr-2 w-100">
+                  <FormattedMessage
+                    id="Label.Html.Block.Group"
+                    defaultMessage="Html Block Group"
+                  >
+                    {
+                      (placeholder) => (
+                        <HtmlBlockSelect
+                          placeholder={placeholder}
+                          value={values.htmlBlockGroup}
+                          onChange={setFieldValue}
+                          onBlur={setFieldTouched}
+                          path={'htmlBlockGroup'}
+                        />
+                      )
+                    }
+                  </FormattedMessage>
+                </div>
+              </div>
+            </FormItem>
+
             <FormItem
               label={
                 <FormattedMessage

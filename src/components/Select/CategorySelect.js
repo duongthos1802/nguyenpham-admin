@@ -40,9 +40,10 @@ const CustomSelect = (props) => {
     onChange,
     hideSelected,
     exception,
-    isProduct
+    isProduct,
+    currentId,
+    parentId
   } = props
-
   const [listOptions, setListOptions] = useState([])
   const [selectAll, setSelectAll] = useState(false)
   const [removeAll, setRemoveAll] = useState(false)
@@ -51,9 +52,9 @@ const CustomSelect = (props) => {
     () => {
       handleResetData(data && data.categories && data.categories.length > 0
         ? data.categories
-        : [])
+        : [], currentId, parentId)
     },
-    [data, value]
+    [data, value, currentId, parentId]
   )
 
   const handleChangeSelection = (value) => {
@@ -82,18 +83,34 @@ const CustomSelect = (props) => {
     }
   }
 
-  const handleResetData = (listCategories) => {
-
+  const handleResetData = (listCategories, currentId, parentId) => {
     let options = []
     if (listCategories && listCategories.length > 0) {
-      options = listCategories.map((category) => ({
-        value: isProduct ? category._id : category.index,
-        label: category.name,
-        key: isProduct ? category._id : category.index
-      }))
+      options = listCategories.map((category) => {
+        return {
+          value: isProduct ? category._id : category.index,
+          label: category.name,
+          key: isProduct ? category._id : category.index,
+          parentId: category.parentId?._id
+        }
+      })
     }
-
-    let listOptions = utils.initValueToOption(value, options)
+    if(currentId) {
+      const index = options.findIndex(item => item.value === currentId)
+      if(index > -1) {
+        options.splice(index, 1)
+      }
+    }
+    let mapOption = []
+    if(parentId) {
+      options.map(item => {
+        if(item.parentId === parentId){
+          mapOption.push(item)
+        }
+        return mapOption
+      })
+    }
+    let listOptions = utils.initValueToOption(value, mapOption.length > 0 ? mapOption : options)
     if (isMulti && listOptions) {
       if (value) {
         setSelectAll(listOptions.length !== value.length)
@@ -194,7 +211,7 @@ const customSelect = withSelect({
   pathName: queryPath.CATEGORY_SELECT_PATH,
   defaultPath: 'category',
   loadData: (values, { loadDataPagerCallback }) => {
-    const queryClause = selectServices.initQuerySelectCategoryProduct(values)
+    const queryClause = selectServices.initQuerySelectCategoryProduct()
     loadDataPagerCallback(queryClause)
   }
 })

@@ -127,4 +127,21 @@ export default {
   initQueryDeleteCategory(data) {
     return ` record: {_id: "${data._id}", status: ${enumType.categoryStatus.SUSPENDED}}`
   },
+
+  initQuerySearchCategoryByOption(option) {
+    switch (option) {
+      case enumType.optionsCategory.PRODUCT:
+        return {
+          whereClause: `where: {option: "${option}"}`
+        }
+      case enumType.optionsCategory.RECIPE:
+        return {
+          whereClause: `where: {option: "${option}"}`
+        }
+      default:
+        return {
+          whereClause: `where: {}`
+        }
+    }
+  }
 }

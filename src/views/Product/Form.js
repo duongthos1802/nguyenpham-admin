@@ -88,7 +88,8 @@ const Form = (props) => {
     setFieldError,
     handleSubmit,
     resetForm,
-    handleCancel
+    handleCancel,
+    parentId
   } = props
 
   const nameRef = useRef(null)
@@ -243,6 +244,7 @@ const Form = (props) => {
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'category'}
+                    parentId={parentId}
                   />
                 )}
               </FormattedMessage>

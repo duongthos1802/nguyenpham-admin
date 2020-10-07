@@ -64,6 +64,11 @@ const notification = {
   Info: 'info'
 }
 
+const optionsCategory = {
+  PRODUCT: 'Product',
+  RECIPE: 'Recipe'
+}
+
 const buttonType = {
   Cancel: 'Cancel',
   Create: 'Create',
@@ -585,5 +590,6 @@ export default {
   blogStatus,
   blogStatusEnum,
   videoStatus,
-  videoStatusEnum
+  videoStatusEnum,
+  optionsCategory
 }

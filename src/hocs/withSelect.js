@@ -16,7 +16,8 @@ export const withSelect =
 
       const {
         path,
-        onBlur
+        onBlur,
+        parentId
       } = props
       const [searchTerm, setSearchTerm] = useState('')
 
@@ -62,6 +63,7 @@ export const withSelect =
         data: state.data,
         userId: state.auth && state.auth.user ? state.auth.user.id : null,
         isLoading: state.isLoading,
+        parentId: parentId,
         path: fieldPath,
         loadDataPagerCallback
       }

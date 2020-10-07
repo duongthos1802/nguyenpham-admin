@@ -118,7 +118,6 @@ const Form = (props) => {
     },
     [formError]
   )
-
   return (
     <CustomForm
       title={
@@ -292,6 +291,7 @@ const Form = (props) => {
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'categoryParent'}
+                    currentId={data?._id}
                   />
                 )}
               </FormattedMessage>

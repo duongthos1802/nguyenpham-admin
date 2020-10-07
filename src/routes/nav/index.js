@@ -9,6 +9,8 @@ import { navRecipes, resourceRecipes } from './navRecipes'
 import { navHtmlBlock, resourceHtmlBlock } from './navHtmlBlock'
 import { navBannerGroup, resourceBanner } from './navBannerGroup'
 import { navManagePages, resourceManagePages } from './navManagePages'
+import { navBlogs, resourceBlogs } from './navBlog'
+import { navVideos, resourceVideos } from './navVideo'
 
 export const navAdmin = [
   {
@@ -54,6 +56,22 @@ export const navAdmin = [
     resource: resourceBanner.MENU_MANAGEMENT_BANNER,
     key: 'bannerGroup',
     children: navBannerGroup
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Blog'
+        defaultMessage='Blog'
+      />
+    ),
+    path: mainRoutes.ADMIN_BLOG,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-images',
+    actionType: enumType.action.View,
+    resource: resourceBlogs.MENU_BLOGS,
+    key: 'blog',
+    children: navBlogs
   },
   {
     name: (
@@ -118,6 +136,22 @@ export const navAdmin = [
     resource: resourceHtmlBlock.MENU_HTML_BLOCK_MANAGEMENT,
     key: 'html-block',
     children: navHtmlBlock
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Video'
+        defaultMessage='Video'
+      />
+    ),
+    path: mainRoutes.ADMIN_VIDEO,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-images',
+    actionType: enumType.action.View,
+    resource: resourceVideos.MENU_VIDEOS,
+    key: 'video',
+    children: navVideos
   },
   {
     name: (

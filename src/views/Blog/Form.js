@@ -2,77 +2,82 @@ import React, { useEffect, useRef } from 'react'
 // lib
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
-import { Form as AntForm, Input, Row, Col } from 'antd'
-import Checkbox from 'antd/lib/checkbox'
+import { Form as AntForm, Input, Row, Col, InputNumber } from 'antd'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
-// constants
+// constant
 import { enumType } from '../../constants'
 import { resource } from '../../routes'
-import { errorCode } from '../../constants/error'
+import { validateError } from '../../constants/validate'
 // extensions
-import { formikHelper, yupHelper, stringHelper, htmlHelper } from '../../extensions'
+import { formikHelper, htmlHelper, stringHelper, yupHelper } from '../../extensions'
 // utils
 import utils from '../../utils'
 // components
-import {
-  CustomForm,
-  ErrorMessage,
-  FooterForm,
-  UploadImage,
-  Editor
-} from '../../components'
-import { EnumSelect, CategorySelect } from '../../components/Select'
+import { CustomForm, Editor, ErrorMessage, FooterForm, UploadImage } from '../../components'
+import { errorCode } from '../../constants/error'
+import { EnumSelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
 const customFormik = withFormik({
   validationSchema: Yup.object().shape({
     name: yupHelper.stringRequired,
-    slug: yupHelper.stringRequired,
-    status: yupHelper.stringRequired,
-    level: yupHelper.stringRequired,
+    content: yupHelper.stringRequired.test({
+      name: 'emptyContent',
+      test: (value) => {
+        try {
+          if (value) {
+            const contentRemoveSpace = utils.standardizedContent(value)
+            return yupHelper.stringRequired.isValidSync(contentRemoveSpace)
+          }
+          return false
+        } catch (e) {
+          return true
+        }
+      },
+      message: validateError.required
+    }),
+    index: yupHelper.numberRequired
   }),
-  mapPropsToValues: ({ data }) => {
-    const recipePictures = formikHelper.getListImageValueField({
+  mapPropsToValues: ({ data, user }) => {
+    console.log('uer', user)
+    const blogPictures = formikHelper.getListImageValueField({
       data: data,
       fieldName: 'pictures',
-      imageType: enumType.imagePath.Recipe,
+      imageType: enumType.imagePath.Blog,
       fileNameField: 'filename',
     })
 
-    const fileUpload = recipePictures && recipePictures.length > 0 ? recipePictures : []
+    const fileUpload = blogPictures && blogPictures.length > 0 ? blogPictures : [] 
+
     return {
       _id: formikHelper.getDefaultValueField(data, '_id', null),
       name: formikHelper.getDefaultValueField(data, 'name', null),
       slug: formikHelper.getDefaultValueField(data, 'slug', null),
-      videoUrl: formikHelper.getDefaultValueField(data, 'videoUrl', null),
-      category: utils.formatObjectSelect(
-        data ? data.category : null,
-        '_id',
-        'name'
-      ),
-      description: stringHelper.handleShowLineBreakTextarea(
+      index: formikHelper.getDefaultValueField(data, 'index', null),
+      description: utils.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'description', null)
       ),
-      ingredient: htmlHelper.decodeContent(
-        formikHelper.getDefaultValueField(data, 'ingredient', null)
+      content: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'content', null)
       ),
-      method: htmlHelper.decodeContent(
-        formikHelper.getDefaultValueField(data, 'method', null)
+      createdBy: user?.username??null,
+      metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
+      metaDescription: stringHelper.handleShowLineBreakTextarea(
+        formikHelper.getDefaultValueField(data, 'metaDescription', null)
       ),
+      metaKeyword: formikHelper.getDefaultValueField(data, 'metaKeyword', null),
       fileUpload: fileUpload,
-      level: formikHelper.getDefaultValueField(data, 'level',
-        enumType.recipeLevel.Medium),
       status: formikHelper.getDefaultValueField(data, 'status',
-        enumType.recipeStatus.Published),
-      isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false)
+        enumType.blogStatusEnum.PUBLISHED),
     }
+
   },
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
   },
-  displayName: 'RecipeForm'
+  displayName: 'BlogForm'
 })
 
 const Form = (props) => {
@@ -126,14 +131,6 @@ const Form = (props) => {
     },
     [formError]
   )
-
-  const onChangeIsPriority = ({ target: { checked } }) => {
-    const { setValues, values } = props
-    setValues({
-      ...values,
-      isPriority: checked,
-    })
-  }
   return (
     <CustomForm
       title={
@@ -141,8 +138,8 @@ const Form = (props) => {
           {
             utils.initTitleForm(
               <FormattedMessage
-                id="Page.Recipe"
-                defaultMessage="Recipe"
+                id="Page.BLog"
+                defaultMessage="Blog"
               />,
               mode
             )
@@ -151,16 +148,14 @@ const Form = (props) => {
       }
     >
       <AntForm
-        // onKeyDown={formikHelper.preventEnterSubmitForm}
+        onKeyDown={formikHelper.preventEnterSubmitForm}
         onSubmit={handleSubmit}
       >
         <Row
           gutter={30}
         >
-          <Col
-            lg={16}
-          >
-            <FormItem
+          <Col lg={16}>
+          <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -223,76 +218,44 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
-
             <FormItem
+              required={true}
               label={
                 <FormattedMessage
-                  id="Label.videoUrl"
-                  defaultMessage="video Url"
+                  id="Label.Index"
+                  defaultMessage="index"
                 />
               }
               className='mb-0'
             >
               <FormattedMessage
-                id="Label.videoUrl"
-                defaultMessage="video Url"
+                id="Label.Index"
+                defaultMessage="index"
               >
                 {
                   placeholder => (
-                    <Input
+                    <InputNumber
                       placeholder={placeholder}
-                      value={values.videoUrl}
-                      onChange={(input) => {
-                        setFieldValue('videoUrl', input.target.value)
-                      }}
-                      onBlur={() => setFieldTouched('videoUrl', true)}
-                      className={
-                        classNames({
-                          'has-error': formikHelper.checkFieldError(errors,
-                            touched, 'videoUrl')
-                        })
-                      }
+                      value={values.index}
+                      customClass={classNames({
+                        'has-error': formikHelper.checkFieldError(errors, touched,
+                          'index')
+                      })}
+                      onChange={(value) => setFieldValue('index', value)}
+                      handleBlur={() => setFieldTouched('index', true)}
+                      min={100}
+                      max={10000}
                     />
                   )
                 }
               </FormattedMessage>
               <ErrorMessage
-                fieldName='videoUrl'
-                touched={touched}
-                errors={errors}
-                isValidate={true}
-              />
-            </FormItem>
-
-            <FormItem
-              label={
-                <FormattedMessage
-                  id="Label.Category"
-                  defaultMessage="Category"
-                />
-              }
-              className="mb-0"
-            >
-              <FormattedMessage id="Label.Category" defaultMessage="Category">
-                {() => (
-                  <CategorySelect
-                    isProduct={true}
-                    isClearable={true}
-                    value={values.category}
-                    onChange={setFieldValue}
-                    onBlur={setFieldTouched}
-                    path={'category'}
-                  />
-                )}
-              </FormattedMessage>
-              <ErrorMessage
-                fieldName="category"
                 errors={errors}
                 touched={touched}
                 isValidate={true}
+                fieldName='index'
               />
             </FormItem>
-
             <FormItem
               label={
                 <FormattedMessage
@@ -302,14 +265,16 @@ const Form = (props) => {
               }
               className='mb-0'
             >
+
               <Input.TextArea
+                placeholder="Description"
                 rows={5}
                 className='height-auto'
                 value={values.description}
                 onChange={(input) => {
                   setFieldValue('description', input.target.value)
                 }}
-                onBlur={() => setFieldTouched('description', true)}
+                onBlur={() => setFieldTouched('text', true)}
               />
             </FormItem>
 
@@ -317,58 +282,120 @@ const Form = (props) => {
               required={true}
               label={
                 <FormattedMessage
-                  id="Label.Ingredient"
-                  defaultMessage="Ingredient"
+                  id="Label.Content"
+                  defaultMessage="Content"
                 />
               }
               className='mb-0'
             >
               <Editor
-                data={values.ingredient}
-                handleChange={(value) => setFieldValue('ingredient', value)}
-                handleBlur={() => setFieldTouched('ingredient', true)}
+                data={values.content}
+                handleChange={(value) => setFieldValue('content', value)}
+                handleBlur={() => setFieldTouched('content', true)}
                 editorConfig='content'
-                imageType={enumType.uploadType.Recipe}
-              // element='html-block-editor'
               />
               <ErrorMessage
-                fieldName='ingredient'
+                fieldName='content'
                 touched={touched}
                 errors={errors}
                 isValidate={true}
               />
             </FormItem>
-
             <FormItem
-              required={true}
               label={
                 <FormattedMessage
-                  id="Label.method"
-                  defaultMessage="Method"
+                  id="Label.MetaTitle"
+                  defaultMessage="Meta Title"
                 />
               }
               className='mb-0'
             >
-              <Editor
-                data={values.method}
-                handleChange={(value) => setFieldValue('method', value)}
-                handleBlur={() => setFieldTouched('method', true)}
-                editorConfig='content'
-                imageType={enumType.uploadType.Recipe}
-              // element='html-block-editor'
+              <Input
+                value={values.metaTitle}
+                onChange={(value) => setFieldValue('metaTitle',
+                  value.target.value)}
+                onBlur={() => setFieldTouched('metaTitle', true)}
+                className={
+                  classNames({
+                    'has-error': formikHelper.checkFieldError(errors, touched,
+                      'metaTitle')
+                  })
+                }
               />
               <ErrorMessage
-                fieldName='method'
+                fieldName='metaTitle'
                 touched={touched}
                 errors={errors}
                 isValidate={true}
               />
             </FormItem>
 
+
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.MetaDescription"
+                  defaultMessage="Meta Description"
+                />
+              }
+              className='mb-0'
+            >
+              <FormattedMessage
+                id="Label.metaDescription"
+                defaultMessage="Meta Description"
+              >
+                {
+                  placeholder => (
+                    <Input.TextArea
+                      placeholder={placeholder}
+                      rows={5}
+                      className='height-auto'
+                      value={values.metaDescription}
+                      onChange={(input) => {
+                        setFieldValue('metaDescription', input.target.value)
+                      }}
+                      onBlur={() => setFieldTouched('metaDescription', true)}
+                    />
+                  )
+                }
+              </FormattedMessage>
+              <ErrorMessage
+                fieldName='metaDescription'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.MetaKeyword"
+                  defaultMessage="Meta Keyword"
+                />
+              }
+              className='mb-0'
+            >
+              <Input
+                value={values.metaKeyword}
+                onChange={(value) => setFieldValue('metaKeyword',
+                  value.target.value)}
+                onBlur={() => setFieldTouched('metaKeyword', true)}
+                className={
+                  classNames({
+                    'has-error': formikHelper.checkFieldError(errors, touched,
+                      'metaKeyword')
+                  })
+                }
+              />
+              <ErrorMessage
+                fieldName='metaKeyword'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
           </Col>
-          <Col
-            lg={8}
-          >
+          <Col lg={8}>
             <FormItem
               label={
                 <FormattedMessage
@@ -379,44 +406,16 @@ const Form = (props) => {
               className='mb-0'
             >
               <UploadImage
-                name={'icon'}
+                type={enumType.uploadType.Blog}
+                name={'fileUpload'}
                 data={values.fileUpload}
+                showUploadList={true}
                 multiple={true}
                 handleUploadFile={(file) => setFieldValue('fileUpload', file)}
                 handleChangeFile={(fileList) => setFieldValue('fileUpload',
                   fileList)}
-                showUploadList={true}
-                type={enumType.uploadType.Recipe}
-                showSingleImage={false}
               />
             </FormItem>
-
-            <FormItem
-              required={true}
-              label={
-                <FormattedMessage
-                  id="Label.Level"
-                  defaultMessage="Level"
-                />
-              }
-              className='mb-0'
-            >
-              <EnumSelect
-                options={enumType.recipeLevelEnum}
-                value={values.level}
-                onChange={(value) => setFieldValue('level', value)}
-                isClearable={false}
-                onBlur={() => setFieldTouched('level', true)}
-                labelField="description"
-              />
-              <ErrorMessage
-                errors={errors}
-                touched={touched}
-                fieldName='level'
-                isValidate={true}
-              />
-            </FormItem>
-
             <FormItem
               required={true}
               label={
@@ -428,12 +427,11 @@ const Form = (props) => {
               className='mb-0'
             >
               <EnumSelect
-                options={enumType.recipeStatusEnum}
+                options={enumType.blogStatusEnum}
                 value={values.status}
                 onChange={(value) => setFieldValue('status', value)}
                 isClearable={false}
                 onBlur={() => setFieldTouched('status', true)}
-                labelField="description"
               />
               <ErrorMessage
                 errors={errors}
@@ -442,34 +440,53 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
+
             <FormItem
               label={
                 <FormattedMessage
-                  id="Label.Priority"
-                  defaultMessage="Priority"
+                  id="Label.Author"
+                  defaultMessage="Author"
                 />
               }
               className='mb-0'
             >
-              <Checkbox
-                onChange={onChangeIsPriority}
-                checked={values.isPriority}
+              <Input
+                value={values.createdBy}
+                disabled
+                placeholder="Author"
+                onChange={(value) => setFieldValue('createdBy',
+                  value.target.value)}
+                onBlur={() => setFieldTouched('createdBy', true)}
+                className={
+                  classNames({
+                    'has-error': formikHelper.checkFieldError(errors, touched,
+                      'createdBy')
+                  })
+                }
+              />
+              <ErrorMessage
+                fieldName='createdBy'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
               />
             </FormItem>
+
           </Col>
         </Row>
+
         <FooterForm
           handleSubmit={handleSubmit}
-          resource={resource.MENU_MANAGEMENT_RECIPES}
+          resource={resource.MENU_BLOGS}
           handleCancel={handleCancel}
           buttonSave={
             mode === enumType.mode.create
-              ? 'Create Recipe'
-              : 'Save Recipe'
+              ? 'Add Blog'
+              : 'Save Changes'
           }
         />
       </AntForm>
-    </CustomForm >
+    </CustomForm>
   )
 }
 

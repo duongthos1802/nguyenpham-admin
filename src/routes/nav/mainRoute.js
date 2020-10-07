@@ -1,17 +1,16 @@
 const ADMIN_DASHBOARD = 'dashboard'
 const AUTHORIZATION = 'authorization'
-const SYSTEM = 'system'
 const PRODUCTS = 'products'
 const RECIPES = 'recipes'
 const USERS = 'users'
-const BANNERS = 'banners'
 const HTML_BLOCK = 'html-block'
 const MANAGE_PAGES = 'manage-pages'
 const FAQ = 'faq'
 const CATEGORIES = 'categories'
 const SYSTEMS = 'systems'
 const BANNER_GROUP = 'banner-group'
-const RESOURCE = 'resource'
+const BLOG = 'blog'
+const VIDEO = 'video'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
 const SUPPORT = 'support'
@@ -30,8 +29,9 @@ export default {
   ADMIN_PRODUCT: `/${PRODUCTS}`,
   ADMIN_RECIPES: `/${RECIPES}`,
   ADMIN_HTML_BLOCK: `/${HTML_BLOCK}`,
-  ADMIN_HTML_BLOCK: `/${HTML_BLOCK}`,
   ADMIN_BANNER_GROUP: `/${BANNER_GROUP}`,
   ADMIN_MANAGE_PAGES: `/${MANAGE_PAGES}`,
   ADMIN_SUPPORT: `/${SUPPORT}`,
+  ADMIN_BLOG: `/${BLOG}`,
+  ADMIN_VIDEO: `/${VIDEO}`
 }

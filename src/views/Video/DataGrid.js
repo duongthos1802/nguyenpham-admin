@@ -2,22 +2,19 @@ import React, { memo } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import Divider from 'antd/lib/divider'
-import Tag from 'antd/lib/tag'
+import { Divider, Tag } from 'antd'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
-// component
-import { ButtonDelete, ButtonAction } from '../../components/Button'
-import { CustomTable } from '../../components'
-import { ProductImage } from '../../components/Image'
-// extensions
-import { numberHelper } from '../../extensions'
 // utils
 import utils, { imageUtils } from '../../utils'
-//actions
+// component
+import { ButtonAction, ButtonDelete } from '../../components/Button'
+import { CustomTable } from '../../components'
+// extensions
 import { redirectPath } from '../../actions/commonAction'
-import ProductStatus from '../../components/Tag/ProductStatus'
+import { ProductImage } from '../../components/Image'
+import VideoStatus from '../../components/Tag/VideoStatus'
 
 const DataGrid = (props) => {
 
@@ -29,8 +26,8 @@ const DataGrid = (props) => {
     pageIndex,
     handleChangePageSize,
     handleChangePageIndex,
-    handleChangeTable,
-    handleChangeItemUpdate
+    handleChangeItemUpdate,
+    handleChangeTable
   } = props
 
   let header = [
@@ -39,30 +36,31 @@ const DataGrid = (props) => {
         id="Grid.Index"
         defaultMessage="Index"
       />,
-      width: 100,
       dataIndex: 'index',
-      render: (text) => numberHelper.formatNumber(text, false)
+      key: 'index'
     },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
-      dataIndex: 'imageCategory',
+      dataIndex: 'pictures',
       width: 80,
       render: (text, record) => {
+        console.log('record. video', record)
         return (
           <ProductImage
-            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Product)}
-            alt='product-image'
+            src={imageUtils.getBannerUrl(record.pictures[0], enumType.imagePath.Video)}
+            alt='video-image'
           />
         )
       }
     },
     {
       title: <FormattedMessage
-        id="Grid.name"
-        defaultMessage="Name"
+        id="Grid.Title"
+        defaultMessage="Title"
       />,
-      dataIndex: 'name',
-      key: 'name'
+      dataIndex: 'title',
+      align: 'center',
+      key: 'Title'
     },
     {
       title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
@@ -70,9 +68,9 @@ const DataGrid = (props) => {
       key: 'category',
       sorter: true,
       render: (text) => {
-        return text
-          ? text.name
-          : <Tag
+        return text 
+        ? text.name
+        : <Tag
             color={'grey'}
           >
             <span className='text-uppercase'>
@@ -88,8 +86,9 @@ const DataGrid = (props) => {
         defaultMessage="Status"
       />,
       dataIndex: 'status',
+      align: 'center',
       key: 'status',
-      render: (text) => <ProductStatus status={text} />
+      render: (text) => <VideoStatus status={text}/>
     },
     {
       title: <FormattedMessage
@@ -101,17 +100,17 @@ const DataGrid = (props) => {
       render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction
-            resource={resource.MENU_MANAGEMENT_PRODUCT}
+            resource={resource.MENU_VIDEOS}
             action={enumType.action.View}
-            customClass='bg-transparent border-0 text-primary px-0'
             buttonName={
               <FormattedMessage
-                id='Button.View'
+                id="Button.View"
                 defaultMessage="View"
               />
             }
+            customClass='bg-transparent border-0 text-primary px-0'
           />
-          {record.status !== enumType.productStatus.Deleted
+          {record.status !== enumType.videoStatus.Deleted
             ? (
               <div>
                 <Divider
@@ -120,7 +119,7 @@ const DataGrid = (props) => {
                 <ButtonDelete
                   type={enumType.buttonTypeComponent.Link}
                   isHiddenIcon={true}
-                  resource={resource.MENU_MANAGEMENT_PRODUCT}
+                  resource={resource.MENU_VIDEOS}
                   action={enumType.action.Write}
                   record={record}
                   handleChangeItemUpdate={handleChangeItemUpdate}
@@ -138,6 +137,7 @@ const DataGrid = (props) => {
   const dataGrid = data && data.length > 0
     ? data
     : []
+
   return (
     <CustomTable
       rowKey={record => record._id}
@@ -151,7 +151,7 @@ const DataGrid = (props) => {
       handleChangePageSize={handleChangePageSize}
       onChangeTable={handleChangeTable}
       onRowClick={(record) => redirectPath(
-        `${routes.ROUTE_PRODUCT_EDIT}/${record._id}`)}
+        `${routes.ROUTE_VIDEOS_EDIT}/${record._id}`)}
     />
   )
 }

@@ -83,6 +83,10 @@ export const getImagePathByType = (type) => {
       return enumType.imagePath.Banner
     case enumType.uploadType.Html_Block:
       return enumType.imagePath.Html_Block
+    case enumType.uploadType.Blog:
+      return enumType.imagePath.Blog
+    case enumType.uploadType.Video:
+      return enumType.imagePath.Video
     default:
       return enumType.imagePath.Product
   }

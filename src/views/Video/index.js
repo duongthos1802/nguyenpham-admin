@@ -7,14 +7,14 @@ import { withSearch } from '../../hocs/withSearch'
 import { DEFAULT_PAGE_SIZE, queryPath, enumType } from '../../constants'
 import { resource, routes } from '../../routes'
 // extensions
-import extensions, { queryStringHelper } from '../../extensions'
+import { queryStringHelper } from '../../extensions'
 // services
-import { recipeService } from '../../services'
+import { videoServices } from '../../services'
 // components
 import { ColSearch, CustomCard, SearchBox } from '../../components'
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
-import { CategorySelect, EnumSelect } from '../../components/Select'
+import { EnumSelect } from '../../components/Select'
 import utils from '../../utils'
 
 const Search = ({ search, handleSearchClick }) => (
@@ -30,7 +30,7 @@ const Search = ({ search, handleSearchClick }) => (
         {
           placeholder => (
             <SearchBox
-              placeholder="Search recipe"
+              placeholder="Search video"
               value={search.keyword}
               onChange={(value) => handleSearchClick('keyword', value)}
             />
@@ -39,25 +39,12 @@ const Search = ({ search, handleSearchClick }) => (
       </FormattedMessage>
     </ColSearch>
     <ColSearch
-      label='Category'
-      customCol='col-lg-3'
-    >
-      <CategorySelect
-        isProduct={true}
-        value={search.category}
-        isClearable={true}
-        path='category'
-        onChange={(path, value) => handleSearchClick(path,
-          value && value.value ? value.value : null)}
-      />
-    </ColSearch>
-    <ColSearch
       label='Status'
       customCol='col-lg-3'
     >
       <FormattedMessage
-        id="Placeholder.RecipeStatus"
-        defaultMessage="Recipe Status"
+        id="Placeholder.Video"
+        defaultMessage="Video Status"
       >
         {
           placeholder => (
@@ -67,29 +54,7 @@ const Search = ({ search, handleSearchClick }) => (
               value={search.status}
               labelField='description'
               onChange={(value) => handleSearchClick('status', value)}
-              options={enumType.recipeStatusEnum}
-            />
-          )
-        }
-      </FormattedMessage>
-    </ColSearch>
-    <ColSearch
-      label='Level'
-      customCol='col-lg-3'
-    >
-      <FormattedMessage
-        id="Placeholder.Level"
-        defaultMessage="Level"
-      >
-        {
-          placeholder => (
-            <EnumSelect
-              isClearable={true}
-              placeholder={placeholder}
-              value={search.level}
-              labelField='description'
-              onChange={(value) => handleSearchClick('level', value)}
-              options={enumType.recipeLevelEnum}
+              options={enumType.videoStatusEnum}
             />
           )
         }
@@ -119,7 +84,7 @@ const Index = (props) => {
     dataGrid
   } = utils.getCountAndDataGridItems(
     data,
-    'searchRecipes'
+    'searchVideos'
   )
 
   return (
@@ -127,17 +92,15 @@ const Index = (props) => {
       title={
         <strong>
           <FormattedMessage
-            id="Title.Recipes"
-            defaultMessage="Recipes"
+            id="Title.Videos"
+            defaultMessage="Videos"
           />
         </strong>
       }
       buttonGroup={
         <CustomCreateButton
-          resource={resource.MENU_MANAGEMENT_RECIPES}
-          action={enumType.action.Write}
-          linkUrl={routes.ROUTE_RECIPES_CREATE}
-          labelName='Create Recipe'
+          linkUrl={routes.ROUTE_VIDEOS_CREATE}
+          labelName='Create Video'
         />
       }
     >
@@ -161,20 +124,20 @@ const Index = (props) => {
 }
 
 const customSearch = withSearch({
-  pathName: queryPath.RECIPE_QUERY,
+  pathName: queryPath.VIDEO_QUERY,
   fieldName: (
     <FormattedMessage
-      id="Page.Recipe"
-      defaultMessage="recipe"
+      id="Page.Video"
+      defaultMessage="video"
     />
   ),
   loadData: (values, { loadDataPagerCallback }) => {
-    const queryClause = recipeService.initQuerySearchRecipes(values,
+    const queryClause = videoServices.initQuerySearchVideos(values,
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)
   },
   deleteData: (values, { updateDataCallback }) => {
-    const queryClause = recipeService.initQueryDeleteRecipe(values)
+    const queryClause = videoServices.initQueryDeleteVideo(values)
     updateDataCallback(queryClause)
   }
 })

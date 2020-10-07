@@ -30,6 +30,12 @@ import managePagesQuery from './managePages'
 // GROUP HTML_BLOCKS
 import groupHtmlBlocksQuery from './groupHtmlBlock'
 
+// BLOG
+import blogQuery from './blog'
+
+// VIDEO
+import videoQuery from './video'
+
 // SELECT
 import select from './select'
 
@@ -54,5 +60,9 @@ export default {
 
   managePagesQuery,
 
-  groupHtmlBlocksQuery
+  groupHtmlBlocksQuery,
+  
+  blogQuery,
+
+  videoQuery
 }

@@ -143,6 +143,8 @@ const uploadType = {
   Recipe: 'recipe',
   Html_Block: 'htmlBlock',
   Category: 'category',
+  Blog: 'blog',
+  Video: 'video'
 }
 
 const imagePath = {
@@ -153,7 +155,9 @@ const imagePath = {
   Html_Block: 'html_block_pictures',
   Chat: 'chat_pictures',
   Ping: 'ping_pictures',
-  Category: 'category_pictures'
+  Category: 'category_pictures',
+  Blog: 'blog_pictures',
+  Video: 'video_pictures'
 }
 
 const userAdminTab = {
@@ -437,6 +441,97 @@ const categoryStatusEnum = [
   }
 ]
 
+const blogStatus = {
+  Deleted: 'Deleted',
+  Published: 'Published',
+  Suspended: 'Suspended'
+}
+
+const blogStatusEnum = [
+  {
+    value: blogStatus.Suspended,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Suspended"
+      defaultMessage="Suspended"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Suspended"
+      defaultMessage="Suspended"
+    />
+  },
+  {
+    value: blogStatus.Published,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
+  },
+  {
+    value: blogStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.blogStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
+
+
+const videoStatus = {
+  Deleted: 'Deleted',
+  Published: 'Published',
+  Suspended: 'Suspended'
+}
+
+const videoStatusEnum = [
+  {
+    value: videoStatus.Suspended,
+    label: <FormattedMessage
+      id="Enum.videoStatus.Suspended"
+      defaultMessage="Suspended"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Suspended"
+      defaultMessage="Suspended"
+    />
+  },
+  {
+    value: videoStatus.Published,
+    label: <FormattedMessage
+      id="Enum.videoStatus.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
+  },
+  {
+    value: videoStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.videoStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
+
 
 // const productStatus = {
 //   PUBLISHED: 'Published',
@@ -486,5 +581,9 @@ export default {
   recipeLevel,
   recipeLevelEnum,
   recipePriority,
-  recipePriorityEnum
+  recipePriorityEnum,
+  blogStatus,
+  blogStatusEnum,
+  videoStatus,
+  videoStatusEnum
 }

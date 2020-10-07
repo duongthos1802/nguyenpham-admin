@@ -49,7 +49,6 @@ const DataGrid = (props) => {
       dataIndex: 'imageCategory',
       width: 80,
       render: (text, record) => {
-        console.log('product record', record)
         return (
           <ProductImage
             src={imageUtils.getBannerUrl(record.image)}

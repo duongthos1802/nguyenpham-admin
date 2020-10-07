@@ -45,7 +45,8 @@ const customFormik = withFormik({
       'name'
     ),
 
-    banner: formikHelper.getImageValueField(data, 'banner', enumType.imagePath.Banner),
+    banner: formikHelper.getImageValueField(data, 'banner',
+      enumType.imagePath.Banner),
     index: formikHelper.getDefaultValueField(data, 'index', null),
     metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
     metaDescription: stringHelper.handleShowLineBreakTextarea(
@@ -484,18 +485,18 @@ const Form = (props) => {
             <FormItem
               label={
                 <FormattedMessage
-                  id="Label.Logo"
-                  defaultMessage="Chứng chỉ"
+                  id="Label.Banner"
+                  defaultMessage="Banner"
                 />
               }
               className='mb-0'
             >
               <UploadImage
                 name={'icon'}
-                data={values.logo}
+                data={values.banner}
                 multiple={false}
-                handleUploadFile={(file) => setFieldValue('logo', file)}
-                handleChangeFile={(fileList) => setFieldValue('logo',
+                handleUploadFile={(file) => setFieldValue('banner', file)}
+                handleChangeFile={(fileList) => setFieldValue('banner',
                   fileList)}
                 showUploadList={true}
                 type={enumType.uploadType.Banner}

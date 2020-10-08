@@ -8,14 +8,13 @@ export default {
           name
           image
           description,
+          slug
           parentId {
             _id
             name
             index
           }
           banner
-          slug
-          urlSlug
           url
           metaTitle
           metaDescription
@@ -37,8 +36,6 @@ export default {
           description
           banner
           slug
-          urlSlug
-          url
           metaTitle
           metaDescription
           metaKeyword

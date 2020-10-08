@@ -15,7 +15,6 @@ export default {
             index
           }
           banner
-          url
           metaTitle
           metaDescription
           metaKeyword

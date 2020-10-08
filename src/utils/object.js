@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import numberExtensions from '../extensions/number'
 
 export default {
   formatObjectSelect: (rawValue, valueField, labelField) => {
@@ -132,12 +133,17 @@ export default {
           countConnection = resultData.total
         }
         if (resultData.items && resultData.items.length > 0) {
-          dataGrid = resultData.items.map((item, index) => ({
-            ...item,
-            number: item.index || null,
-            index: pageSize && pageIndex ? countConnection - (pageIndex - 1) *
-              pageSize - index : index + 1
-          }))
+          dataGrid = resultData.items.map((item, index) => {
+            return {
+              ...item,
+              number: item.index || null,
+              index: pageSize && pageIndex 
+                ? numberExtensions.formatNumberToIndex(
+                  countConnection - (pageIndex - 1) * pageSize - index 
+                )
+                : index + 1
+            }
+          })
         }
       }
     }

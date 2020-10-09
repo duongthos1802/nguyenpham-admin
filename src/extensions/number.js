@@ -10,5 +10,14 @@ export default {
       return 0
     }
     return null
-  }
+  },
+  formatNumberToIndex(number, nullable) {
+    if (number > 0) {
+      return number
+    }
+    if (!nullable) {
+      return 0
+    }
+    return null
+  },
 }

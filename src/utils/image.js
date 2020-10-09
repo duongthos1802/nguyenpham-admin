@@ -128,7 +128,6 @@ export const getPreviewImage = (
     fileName
   }
 ) => {
-  console.log('imagePath', imagePath)
   const keyName = `${imagePath}/${fileName}`
   return `${UPLOADS_IMAGE_URL}/${keyName}`
 }
@@ -142,7 +141,6 @@ export const getImageUrlByFilename = (
   }) => {
   if (!fileName) return defaultImage
   if (checkHttpUrl(fileName)) return fileName
-  console.log('type...', type)
   return true
     ? getPreviewImage({
       fileName: fileName,

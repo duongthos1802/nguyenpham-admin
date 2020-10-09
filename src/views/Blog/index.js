@@ -84,7 +84,9 @@ const Index = (props) => {
     dataGrid
   } = utils.getCountAndDataGridItems(
     data,
-    'searchBlogs'
+    'searchBlogs',
+    pageSize,
+    pageIndex
   )
 
   return (

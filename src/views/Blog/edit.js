@@ -51,7 +51,7 @@ const Edit = (props) => {
         handleCancel={handleCancelForm}
         handleSubmit={handleSubmitForm}
         user={user}
-        parentId={parentId}
+      // parentId={parentId}
       />
     )
     : null

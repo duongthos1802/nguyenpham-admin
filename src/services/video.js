@@ -23,7 +23,7 @@ export default {
       query += `, status: "${searchObject.status}"`
     }
 
-    let orderClause = 'date_ASC'
+    let orderClause = 'date_DESC'
     if (searchObject.sortField) {
       if (searchObject.sortDirection === enumType.sortDirection.DESC) {
         orderClause = `${searchObject.sortField}_DESC`

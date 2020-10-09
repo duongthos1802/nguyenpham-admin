@@ -23,25 +23,30 @@ const Edit = (props) => {
     ? data.blog
     : null
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const loadData = useCallback(
-  //   (queryClause) => dispatch(dataActions.loadDataPager(queryClause, queryPath.CATEGORY_QUERY)),
-  //   [dispatch]
-  // )
-  // const state = useSelector(state => {
-  //   return {
-  //     data: state.data ? state.data.get(queryPath.CATEGORY_QUERY) : null
-  //   }
-  // })
+  const loadData = useCallback(
+    (queryClause) => dispatch(dataActions.loadDataPager(queryClause, queryPath.CATEGORY_QUERY)),
+    [dispatch]
+  )
+  const state = useSelector(state => {
+    return {
+      data: state.data ? state.data.get(queryPath.CATEGORY_QUERY) : null
+    }
+  })
+
+  useEffect(
+    () => {
+      const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.BLOG)
+
+      // console.log('queryClause....', queryClause);
+      loadData(queryClause)
+    }, [dispatch])
+
+  // const parentId = state.data && state.data.searchCategories && state.data.searchCategories?.items.length > 0 ? state.data.searchCategories.items[0]._id : null
 
 
-  // useEffect(
-  //   () => {
-  //     const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.BLOG)
-  //     loadData(queryClause)
-  //   }, [dispatch])
-
+  // console.log(parentId);
   return blockDetail
     ? (
       <Form

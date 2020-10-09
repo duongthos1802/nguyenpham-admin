@@ -125,6 +125,10 @@ export default {
         return {
           whereClause: `where: {option: "${option}"}`
         }
+      case enumType.optionsCategory.BLOG:
+        return {
+          whereClause: `where: {option: "${option}"}`
+        }
       default:
         return {
           whereClause: `where: {}`

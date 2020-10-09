@@ -16,7 +16,7 @@ import utils from '../../utils'
 // components
 import { CustomForm, Editor, ErrorMessage, FooterForm, UploadImage } from '../../components'
 import { errorCode } from '../../constants/error'
-import { EnumSelect } from '../../components/Select'
+import { EnumSelect, CategorySelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -49,7 +49,7 @@ const customFormik = withFormik({
       fileNameField: 'filename',
     })
 
-    const fileUpload = blogPictures && blogPictures.length > 0 ? blogPictures : [] 
+    const fileUpload = blogPictures && blogPictures.length > 0 ? blogPictures : []
 
     return {
       _id: formikHelper.getDefaultValueField(data, '_id', null),
@@ -62,7 +62,12 @@ const customFormik = withFormik({
       content: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'content', null)
       ),
-      createdBy: user?.username??null,
+      category: utils.formatObjectSelect(
+        data ? data.category : null,
+        '_id',
+        'name'
+      ),
+      createdBy: user?.username ?? null,
       metaTitle: formikHelper.getDefaultValueField(data, 'metaTitle', null),
       metaDescription: stringHelper.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'metaDescription', null)
@@ -85,6 +90,7 @@ const Form = (props) => {
     formError,
     mode,
     data,
+    parentId,
     values,
     errors,
     touched,
@@ -155,7 +161,7 @@ const Form = (props) => {
           gutter={30}
         >
           <Col lg={16}>
-          <FormItem
+            <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -254,6 +260,36 @@ const Form = (props) => {
                 touched={touched}
                 isValidate={true}
                 fieldName='index'
+              />
+            </FormItem>
+
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Category"
+                  defaultMessage="Category"
+                />
+              }
+              className="mb-0"
+            >
+              <FormattedMessage id="Label.Category" defaultMessage="Category">
+                {() => (
+                  <CategorySelect
+                    isProduct={true}
+                    isClearable={true}
+                    value={values.category}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    path={'category'}
+                    parentId={parentId}
+                  />
+                )}
+              </FormattedMessage>
+              <ErrorMessage
+                fieldName="category"
+                errors={errors}
+                touched={touched}
+                isValidate={true}
               />
             </FormItem>
             <FormItem

@@ -66,7 +66,8 @@ const notification = {
 
 const optionsCategory = {
   PRODUCT: 'Product',
-  RECIPE: 'Recipe'
+  RECIPE: 'Recipe',
+  BLOG: 'Blog'
 }
 
 const buttonType = {

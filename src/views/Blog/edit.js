@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { withUpdate } from '../../hocs/withUpdate'
 import { enumType, queryPath } from '../../constants'
-import { blogServices } from '../../services'
+import { blogServices, categoryService } from '../../services'
 import Form from './Form'
 import { routes } from '../../routes'
+import { useDispatch, useSelector } from 'react-redux'
+import dataActions from '../../actions/dataActions'
 
 const Edit = (props) => {
   const {
@@ -20,6 +22,26 @@ const Edit = (props) => {
   const blockDetail = data && data.blog && data.blog._id === id
     ? data.blog
     : null
+
+  // const dispatch = useDispatch()
+
+  // const loadData = useCallback(
+  //   (queryClause) => dispatch(dataActions.loadDataPager(queryClause, queryPath.CATEGORY_QUERY)),
+  //   [dispatch]
+  // )
+  // const state = useSelector(state => {
+  //   return {
+  //     data: state.data ? state.data.get(queryPath.CATEGORY_QUERY) : null
+  //   }
+  // })
+
+
+  // useEffect(
+  //   () => {
+  //     const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.BLOG)
+  //     loadData(queryClause)
+  //   }, [dispatch])
+
   return blockDetail
     ? (
       <Form
@@ -29,6 +51,7 @@ const Edit = (props) => {
         handleCancel={handleCancelForm}
         handleSubmit={handleSubmitForm}
         user={user}
+        parentId={parentId}
       />
     )
     : null
@@ -44,7 +67,7 @@ const customUpdate = withUpdate({
     console.log('values', values)
     const query = blogServices.initQueryCreateOrUpdateBlogs({
       values: values,
-      blogId: values._id  
+      blogId: values._id
     })
     updateDataCallback(query)
   },

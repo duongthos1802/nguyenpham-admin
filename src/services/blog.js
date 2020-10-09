@@ -81,6 +81,12 @@ export default {
       queryClause += `, metaTitle: null`
     }
 
+    if (values.category) {
+      queryClause += `, category: "${values.category.value}"`
+    } else {
+      queryClause += `, category: null`
+    }
+
     if (values.metaDescription) {
       const metaDescription = htmlHelper.encodeContent(values.metaDescription)
       queryClause += `, metaDescription: "${metaDescription}"`

@@ -87,7 +87,6 @@ const dataActions = {
       dispatch(startFetchingAction())
       try {
         const queryData = query[pathQuery].loadDataPager(clause)
-
         const response = await axiosProvider.post(GRAPHQL_PATH, {
           query: `${queryData}`,
           variables: null

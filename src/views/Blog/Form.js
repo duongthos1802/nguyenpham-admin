@@ -281,7 +281,7 @@ const Form = (props) => {
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'category'}
-                  // parentId={parentId} 
+                    parentId={parentId} 
                   />
                 )}
               </FormattedMessage>

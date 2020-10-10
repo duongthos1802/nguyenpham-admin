@@ -260,11 +260,16 @@ const MenuLeft = (props) => {
           <a onClick={() => props.handleToggleMenuCollapse()}>
             <img
               src={params.collapsed
-                ? require('../../../img/logo-mobile.png')
-                : require('../../../img/logo.png')}
+                ? require('../../../img/chuquancf-04.jpg')
+                : require('../../../img/chuquancf-04.jpg')}
               alt="Lendor Logo"
               className="logo"
             />
+            {
+              !params.collapsed
+              ? <span className="ml-2 font-size-16 font-weight-bold" style={{color: "white"}}>Chủ Quán CaFe Admin</span>
+              : null
+            }
           </a>
         </div>
       </div>

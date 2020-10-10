@@ -86,7 +86,7 @@ const Login = (props) => {
               <strong>
                 <FormattedMessage
                   id="Login.Header"
-                  defaultMessage="LENDOR ADMIN LOGIN" />
+                  defaultMessage="CHUQUANCAFE ADMIN LOGIN" />
               </strong>
             </h1>
           </div>

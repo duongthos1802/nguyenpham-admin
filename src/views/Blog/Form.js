@@ -101,7 +101,6 @@ const Form = (props) => {
     resetForm,
     handleCancel
   } = props
-
   const nameRef = useRef(null)
   const slugRef = useRef(null)
 

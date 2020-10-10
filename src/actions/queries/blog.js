@@ -10,6 +10,10 @@ export default {
         slug
         content
         createdBy
+        category {
+          _id
+          name
+        }
         pictures
         status
         metaTitle
@@ -30,6 +34,10 @@ export default {
           description
           slug
           content
+          category {
+            _id
+            name
+          }
           createdBy
           pictures
           status

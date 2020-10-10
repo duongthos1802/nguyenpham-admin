@@ -1,23 +1,26 @@
-import React from 'react'
 // lib
+import React, { useCallback, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useDispatch, useSelector } from 'react-redux'
 // HoCs
 import { withSearch } from '../../hocs/withSearch'
 // constant
-import { DEFAULT_PAGE_SIZE, queryPath, enumType, DEFAULT_ISO_FORMAT_DATE } from '../../constants'
+import { DEFAULT_PAGE_SIZE, queryPath, enumType } from '../../constants'
 import { resource, routes } from '../../routes'
 // extensions
-import extensions, { queryStringHelper } from '../../extensions'
+import { queryStringHelper } from '../../extensions'
 // services
 import { productService } from '../../services'
 // components
-import { ColSearch, CustomCard, SearchBox, DateRangePicker } from '../../components'
+import { ColSearch, CustomCard, SearchBox } from '../../components'
 import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
 import { CategorySelect, EnumSelect } from '../../components/Select'
 import utils from '../../utils'
+// actions
+import categoryActions from '../../actions/categoryActions'
 
-const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
+const Search = ({ search, handleSearchClick, parentId }) => (
   <div className='row'>
     <ColSearch
       label='Keyword'
@@ -49,6 +52,7 @@ const Search = ({ search, handleSearchClick, handleChangeDateRange }) => (
         path='category'
         onChange={(path, value) => handleSearchClick(path,
           value && value.value ? value.value : null)}
+        parentId={parentId}
       />
     </ColSearch>
     {/* <ColSearch
@@ -101,6 +105,24 @@ const Index = (props) => {
     handleChangeTable
   } = props
 
+  const dispatch = useDispatch()
+
+  const loadData = useCallback(
+    (queryClause) => dispatch(categoryActions.serachCategoryByOption(queryClause, queryPath.CATEGORY_QUERY)),
+    [dispatch]
+  )
+
+  const state = useSelector(state => {
+    return {
+      parentId: state?.category?.category ?? null
+    }
+  })
+
+  useEffect(() => {
+    const clause = `option: ${enumType.optionsCategory.PRODUCT}`
+    loadData(clause)
+  }, [dispatch])
+
   const {
     pageIndex,
     pageSize
@@ -138,6 +160,7 @@ const Index = (props) => {
       <Search
         search={search}
         handleSearchClick={handleSearchClick}
+        parentId={state.parentId}
       />
       <DataGrid
         search={search}

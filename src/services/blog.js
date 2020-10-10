@@ -15,6 +15,10 @@ export default {
       query += `keyword: "${keyword}"`
     }
 
+    if (searchObject.category) {
+      query += `, category: "${searchObject.category}"`
+    }
+
     if (searchObject.status) {
       query += `, status: "${searchObject.status}"`
     }

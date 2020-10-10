@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 // HoCs
@@ -16,8 +16,10 @@ import { CustomCreateButton } from '../../components/Button'
 import DataGrid from './DataGrid'
 import { CategorySelect, EnumSelect } from '../../components/Select'
 import utils from '../../utils'
+import { useDispatch, useSelector } from 'react-redux'
+import categoryActions from '../../actions/categoryActions'
 
-const Search = ({ search, handleSearchClick }) => (
+const Search = ({ search, handleSearchClick, parentId }) => (
   <div className='row'>
     <ColSearch
       label='Keyword'
@@ -49,6 +51,7 @@ const Search = ({ search, handleSearchClick }) => (
         path='category'
         onChange={(path, value) => handleSearchClick(path,
           value && value.value ? value.value : null)}
+        parentId={parentId}
       />
     </ColSearch>
     <ColSearch
@@ -109,6 +112,24 @@ const Index = (props) => {
     handleChangeTable
   } = props
 
+  const dispatch = useDispatch()
+
+  const loadData = useCallback(
+    (queryClause) => dispatch(categoryActions.serachCategoryByOption(queryClause, queryPath.CATEGORY_QUERY)),
+    [dispatch]
+  )
+
+  const state = useSelector(state => {
+    return {
+      parentId: state?.category?.category ?? null
+    }
+  })
+
+  useEffect(() => {
+    const clause = `option: ${enumType.optionsCategory.RECIPE}`
+    loadData(clause)
+  }, [dispatch])
+
   const {
     pageIndex,
     pageSize
@@ -146,6 +167,7 @@ const Index = (props) => {
       <Search
         search={search}
         handleSearchClick={handleSearchClick}
+        parentId={state.parentId}
       />
       <DataGrid
         search={search}

@@ -61,6 +61,9 @@ const customFormik = withFormik({
       method: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'method', null)
       ),
+      decorate: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'decorate', null)
+      ),
       fileUpload: fileUpload,
       level: formikHelper.getDefaultValueField(data, 'level',
         enumType.recipeLevel.Medium),
@@ -367,6 +370,24 @@ const Form = (props) => {
               />
             </FormItem>
 
+            <FormItem
+              // required={true}
+              label={
+                <FormattedMessage
+                  id="Label.decorate"
+                  defaultMessage="decorate"
+                />
+              }
+            >
+              <Editor
+                data={values.decorate}
+                handleChange={(value) => setFieldValue('decorate', value)}
+                handleBlur={() => setFieldTouched('decorate', true)}
+                editorConfig='content'
+                imageType={enumType.uploadType.Recipe}
+              // element='html-block-editor'
+              />
+            </FormItem>
           </Col>
           <Col
             lg={8}

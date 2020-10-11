@@ -97,6 +97,13 @@ export default {
       queryClause += `, method: null`
     }
 
+    if (values.decorate) {
+      const decorate = htmlHelper.encodeContent(values.decorate)
+      queryClause += `, decorate: "${decorate}"`
+    } else {
+      queryClause += `, decorate: null`
+    }
+
     queryClause += `, isPriority: ${!!values.isPriority}`
 
     if (values.level) {

@@ -19,6 +19,7 @@ export default {
         pictures
         ingredient
         method
+        decorate
         level
         viewCount
       }

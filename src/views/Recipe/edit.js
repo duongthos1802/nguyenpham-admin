@@ -35,11 +35,11 @@ const Edit = (props) => {
     }
   })
   useEffect(
-  () => {
-    const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.RECIPE)
-    loadData(queryClause)
-  }, [dispatch])
-  
+    () => {
+      const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.RECIPE)
+      loadData(queryClause)
+    }, [dispatch])
+
   const parentId = state.data && state.data.searchCategories && state.data.searchCategories?.items.length > 0 ? state.data.searchCategories.items[0]._id : null
 
   return (

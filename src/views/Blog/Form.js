@@ -101,7 +101,6 @@ const Form = (props) => {
     resetForm,
     handleCancel
   } = props
-
   const nameRef = useRef(null)
   const slugRef = useRef(null)
 
@@ -281,7 +280,7 @@ const Form = (props) => {
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'category'}
-                  // parentId={parentId} 
+                    parentId={parentId} 
                   />
                 )}
               </FormattedMessage>

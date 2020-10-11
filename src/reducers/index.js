@@ -7,6 +7,7 @@ import data from './data'
 import auth from './auth'
 import form from './form'
 import upload from './upload'
+import category from './category'
 
 const rootReducer = (history) => combineReducers({
   notifications,
@@ -15,7 +16,8 @@ const rootReducer = (history) => combineReducers({
   data,
   auth,
   form,
-  upload
+  upload,
+  category
 })
 
 export default rootReducer

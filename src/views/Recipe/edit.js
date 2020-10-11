@@ -40,7 +40,7 @@ const Edit = (props) => {
       loadData(queryClause)
     }, [dispatch])
 
-  const parentId = state.data && state.data.searchCategories && state.data.searchCategories?.items.length > 0 ? state.data.searchCategories.items[0]._id : null
+  const parentId = state.data?.searchCategories?.items[0]?._id ?? null
 
   return (
     <Form

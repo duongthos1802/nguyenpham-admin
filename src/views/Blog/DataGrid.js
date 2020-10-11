@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 // lib
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import { Divider } from 'antd'
+import { Divider, Tag } from 'antd'
 // constant
 import { enumType } from '../../constants'
 import { routes, resource } from '../../routes'
@@ -39,12 +39,16 @@ const DataGrid = (props) => {
       />,
       dataIndex: 'index',
       key: 'index',
+      fixed: 'left',
+      sorter: true,
+      sortOrder: utils.getSortDirection(search, 'index'),
       render: (text, record) => numberHelper.formatNumber(record.number, false)
     },
     {
       title: <FormattedMessage id="Grid.Image" defaultMessage="Image" />,
       dataIndex: 'imageBlog',
       width: 80,
+      fixed: 'left',
       render: (text, record) => {
         return (
           <ProductImage
@@ -63,10 +67,30 @@ const DataGrid = (props) => {
       key: 'name'
     },
     {
+      title: <FormattedMessage id="Grid.Category" defaultMessage="Category" />,
+      dataIndex: 'category',
+      key: 'category',
+      sorter: true,
+      fixed: 'right',
+      render: (text) => {
+        return text
+          ? text.name
+          : <Tag
+            color={'grey'}
+          >
+            <span className='text-uppercase'>
+              null
+            </span>
+          </Tag>
+      },
+      sortOrder: utils.getSortDirection(search, 'category')
+    },
+    {
       title: <FormattedMessage
         id="Grid.Author"
         defaultMessage="Author"
       />,
+      fixed: 'right',
       render: (text, record) => {
         return (
           <span>{record.createdBy}</span>
@@ -80,6 +104,7 @@ const DataGrid = (props) => {
       />,
       dataIndex: 'status',
       key: 'status',
+      fixed: 'right',
       render: (text) => <BlogStatus status={text}/>
     },
     {
@@ -89,6 +114,7 @@ const DataGrid = (props) => {
       />,
       className: 'text-center',
       key: 'action',
+      fixed: 'right',
       render: (text, record) => (
         <div className='d-flex align-items-center justify-content-center'>
           <ButtonAction

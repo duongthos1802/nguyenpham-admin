@@ -73,7 +73,8 @@ const Login = (props) => {
         <div className='header'>
           <div className='logo'>
             <Link to="/">
-              <img src="resources/images/logo.png"
+              {/* <img src="resources/images/logo.png" */}
+              <img src={require('../../../img/chuquancf-04.jpg')}
                 alt="Clean UI React Admin Template" />
             </Link>
           </div>
@@ -85,7 +86,7 @@ const Login = (props) => {
               <strong>
                 <FormattedMessage
                   id="Login.Header"
-                  defaultMessage="LENDOR ADMIN LOGIN" />
+                  defaultMessage="CHUQUANCAFE ADMIN LOGIN" />
               </strong>
             </h1>
           </div>

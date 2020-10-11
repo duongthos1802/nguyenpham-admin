@@ -38,15 +38,11 @@ const Edit = (props) => {
   useEffect(
     () => {
       const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.BLOG)
-
-      // console.log('queryClause....', queryClause);
       loadData(queryClause)
     }, [dispatch])
 
-  // const parentId = state.data && state.data.searchCategories && state.data.searchCategories?.items.length > 0 ? state.data.searchCategories.items[0]._id : null
+    const parentId = state.data?.searchCategories?.items[0]?._id ?? null
 
-
-  // console.log(parentId);
   return blockDetail
     ? (
       <Form
@@ -56,7 +52,7 @@ const Edit = (props) => {
         handleCancel={handleCancelForm}
         handleSubmit={handleSubmitForm}
         user={user}
-      // parentId={parentId}
+        parentId={parentId}
       />
     )
     : null

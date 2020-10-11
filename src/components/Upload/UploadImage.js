@@ -121,6 +121,13 @@ const UploadImage = (props) => {
     }
   }
 
+  const getImageSize = (file) => {
+    if (!file) {
+      return 0
+    }
+    return file.size / 1024 / 1024
+  }
+
   const handleCheckBeforeUpload = (file, listFileUpload) => {
     return new Promise(async(resolve, reject) => {
       if (listFileUpload.find(file => !isImageType(file.type, isMenuIcon))) {
@@ -133,6 +140,13 @@ const UploadImage = (props) => {
             title: 'You can only upload JPG/PNG file!'
           })
         }
+        reject(false)
+      }
+      const isLargeImage = getImageSize(file) >= 2
+      if(isLargeImage) {
+        Modal.warning({
+          title: 'Image must be smaller than 2MB!',
+        })
         reject(false)
       }
       if (maxFileUpload && fileList.length + listFileUpload.length >

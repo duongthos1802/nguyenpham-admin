@@ -15,6 +15,10 @@ export default {
       query += `keyword: "${keyword}"`
     }
 
+    if (searchObject.category) {
+      query += `, category: "${searchObject.category}"`
+    }
+
     if (searchObject.status) {
       query += `, status: "${searchObject.status}"`
     }
@@ -79,6 +83,12 @@ export default {
       queryClause += `, metaTitle: "${metaTitle}"`
     } else {
       queryClause += `, metaTitle: null`
+    }
+
+    if (values.category) {
+      queryClause += `, category: "${values.category.value}"`
+    } else {
+      queryClause += `, category: null`
     }
 
     if (values.metaDescription) {

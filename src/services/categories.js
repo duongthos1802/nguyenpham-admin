@@ -129,6 +129,14 @@ export default {
         return {
           whereClause: `where: {option: "${option}"}`
         }
+      case enumType.optionsCategory.VIDEO:
+        return {
+          whereClause: `where: {option: "${option}"}`
+        }
+      case enumType.optionsCategory.SERVICE:
+        return {
+          whereClause: `where: {option: "${option}"}`
+        }
       default:
         return {
           whereClause: `where: {}`

@@ -73,6 +73,16 @@ export default {
       }
     }
     `
+  },
+
+  serachCategoryByOption(queryClause) {
+    return `
+    query {
+      serachCategoryByOption(${queryClause}){
+        _id
+      }
+    }
+    `
   }
 }
 

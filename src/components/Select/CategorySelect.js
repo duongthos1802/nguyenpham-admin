@@ -57,6 +57,19 @@ const CustomSelect = (props) => {
     [data, value, currentId, parentId]
   )
 
+  let categories = []
+
+  // de quy tim tat ca category
+  const initCategory = (data, parentId) => {
+    data.map((item) => {
+      if(item.parentId === parentId) {
+        categories.push(item)
+        initCategory(data, item.value)
+      }
+    })
+    return categories
+  }
+
   const handleChangeSelection = (value) => {
     let optionSelected
     if (!isMulti) {
@@ -101,16 +114,22 @@ const CustomSelect = (props) => {
         options.splice(index, 1)
       }
     }
-    let mapOption = []
+    // let mapOption = []
     if(parentId) {
-      options.map(item => {
-        if(item.parentId === parentId){
-          mapOption.push(item)
-        }
-        return mapOption
-      })
+      options = initCategory(options, parentId)
+      // options.map(item => {
+      //   if(item.parentId === parentId){
+      //     mapOption.push(item)
+      //     options.map(child => {
+      //       if(child.parentId === item._id)
+      //       mapOption.push(item)
+      //     })
+      //   }
+      //   return mapOption
+      // })
     }
-    let listOptions = utils.initValueToOption(value, mapOption.length > 0 ? mapOption : options)
+    // let listOptions = utils.initValueToOption(value, mapOption.length > 0 ? mapOption : options)
+    let listOptions = utils.initValueToOption(value, options)
     if (isMulti && listOptions) {
       if (value) {
         setSelectAll(listOptions.length !== value.length)

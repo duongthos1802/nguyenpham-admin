@@ -48,7 +48,7 @@ const customFormik = withFormik({
       fileNameField: 'filename',
     })
 
-    const fileUpload = videoPictures && videoPictures.length > 0 ? videoPictures : [] 
+    const fileUpload = videoPictures && videoPictures.length > 0 ? videoPictures : []
 
     return {
       _id: formikHelper.getDefaultValueField(data, '_id', null),
@@ -97,7 +97,7 @@ const Form = (props) => {
     },
     [data]
   )
-    console.log('values.fileUpload', values.fileUpload)
+
   return (
     <CustomForm
       title={
@@ -122,7 +122,7 @@ const Form = (props) => {
           gutter={30}
         >
           <Col lg={16}>
-          <FormItem
+            <FormItem
               label={
                 <FormattedMessage
                   id="Label.Title"
@@ -208,7 +208,7 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
-            
+
             <FormItem
               required={true}
               label={

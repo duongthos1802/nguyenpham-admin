@@ -46,11 +46,10 @@ export default {
 
     if (values.url) {
       queryClause += `, url: "${values.url}"`
-
     } else {
       queryClause += `, url: null`
     }
-    
+
     if (values.category) {
       queryClause += `, category: "${values.category.value}"`
     } else {
@@ -59,16 +58,20 @@ export default {
 
     if (values.title) {
       const title = stringHelper.removeEscapeCharacter(values.title)
+      const slug = stringHelper.generateSlug(title)
+
       queryClause += `, title: "${title}"`
+      queryClause += `, slug: "${slug}"`
     } else {
       queryClause += `, title: null`
+      queryClause += `, slug: null`
     }
 
     if (values.content) {
       const content = htmlHelper.encodeContent(values.content)
       queryClause += `, content: "${content}"`
     } else {
-    queryClause += `, content: null`
+      queryClause += `, content: null`
     }
 
     let videoImages = []

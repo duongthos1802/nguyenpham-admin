@@ -40,13 +40,13 @@ const Edit = (props) => {
     }
   })
   useEffect(
-  () => {
-    const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.VIDEO)
-    loadData(queryClause)
-  }, [dispatch])
-  
+    () => {
+      const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.VIDEO)
+      loadData(queryClause)
+    }, [dispatch])
+
   const parentId = state.data?.searchCategories?.items[0]?._id ?? null
-  
+
   return videoDetail
     ? (
       <Form
@@ -68,10 +68,9 @@ const customUpdate = withUpdate({
     loadDataCallback(query)
   },
   updateData: (values, { updateDataCallback }) => {
-    console.log('values', values)
     const query = videoServices.initQueryCreateOrUpdateVideos({
       values: values,
-      videoId: values._id  
+      videoId: values._id
     })
     updateDataCallback(query)
   },

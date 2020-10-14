@@ -65,7 +65,6 @@ const customUpdate = withUpdate({
     loadDataCallback(query)
   },
   updateData: (values, { updateDataCallback }) => {
-    console.log('values', values)
     const query = blogServices.initQueryCreateOrUpdateBlogs({
       values: values,
       blogId: values._id

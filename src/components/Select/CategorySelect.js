@@ -104,7 +104,8 @@ const CustomSelect = (props) => {
           value: isProduct ? category._id : category.index,
           label: category.name,
           key: isProduct ? category._id : category.index,
-          parentId: category.parentId?._id
+          parentId: category.parentId?._id,
+          option: category.option
         }
       })
     }

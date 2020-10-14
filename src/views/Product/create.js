@@ -49,8 +49,6 @@ const customCreate = withCreate({
     const queryClause = productService.initQueryCreateOrUpdateProduct({
       values: values
     })
-
-    console.log('queryClause......', queryClause);
     createDataCallback(queryClause)
   }
 })

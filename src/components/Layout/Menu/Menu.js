@@ -258,18 +258,18 @@ const MenuLeft = (props) => {
             ' menuLeft__logoContainer--collapsed text-light d-flex justify-content-center align-items-center': params.collapsed
           })}>
           <a onClick={() => props.handleToggleMenuCollapse()}>
-            <img
+            {/* <img
               src={params.collapsed
                 ? require('../../../img/chuquancf-04.jpg')
                 : require('../../../img/chuquancf-04.jpg')}
               alt="Lendor Logo"
               className="logo"
-            />
-            {
+            /> */}
+            {/* {
               !params.collapsed
-              ? <span className="ml-2 font-size-16 font-weight-bold" style={{color: "white"}}>Chủ Quán CaFe Admin</span>
+              ? <span className="ml-2 font-size-16 font-weight-bold" style={{color: "white"}}>Lendor Admin</span>
               : null
-            }
+            } */}
           </a>
         </div>
       </div>

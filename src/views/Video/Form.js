@@ -64,7 +64,7 @@ const customFormik = withFormik({
       ),
       fileUpload: fileUpload,
       status: formikHelper.getDefaultValueField(data, 'status',
-        enumType.videoStatusEnum.PUBLISHED),
+        enumType.videoStatus.Published),
     }
 
   },

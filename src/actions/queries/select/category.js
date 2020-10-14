@@ -6,8 +6,10 @@ export default {
         index
         _id
         name
+        option
         parentId{
           _id
+          option
         }
       }
     }

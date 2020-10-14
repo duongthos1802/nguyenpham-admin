@@ -75,7 +75,6 @@ export default {
     }
 
     let videoImages = []
-    console.log('values.fileUpload', values.fileUpload)
     if (values.fileUpload && values.fileUpload.length > 0) {
       videoImages = videoImages.concat(values.fileUpload)
     }

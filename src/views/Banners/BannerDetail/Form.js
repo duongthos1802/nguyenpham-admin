@@ -26,7 +26,7 @@ const FormItem = Form.Item
 const formikMap = withFormik({
   validationSchema: Yup.object().shape({
     name: yupHelper.stringRequired,
-    url: yupHelper.stringRequired.url(validateError.url)
+    // url: yupHelper.stringRequired.url(validateError.url)
     // category: utils.validateStringRequired,
     // bannerType: utils.validateStringRequired,
     // published: utils.validateStringRequired,
@@ -43,8 +43,8 @@ const formikMap = withFormik({
     published: props.data ? props.data.published : false,
     fileUpload: formikHelper.getImageValueField(props.data, 'image',
       enumType.imagePath.Banner),
-    fileUploadImageMobile: formikHelper.getImageValueField(props.data, 'imageMobile',
-      enumType.imagePath.Banner)
+    // fileUploadImageMobile: formikHelper.getImageValueField(props.data, 'imageMobile',
+    //   enumType.imagePath.Banner)
   }),
   handleSubmit: (data, { props }) => {
     props.handleSubmit(data)
@@ -256,8 +256,8 @@ const FormAction = (props) => {
           <FormItem
             label={
               <FormattedMessage
-                id="Label.BannerDesktop"
-                defaultMessage="Banner Desktop"
+                id="Label.Banner"
+                defaultMessage="Banner"
               />
             }
             className='mb-4'
@@ -280,7 +280,7 @@ const FormAction = (props) => {
               }
             </div>
           </FormItem>
-          <FormItem
+          {/* <FormItem
             label={
               <FormattedMessage
                 id="Label.BannerMobile"
@@ -306,7 +306,7 @@ const FormAction = (props) => {
                   : null
               }
             </div>
-          </FormItem>
+          </FormItem> */}
         </div>
       </Form>
       <div className='form-actions btn-group-button-footer'>

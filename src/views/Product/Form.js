@@ -91,7 +91,7 @@ const Form = (props) => {
     handleCancel,
     parentId
   } = props
-
+  console.log('categoryParent....', values.category)
   const nameRef = useRef(null)
   const slugRef = useRef(null)
 

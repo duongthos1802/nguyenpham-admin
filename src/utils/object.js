@@ -23,20 +23,23 @@ export default {
               ...item,
               value: item._id,
               label: item.name,
-              key: item._id
+              key: item._id,
+              option: item.option
             }
           } else if (item.value) {
             return {
               ...item,
               value: item.value.toString(),
               label: item.label,
-              key: item.value
+              key: item.value,
+              option: item.option
             }
           } else if (item.key) {
             return {
               ...item,
               value: item.key,
-              label: item.label
+              label: item.label,
+              option: item.option
             }
           } else {
             const value = _.find(data, (x) => x.value === item)

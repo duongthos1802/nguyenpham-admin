@@ -58,13 +58,10 @@ export default {
   },
 
   async uploadFile(file, type) {
-    console.log('custom request......', file)
     // form data
     let formData = new FormData()
-    console.log('formData...', formData)
     formData.append('file', file)
     // upload
-    console.log('formData.append..', formData)
     return await axios
       .post(API_UPLOAD_URL, formData, {
         headers: {
@@ -75,7 +72,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log('resss....... upload File', res.data)
         return Promise.resolve(res.data)
       })
       .catch((error) => {

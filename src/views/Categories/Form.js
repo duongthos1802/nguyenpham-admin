@@ -52,10 +52,11 @@ const customFormik = withFormik({
       formikHelper.getDefaultValueField(data, 'metaDescription', null)
     ),
     metaKeyword: formikHelper.getDefaultValueField(data, 'metaKeyword', null),
-    image: formikHelper.getImageValueField(data, 'image',
-      enumType.imagePath.Banner),
+    // image: formikHelper.getImageValueField(data, 'image',
+    //   enumType.imagePath.Banner),
     status: formikHelper.getDefaultValueField(data, 'status',
       enumType.categoryStatus.PUBLISHED),
+    option: data && data.parentId ? data.parentId.option : null
   }),
   handleSubmit: (values, { props }) => {
     props.handleSubmit(values)
@@ -78,9 +79,6 @@ const Form = (props) => {
     resetForm,
     handleCancel
   } = props
-
-  console.log({ data, values })
-
   const nameRef = useRef(null)
   const slugRef = useRef(null)
 
@@ -393,7 +391,7 @@ const Form = (props) => {
           <Col
             lg={8}
           >
-            <FormItem
+            {/* <FormItem
               label={
                 <FormattedMessage
                   id="Label.Image"
@@ -413,7 +411,7 @@ const Form = (props) => {
                 type={enumType.uploadType.Banner}
                 showSingleImage={false}
               />
-            </FormItem>
+            </FormItem> */}
 
             <FormItem
               label={

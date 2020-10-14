@@ -9,10 +9,12 @@ export default {
           image
           description,
           slug
+          option
           parentId {
             _id
             name
             index
+            option
           }
           banner
           metaTitle

@@ -51,7 +51,7 @@ const DataGrid = (props) => {
       render: (text, record) => {
         return (
           <ProductImage
-            src={imageUtils.getBannerUrl(record.image)}
+            src={imageUtils.getBannerUrl(record.banner)}
             alt='category-image'
           />
         )

@@ -122,7 +122,6 @@ const customSelect = withSelect({
   defaultPath: 'user',
   loadData: (values, { loadDataPagerCallback }) => {
 
-    // console.log('values', values)
     const queryClause = selectServices.initQuerySelectUserProduct(values,
       DEFAULT_PAGE_SIZE)
     loadDataPagerCallback(queryClause)

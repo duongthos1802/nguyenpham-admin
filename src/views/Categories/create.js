@@ -26,8 +26,6 @@ const customCreate = withCreate({
     const queryClause = categoryService.initQueryCreateOrUpdateCategory({
       values: values
     })
-
-    console.log('queryClause......', queryClause);
     createDataCallback(queryClause)
   }
 })

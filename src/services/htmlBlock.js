@@ -59,8 +59,6 @@ export default {
       queryClause += `, description: null`
     }
 
-    console.log(values.htmlBlockGroup);
-
     if (values.htmlBlockGroup) {
       queryClause += `, htmlBlockGroup: "${values.htmlBlockGroup.key}"`
     } else {
@@ -73,8 +71,6 @@ export default {
     } else {
       queryClause += `, content: null`
     }
-
-    console.log('fileUpload......', values.fileUpload);
 
     let queryClauseImage = ``
     queryClause += `, files: [`

@@ -63,6 +63,12 @@ export default {
       queryClause += `, parentId: null`
     }
 
+    if(values.option) {
+      queryClause += `, option: ${values.option}`
+    } else if(values.categoryParent.option) {
+      queryClause += `, option: ${values.categoryParent.option}`
+    }
+
     if (values.metaTitle) {
       const metaTitle = stringHelper.removeEscapeCharacter(values.metaTitle)
       queryClause += `, metaTitle: "${metaTitle}"`

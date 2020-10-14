@@ -557,6 +557,23 @@ const videoStatusEnum = [
 //   }
 // ]
 
+export const FAQStatus = {
+  Normal: 'Normal',
+  Delete: 'Delete'
+}
+
+export const FAQStatusEnum = [
+  {
+    label: 'Normal',
+    value: FAQStatus.Normal,
+    color: 'green'
+  },
+  {
+    label: 'Delete',
+    value: FAQStatus.Delete,
+    color: 'red'
+  }
+]
 
 
 export default {
@@ -594,5 +611,7 @@ export default {
   blogStatusEnum,
   videoStatus,
   videoStatusEnum,
-  optionsCategory
+  optionsCategory,
+  FAQStatus,
+  FAQStatusEnum,
 }

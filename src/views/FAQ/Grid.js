@@ -35,17 +35,12 @@ const DataGrid = (props) => {
 
   let header = [
     {
-      title: <FormattedMessage id="Grid.Title" defaultMessage="Question"/>,
+      title: <FormattedMessage id="Grid.Title" defaultMessage="Question" />,
       dataIndex: 'title',
       key: 'title'
     },
     {
-      title: <FormattedMessage id="Grid.Type" defaultMessage="Type"/>,
-      dataIndex: 'type',
-      key: 'type'
-    },
-    {
-      title: <FormattedMessage id="Grid.Status" defaultMessage="Status"/>,
+      title: <FormattedMessage id="Grid.Status" defaultMessage="Status" />,
       dataIndex: 'status',
       key: 'status',
       render: (text) => (
@@ -55,13 +50,13 @@ const DataGrid = (props) => {
       )
     },
     {
-      title: <FormattedMessage id="Grid.Priority" defaultMessage="Priority"/>,
+      title: <FormattedMessage id="Grid.Priority" defaultMessage="Priority" />,
       dataIndex: 'priority',
       key: 'priority'
     },
     {
       title: <FormattedMessage id="Grid.CreatedAt"
-                               defaultMessage="Created At"/>,
+        defaultMessage="Created At" />,
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (text, record) => {
@@ -80,7 +75,7 @@ const DataGrid = (props) => {
   if (enableEdit) {
     header.push(
       {
-        title: <FormattedMessage id="Grid.Action" defaultMessage="Action"/>,
+        title: <FormattedMessage id="Grid.Action" defaultMessage="Action" />,
         className: 'text-center',
         key: 'Delete',
         // width: 150,

@@ -36,6 +36,9 @@ import blogQuery from './blog'
 // VIDEO
 import videoQuery from './video'
 
+// FAQ
+import faqQuery from './faq'
+
 // SELECT
 import select from './select'
 
@@ -61,8 +64,10 @@ export default {
   managePagesQuery,
 
   groupHtmlBlocksQuery,
-  
+
   blogQuery,
 
-  videoQuery
+  videoQuery,
+
+  faqQuery
 }

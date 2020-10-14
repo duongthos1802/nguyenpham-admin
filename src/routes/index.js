@@ -8,6 +8,7 @@ import { resourceBannerGroup, routeBannerGroup } from './nav/navBannerGroup'
 import { resourceManagePages, routeManagePages } from './nav/navManagePages'
 import { resourceBlogs, routeBlogs } from './nav/navBlog'
 import { resourceVideos, routeVideos } from './nav/navVideo'
+import { resourceFAQ, routeFAQ } from './nav/navFAQ'
 
 export { default as navAdmin } from './nav'
 export const resource = {
@@ -27,7 +28,9 @@ export const resource = {
 
   ...resourceBlogs,
 
-  ...resourceVideos
+  ...resourceVideos,
+
+  ...resourceFAQ
 }
 
 export const routes = {
@@ -49,5 +52,7 @@ export const routes = {
 
   ...routeBlogs,
 
-  ...routeVideos
+  ...routeVideos,
+
+  ...routeFAQ
 }

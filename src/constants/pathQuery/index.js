@@ -28,7 +28,7 @@ export default {
 
   MANAGE_PAGES_QUERY: 'managePagesQuery',
 
-  // FAQ_QUERY: 'faqQuery',
+  FAQ_QUERY: 'faqQuery',
 
   RESOURCE_QUERY: 'resourceQuery',
 

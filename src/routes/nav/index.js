@@ -11,6 +11,7 @@ import { navBannerGroup, resourceBanner } from './navBannerGroup'
 import { navManagePages, resourceManagePages } from './navManagePages'
 import { navBlogs, resourceBlogs } from './navBlog'
 import { navVideos, resourceVideos } from './navVideo'
+import { resourceFAQ, navFAQ } from './navFAQ'
 
 export const navAdmin = [
   {
@@ -184,6 +185,24 @@ export const navAdmin = [
     resource: 'MENU_MANAGEMENT_SUPPORT',
     key: 'support',
     component: LoadableRoute(() => import('../../views/support'))
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.FAQs'
+        defaultMessage='FAQs'
+      />
+    ),
+    path: mainRoutes.ADMIN_FAQ,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-question',
+    actionType: enumType.action.Write,
+    key: 'FAQs',
+    resource: resourceFAQ.MENU_MANAGEMENT_FAQ,
+    component: LoadableRoute(() =>
+      import('../../views/FAQ')
+    )
   },
 ]
 

@@ -64,6 +64,9 @@ const customFormik = withFormik({
       attribute: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, 'attribute', null)
       ),
+      preservation: htmlHelper.decodeContent(
+        formikHelper.getDefaultValueField(data, 'preservation', null)
+      ),
       status: formikHelper.getDefaultValueField(data, 'status',
         enumType.categoryStatus.PUBLISHED),
       isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false)
@@ -91,7 +94,6 @@ const Form = (props) => {
     handleCancel,
     parentId
   } = props
-  console.log('categoryParent....', values.category)
   const nameRef = useRef(null)
   const slugRef = useRef(null)
 
@@ -128,8 +130,8 @@ const Form = (props) => {
     [formError]
   )
 
-  const onChangeIsPriority = ({target: {checked}}) => {
-    const {setValues, values} = props
+  const onChangeIsPriority = ({ target: { checked } }) => {
+    const { setValues, values } = props
     setValues({
       ...values,
       isPriority: checked,
@@ -343,6 +345,30 @@ const Form = (props) => {
               />
               <ErrorMessage
                 fieldName='packing'
+                touched={touched}
+                errors={errors}
+                isValidate={true}
+              />
+            </FormItem>
+
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Preservation"
+                  defaultMessage="Preservation"
+                />
+              }
+              className='mb-0'
+            >
+              <Editor
+                data={values.preservation}
+                handleChange={(value) => setFieldValue('preservation', value)}
+                handleBlur={() => setFieldTouched('preservation', true)}
+                editorConfig='content'
+              // element='html-block-editor'
+              />
+              <ErrorMessage
+                fieldName='preservation'
                 touched={touched}
                 errors={errors}
                 isValidate={true}

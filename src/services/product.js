@@ -138,6 +138,13 @@ export default {
       queryClause += `, tutorial: null`
     }
 
+    if (values.preservation) {
+      const preservation = htmlHelper.encodeContent(values.preservation)
+      queryClause += `, preservation: "${preservation}"`
+    } else {
+      queryClause += `, preservation: null`
+    }
+
     queryClause += `, status: ${values.status}`
     queryClause += `, isPriority: ${!!values.isPriority}`
     return `record: {${queryClause}}`

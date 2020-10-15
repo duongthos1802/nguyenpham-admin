@@ -6,7 +6,8 @@ export default {
           _id
           name
           images
-          description,
+          description
+          preservation
           attribute
           isPriority
           pictures
@@ -33,6 +34,7 @@ export default {
           description,
           attribute
           isPriority
+          preservation
           pictures
           category {
             _id

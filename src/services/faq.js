@@ -1,5 +1,5 @@
 // extensions
-import { queryStringHelper, stringHelper } from '../extensions'
+import { htmlHelper, queryStringHelper, stringHelper } from '../extensions'
 import { enumType } from '../constants'
 
 export default {
@@ -46,7 +46,7 @@ export default {
     }
 
     if (values.answer) {
-      const answer = stringHelper.removeEscapeCharacter(values.answer)
+      const answer = htmlHelper.encodeContent(values.answer)
       queryClause += `answer: "${answer}",`
     } else {
       queryClause += `answer: null, `

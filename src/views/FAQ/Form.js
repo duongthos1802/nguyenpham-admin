@@ -155,6 +155,7 @@ const FormAction = (props) => {
                     handleChange={(value) => setFieldValue('answer', value)}
                     handleBlur={() => setFieldTouched('answer', true)}
                     editorConfig='content'
+                    // imageType={enumType.uploadType.Recipe}
                   />)
               }
             </FormattedMessage>

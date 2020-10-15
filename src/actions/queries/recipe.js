@@ -18,7 +18,6 @@ export default {
         }
         pictures
         ingredient
-        preservation
         method
         decorate
         level

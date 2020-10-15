@@ -9,7 +9,7 @@ import { Form, Input } from 'antd/lib/index'
 import { FORM_ITEM_LAYOUT, enumType } from '../../constants'
 import { resource } from '../../routes'
 // extensions
-import { formikHelper, yupHelper } from '../../extensions'
+import { formikHelper, yupHelper, htmlHelper } from '../../extensions'
 // utils
 import utils from '../../utils'
 // component

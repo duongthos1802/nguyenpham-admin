@@ -200,9 +200,7 @@ export const navAdmin = [
     actionType: enumType.action.Write,
     key: 'FAQs',
     resource: resourceFAQ.MENU_MANAGEMENT_FAQ,
-    component: LoadableRoute(() =>
-      import('../../views/FAQ')
-    )
+    children: navFAQ
   },
 ]
 

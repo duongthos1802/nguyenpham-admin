@@ -39,7 +39,7 @@ const formikMap = withFormik({
       formikHelper.getDefaultValueField(props.data, 'title', null)
     ),
     answer: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, 'answer', null)
+      formikHelper.getDefaultValueField(props.data, 'answer', null)
     ),
     description: utils.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(props.data, 'description', null)

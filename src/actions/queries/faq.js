@@ -35,7 +35,7 @@ export default {
 	create(dataClause) {
 		return `
       mutation {
-        createFaq(${dataClause}) {
+        createFAQ(${dataClause}) {
           recordId
         }
       }
@@ -45,7 +45,7 @@ export default {
 	update(queryClause) {
 		return `
 			mutation {
-				updateFaq(${queryClause}) {
+				updateFAQ(${queryClause}) {
 					recordId
 				}
 			}

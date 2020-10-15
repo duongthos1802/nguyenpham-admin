@@ -15,21 +15,21 @@ const Edit = props => {
     handleCancelForm
   } = props
   
-  const surveyDetail = data && data.surveyDetail
-    ? data.surveyDetail
+  const faqDetail = data && data.faq
+    ? data.faq
     : null
     
-  return surveyDetail ? (
+  return (
     <Form
       mode={enumType.mode.edit}
       formError={formError}
-      data={surveyDetail}
+      data={faqDetail}
       auth={auth}
       isMobile={isMobile}
       handleSubmit={handleSubmitForm}
       handleCancel={handleCancelForm}
     />
-  ) : null
+  )
 }
 
 const customUpdate = withUpdate({

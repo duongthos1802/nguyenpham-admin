@@ -151,7 +151,7 @@ const FormAction = (props) => {
               {
                 placeholder => (
                   <Editor
-                    data={values.description}
+                    data={values.answer}
                     handleChange={(value) => setFieldValue('answer', value)}
                     handleBlur={() => setFieldTouched('answer', true)}
                     editorConfig='answer'

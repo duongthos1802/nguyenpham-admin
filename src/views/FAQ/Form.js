@@ -38,7 +38,7 @@ const formikMap = withFormik({
     title: utils.handleShowLineBreakTextarea(
       formikHelper.getDefaultValueField(props.data, 'title', null)
     ),
-    ingredient: htmlHelper.decodeContent(
+    answer: htmlHelper.decodeContent(
       formikHelper.getDefaultValueField(props.data, 'answer', null)
     ),
     description: utils.handleShowLineBreakTextarea(
@@ -155,7 +155,7 @@ const FormAction = (props) => {
                     handleChange={(value) => setFieldValue('answer', value)}
                     handleBlur={() => setFieldTouched('answer', true)}
                     editorConfig='content'
-                    imageType={enumType.uploadType.Recipe}
+                    // imageType={enumType.uploadType.Recipe}
                   />)
               }
             </FormattedMessage>

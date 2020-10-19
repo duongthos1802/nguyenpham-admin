@@ -106,6 +106,14 @@ export default {
       queryClause += `, category: null`
     }
 
+    queryClause += `, recipes: [`
+    if (values.recipes && values.recipes.length > 0) {
+      values.recipes.map(recipe => {
+        queryClause += `, "${recipe.value}"`
+      })
+    }
+    queryClause += `]`
+
     // banner
     // if (values.banner) {
     //   if (values.banner.filename) {

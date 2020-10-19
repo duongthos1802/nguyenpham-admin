@@ -37,7 +37,7 @@ export default {
     return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
   },
 
-  initQuerySelectUserProduct(keyword, defaultPageSize) {
+  initQuerySelectRecipe(keyword, defaultPageSize) {
     let query = ''
 
     if (keyword) {
@@ -49,4 +49,5 @@ export default {
 
     return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
   }
+
 }

@@ -15,6 +15,10 @@ export default {
             _id
             name
           }
+          recipes{
+            _id
+            name
+          }
           slug
           packing
           tutorial

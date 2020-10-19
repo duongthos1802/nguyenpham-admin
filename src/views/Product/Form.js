@@ -22,7 +22,7 @@ import {
   UploadImage,
   Editor
 } from '../../components'
-import { EnumSelect, CategorySelect } from '../../components/Select'
+import { EnumSelect, CategorySelect, RecipeSelect } from '../../components/Select'
 
 const FormItem = AntForm.Item
 
@@ -69,7 +69,13 @@ const customFormik = withFormik({
       ),
       status: formikHelper.getDefaultValueField(data, 'status',
         enumType.categoryStatus.PUBLISHED),
-      isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false)
+      isPriority: formikHelper.getDefaultValueField(data, 'isPriority', false),
+
+      recipes: formikHelper.getListObjectValueField({
+        data: data,
+        fieldName: 'recipes',
+        valueField: '_id'
+      }),
     }
   },
   handleSubmit: (values, { props }) => {
@@ -419,6 +425,40 @@ const Form = (props) => {
                 showUploadList={true}
                 type={enumType.uploadType.Banner}
                 showSingleImage={false}
+              />
+            </FormItem>
+
+            <FormItem
+              label={
+                <FormattedMessage
+                  id="Label.Recipe"
+                  defaultMessage="Recipe"
+                />
+              }
+              className='mb-0'
+            >
+              <FormattedMessage
+                id="Label.Recipe"
+                defaultMessage="Recipe"
+              >
+                {
+                  (placeholder) => (
+                    <RecipeSelect
+                      isMulti={true}
+                      value={values.recipes}
+                      onChange={setFieldValue}
+                      onBlur={setFieldTouched}
+                      path={'recipes'}
+                      placeholder={placeholder}
+                    />
+                  )
+                }
+              </FormattedMessage>
+              <ErrorMessage
+                isValidate={true}
+                errors={errors}
+                touched={touched}
+                fieldName='recipes'
               />
             </FormItem>
 

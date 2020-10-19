@@ -17,3 +17,5 @@ export { default as BannerSelect } from './BannerSelect'
 export { default as ResourceSelect } from './ResourceSelect'
 
 export { default as HtmlBlockSelect } from './HtmlBlockSelect'
+
+export { default as RecipeSelect } from './RecipeSelect'

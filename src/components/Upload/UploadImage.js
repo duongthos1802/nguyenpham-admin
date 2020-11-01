@@ -103,6 +103,9 @@ const UploadImage = (props) => {
   })
 
   const getResultUploadFile = (listFileUpload = []) => {
+
+    console.log('listFileUpload........', listFileUpload);
+
     let fileResult
     if (multiple) {
       fileResult = listFileUpload.map(file => getFileData(file))
@@ -172,6 +175,8 @@ const UploadImage = (props) => {
     setFirstLoad(false)
     try {
       const resultData = await upload.uploadFile(options.file, type)
+      console.log('result upload Data.......', resultData);
+
       if (resultData && resultData.length > 0) {
         getResultUploadFile(resultData)
       } else {

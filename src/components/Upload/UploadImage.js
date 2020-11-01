@@ -175,9 +175,11 @@ const UploadImage = (props) => {
       if (resultData && resultData.length > 0) {
         getResultUploadFile(resultData)
       } else {
+        console.log('upload Fail 01 .........');
         handleShowModalUploadFail()
       }
     } catch (e) {
+      console.log('upload Fail 02 .........');
       handleShowModalUploadFail()
     }
     setLoading(false)

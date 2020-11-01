@@ -67,7 +67,7 @@ const DragImage = (props) => {
     }
   }
 
-  const handleCustomRequest = async(options) => {
+  const handleCustomRequest = async (options) => {
     setLoading(true)
     try {
       const resultData = await upload.uploadFile(options.file, type)
@@ -87,9 +87,11 @@ const DragImage = (props) => {
           handleUploadFile(file)
         }
       } else {
+        console.log('upload Dragger Fail 1 .........');
         handleShowModalUploadFail()
       }
     } catch (e) {
+      console.log('upload Dragger Fail 2 .........');
       handleShowModalUploadFail()
     }
     setLoading(false)
@@ -121,7 +123,7 @@ const DragImage = (props) => {
       return (
         <React.Fragment>
           <p className="ant-upload-drag-icon">
-            <Icon type="inbox"/>
+            <Icon type="inbox" />
           </p>
           <p className="ant-upload-text">
             Click or drag file to this area to upload

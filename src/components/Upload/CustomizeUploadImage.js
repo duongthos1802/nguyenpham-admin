@@ -20,7 +20,7 @@ const FileResult = ({ file, handleSetThumbnail, handleDeleteFile }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={file.url} alt="" className="ant-upload-list-item-image"/>
+            <img src={file.url} alt="" className="ant-upload-list-item-image" />
           </a>
           <a
             target="_blank"
@@ -37,16 +37,16 @@ const FileResult = ({ file, handleSetThumbnail, handleDeleteFile }) => {
           rel="noopener noreferrer"
           title="Preview file"
         >
-          <Icon type="eye-o"/>
+          <Icon type="eye-o" />
         </a>
         <a
           onClick={handleSetThumbnail}
           target="_blank"
           rel="noopener noreferrer"
           title="Set thumbnail file"
-          style={{color: 'rgba(255, 255, 255, 0.85)'}}
+          style={{ color: 'rgba(255, 255, 255, 0.85)' }}
         >
-          <Icon type="home"/>
+          <Icon type="home" />
         </a>
         <a
           onClick={handleDeleteFile}
@@ -54,7 +54,7 @@ const FileResult = ({ file, handleSetThumbnail, handleDeleteFile }) => {
           rel="noopener noreferrer"
           title="Delete file"
         >
-          <Icon type="delete"/>
+          <Icon type="delete" />
         </a>
       </span>
     </div>
@@ -204,9 +204,11 @@ const CustomizeUploadImage = (props) => {
       if (resultData && resultData.length > 0) {
         getResultUploadFile(resultData)
       } else {
+        console.log('upload Fail 1.........');
         handleShowModalUploadFail()
       }
     } catch (e) {
+      console.log('upload Fail 2.........');
       handleShowModalUploadFail()
     }
     setLoading(false)
@@ -294,12 +296,12 @@ const CustomizeUploadImage = (props) => {
         onChange={({ fileList }) => handleChangeFileUpload(fileList)}
       >
         {loading ? (
-          <Icon type={'loading'}/>
+          <Icon type={'loading'} />
         ) : (isUser || showSingleImage) && fileList[0] ? (
-          <img src={fileList[0].url} alt="img" className={`img-fluid`}/>
+          <img src={fileList[0].url} alt="img" className={`img-fluid`} />
         ) : !maxFileUpload || fileList.length < maxFileUpload ? (
           <React.Fragment>
-            <Icon type={'plus'}/>
+            <Icon type={'plus'} />
             <div className="ant-upload-text">Upload</div>
           </React.Fragment>
         ) : null}

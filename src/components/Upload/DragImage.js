@@ -87,11 +87,9 @@ const DragImage = (props) => {
           handleUploadFile(file)
         }
       } else {
-        console.log('upload Dragger Fail 1 .........');
         handleShowModalUploadFail()
       }
     } catch (e) {
-      console.log('upload Dragger Fail 2 .........');
       handleShowModalUploadFail()
     }
     setLoading(false)

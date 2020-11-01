@@ -129,7 +129,7 @@ const UploadImage = (props) => {
   }
 
   const handleCheckBeforeUpload = (file, listFileUpload) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       if (listFileUpload.find(file => !isImageType(file.type, isMenuIcon))) {
         if (isMenuIcon) {
           Modal.warning({
@@ -142,10 +142,10 @@ const UploadImage = (props) => {
         }
         reject(false)
       }
-      const isLargeImage = getImageSize(file) >= 2
-      if(isLargeImage) {
+      const isLargeImage = getImageSize(file) >= 4
+      if (isLargeImage) {
         Modal.warning({
-          title: 'Image must be smaller than 2MB!',
+          title: 'Image must be smaller than 4MB!',
         })
         reject(false)
       }
@@ -167,7 +167,7 @@ const UploadImage = (props) => {
 
 
   // custom request
-  const handleCustomRequest = async(options) => {
+  const handleCustomRequest = async (options) => {
     setLoading(true)
     setFirstLoad(false)
     try {
@@ -213,21 +213,21 @@ const UploadImage = (props) => {
       {
         loading
           ? (
-            <Icon type={'loading'}/>
+            <Icon type={'loading'} />
           )
           : (isUser || showSingleImage) && fileList[0]
-          ?
-          (
-            <img src={fileList[0].url} alt="img" className={`img-fluid`}/>
-          )
-          : !maxFileUpload || fileList.length < maxFileUpload
-            ? (
-              <React.Fragment>
-                <Icon type={'plus'}/>
-                <div className="ant-upload-text">Upload</div>
-              </React.Fragment>
+            ?
+            (
+              <img src={fileList[0].url} alt="img" className={`img-fluid`} />
             )
-            : null
+            : !maxFileUpload || fileList.length < maxFileUpload
+              ? (
+                <React.Fragment>
+                  <Icon type={'plus'} />
+                  <div className="ant-upload-text">Upload</div>
+                </React.Fragment>
+              )
+              : null
       }
 
     </Upload>

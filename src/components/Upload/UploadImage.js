@@ -173,18 +173,22 @@ const UploadImage = (props) => {
   const handleCustomRequest = async (options) => {
     setLoading(true)
     setFirstLoad(false)
+    console.log('handleCustomRequest.......', options);
+
     try {
       const resultData = await upload.uploadFile(options.file, type)
       console.log('result upload Data.......', resultData);
 
       if (resultData && resultData.length > 0) {
+        console.log('resultData.......', resultData);
+
         getResultUploadFile(resultData)
       } else {
         console.log('upload Fail 01 .........');
         handleShowModalUploadFail()
       }
     } catch (e) {
-      console.log('upload Fail 02 .........');
+      console.log('upload Fail 02 .........', e);
       handleShowModalUploadFail()
     }
     setLoading(false)

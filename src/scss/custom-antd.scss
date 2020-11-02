@@ -326,3 +326,9 @@
 .text-overflow-ellipsis {
   text-overflow: ellipsis;
 }
+
+.form-product {
+  .cke_contents {
+    max-height: 200px !important;
+  }
+}

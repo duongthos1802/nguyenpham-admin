@@ -7,8 +7,9 @@ export default {
           name
           images
           description
+          application
+          expirationDate
           preservation
-          attribute
           isPriority
           pictures
           category {
@@ -36,7 +37,8 @@ export default {
           name
           images
           description,
-          attribute
+          application
+          expirationDate
           isPriority
           preservation
           pictures

@@ -123,6 +123,13 @@ export default {
     //   queryClause += `, banner: null`
     // }
 
+    if (values.expirationDate) {
+      const expirationDate = htmlHelper.encodeContent(values.expirationDate)
+      queryClause += `, expirationDate: "${expirationDate}"`
+    } else {
+      queryClause += `, expirationDate: null`
+    }
+
     if (values.packing) {
       const packing = htmlHelper.encodeContent(values.packing)
       queryClause += `, packing: "${packing}"`
@@ -130,13 +137,19 @@ export default {
       queryClause += `, packing: null`
     }
 
-
-    if (values.attribute) {
-      const attribute = htmlHelper.encodeContent(values.attribute)
-      queryClause += `, attribute: "${attribute}"`
+    if (values.application) {
+      const application = htmlHelper.encodeContent(values.application)
+      queryClause += `, application: "${application}"`
     } else {
-      queryClause += `, attribute: null`
+      queryClause += `, application: null`
     }
+
+    // if (values.attribute) {
+    //   const attribute = htmlHelper.encodeContent(values.attribute)
+    //   queryClause += `, attribute: "${attribute}"`
+    // } else {
+    //   queryClause += `, attribute: null`
+    // }
 
 
     if (values.tutorial) {

@@ -72,22 +72,6 @@ export default {
       queryClause += `description: null,`
     }
 
-    // if(values.category) {
-    //   queryClause += `category: { connect: { _id: "${values.category.value}" }},`
-    // }
-
-    // if(values.remark) {
-    //   queryClause += `remarks: "${values.remark}",`
-    // }
-
-    // if(values.externalLink) {
-    //   queryClause += `externalLink: "${values.externalLink}",`
-    // }
-
-    // if(values.bannerType) {
-    //   queryClause += `type: ${values.bannerType},`
-    // }
-
     if (values.url) {
       const url = stringHelper.removeEscapeCharacter(values.url)
       queryClause += `url: "${url}",`

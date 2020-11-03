@@ -25,6 +25,12 @@ import { Icon, Select, Spin } from 'antd'
 
 const Option = Select.Option
 
+const convertOption = (showCategoryParent, options) => {
+  if (showCategoryParent || !options.length) return options
+  const categories = options.filter(item => item.parentId)
+  return categories
+}
+
 const CustomSelect = (props) => {
 
   const {
@@ -42,7 +48,8 @@ const CustomSelect = (props) => {
     exception,
     isProduct,
     currentId,
-    parentId
+    parentId,
+    showCategoryParent = true,
   } = props
   const [listOptions, setListOptions] = useState([])
   const [selectAll, setSelectAll] = useState(false)
@@ -62,7 +69,7 @@ const CustomSelect = (props) => {
   // de quy tim tat ca category
   const initCategory = (data, parentId) => {
     data.map((item) => {
-      if(item.parentId === parentId) {
+      if (item.parentId === parentId) {
         categories.push(item)
         initCategory(data, item.value)
       }
@@ -109,14 +116,14 @@ const CustomSelect = (props) => {
         }
       })
     }
-    if(currentId) {
+    if (currentId) {
       const index = options.findIndex(item => item.value === currentId)
-      if(index > -1) {
+      if (index > -1) {
         options.splice(index, 1)
       }
     }
     // let mapOption = []
-    if(parentId) {
+    if (parentId) {
       options = initCategory(options, parentId)
       // options.map(item => {
       //   if(item.parentId === parentId){
@@ -131,6 +138,7 @@ const CustomSelect = (props) => {
     }
     // let listOptions = utils.initValueToOption(value, mapOption.length > 0 ? mapOption : options)
     let listOptions = utils.initValueToOption(value, options)
+
     if (isMulti && listOptions) {
       if (value) {
         setSelectAll(listOptions.length !== value.length)
@@ -143,7 +151,8 @@ const CustomSelect = (props) => {
 
   const valueSelected = utils.getValueOption(listOptions, value)
 
-  let options = listOptions
+  let options = convertOption(showCategoryParent, listOptions)
+
   if (hideSelected && exception && exception.length > 0) {
     options = options.filter(item => !exception.includes(item.value))
   }

@@ -230,6 +230,7 @@ const FormAction = (props) => {
                 onBlur={setFieldTouched}
                 path={'configCategory'}
                 placeholder={placeholder}
+                showCategoryParent={false}
               />
             )
           }
@@ -265,6 +266,7 @@ const FormAction = (props) => {
                 onBlur={setFieldTouched}
                 path={'configCategorySecond'}
                 placeholder={placeholder}
+                showCategoryParent={false}
               />
             )
           }
@@ -300,6 +302,7 @@ const FormAction = (props) => {
                 onBlur={setFieldTouched}
                 path={'configCategoryThird'}
                 placeholder={placeholder}
+                showCategoryParent={false}
               />
             )
           }
@@ -336,6 +339,7 @@ const FormAction = (props) => {
                 onBlur={setFieldTouched}
                 path={'configCategoryFour'}
                 placeholder={placeholder}
+                showCategoryParent={false}
               />
             )
           }

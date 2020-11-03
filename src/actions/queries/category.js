@@ -41,6 +41,10 @@ export default {
           metaDescription
           metaKeyword
           status
+          parentId {
+            _id
+            name
+          }
         }
         total
       }

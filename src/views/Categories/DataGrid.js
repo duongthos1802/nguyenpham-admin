@@ -75,12 +75,21 @@ const DataGrid = (props) => {
     },
     {
       title: <FormattedMessage
+        id="Grid.CategoryParent"
+        defaultMessage="Category Parent"
+      />,
+      dataIndex: 'parentId',
+      key: 'parentId',
+      render: (text, record) => <span>{text?.name}</span>
+    },
+    {
+      title: <FormattedMessage
         id="Grid.Status"
         defaultMessage="Status"
       />,
       dataIndex: 'status',
       key: 'status',
-      render: (text) => <CategoryStatus status={text}/>
+      render: (text) => <CategoryStatus status={text} />
     },
     {
       title: <FormattedMessage
@@ -122,6 +131,8 @@ const DataGrid = (props) => {
   const dataGrid = data && data.length > 0
     ? data
     : []
+
+
   return (
     <CustomTable
       rowKey={record => record._id}

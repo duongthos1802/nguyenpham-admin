@@ -176,12 +176,14 @@ const UploadImage = (props) => {
 
     try {
       const resultData = await upload.uploadFile(options.file, type)
+      console.log('resultData...', resultData)
       if (resultData && resultData.length > 0) {
         getResultUploadFile(resultData)
       } else {
         handleShowModalUploadFail()
       }
     } catch (e) {
+      console.log('error...', e)
       handleShowModalUploadFail()
     }
     setLoading(false)

@@ -21,92 +21,92 @@ const utils = {
       switch (buttonType) {
         case enumType.buttonType.Cancel:
           textButton = (
-            <FormattedMessage id="Button.Cancel" defaultMessage="Cancel"/>
+            <FormattedMessage id="Button.Cancel" defaultMessage="Cancel" />
           )
-          iconButton = <Icon type="close"/>
+          iconButton = <Icon type="close" />
           break
         case enumType.buttonType.Suspend:
           textButton = (
-            <FormattedMessage id="Button.Suspend" defaultMessage="Suspend"/>
+            <FormattedMessage id="Button.Suspend" defaultMessage="Suspend" />
           )
-          iconButton = <Icon type="minus-circle"/>
+          iconButton = <Icon type="minus-circle" />
           break
         case enumType.buttonType.Ignore:
           textButton = (
-            <FormattedMessage id="Button.Ignore" defaultMessage="Ignore"/>
+            <FormattedMessage id="Button.Ignore" defaultMessage="Ignore" />
           )
-          iconButton = <Icon type="stop"/>
+          iconButton = <Icon type="stop" />
           break
         case enumType.buttonType.GoToPost:
           textButton = (
-            <FormattedMessage id="Button.GoToPost" defaultMessage="Go To Post"/>
+            <FormattedMessage id="Button.GoToPost" defaultMessage="Go To Post" />
           )
-          iconButton = <Icon type="right-circle"/>
+          iconButton = <Icon type="right-circle" />
           break
         case enumType.buttonType.Resume:
           textButton = (
-            <FormattedMessage id="Button.Resume" defaultMessage="Resume"/>
+            <FormattedMessage id="Button.Resume" defaultMessage="Resume" />
           )
-          iconButton = <Icon type="redo"/>
+          iconButton = <Icon type="redo" />
           break
         case enumType.buttonType.Create:
           textButton = (
-            <FormattedMessage id="Button.Create" defaultMessage="Create"/>
+            <FormattedMessage id="Button.Create" defaultMessage="Create" />
           )
-          iconButton = <Icon type="plus"/>
+          iconButton = <Icon type="plus" />
           break
         case enumType.buttonType.Change:
           textButton = (
             <FormattedMessage id="Button.ChangePassword"
-                              defaultMessage="Change Password"/>
+              defaultMessage="Change Password" />
           )
-          iconButton = <Icon type="barcode"/>
+          iconButton = <Icon type="barcode" />
           break
         case enumType.buttonType.Delete:
           textButton = (
             <FormattedMessage
               id="Button.Delete"
-              defaultMessage="Delete"/>
+              defaultMessage="Delete" />
           )
-          iconButton = <Icon type="delete"/>
+          iconButton = <Icon type="delete" />
           break
         case enumType.buttonType.Remove:
           textButton = (
             <FormattedMessage
               id="Button.Remove"
-              defaultMessage="Remove"/>
+              defaultMessage="Remove" />
           )
-          iconButton = <Icon type="delete"/>
+          iconButton = <Icon type="delete" />
           break
         case enumType.buttonType.Edit:
           textButton = (
-            <FormattedMessage id="Button.Edit" defaultMessage="Edit"/>
+            <FormattedMessage id="Button.Edit" defaultMessage="Edit" />
           )
-          iconButton = <Icon type="edit"/>
+          iconButton = <Icon type="edit" />
           break
         case enumType.buttonType.Back:
           textButton = (
-            <FormattedMessage id="Button.Back" defaultMessage="Back"/>
+            <FormattedMessage id="Button.Back" defaultMessage="Back" />
           )
-          iconButton = <Icon type="double-left"/>
+          iconButton = <Icon type="double-left" />
           break
         case enumType.buttonType.Complete:
           textButton = (
-            <FormattedMessage id="Button.Complete" defaultMessage="Complete"/>
+            <FormattedMessage id="Button.Complete" defaultMessage="Complete" />
           )
-          iconButton = <Icon type="check"/>
+          iconButton = <Icon type="check" />
           break
         case enumType.buttonType.Save:
           textButton = (
-            <FormattedMessage id="Button.Save" defaultMessage="Save"/>
+            <FormattedMessage id="Button.Save" defaultMessage="Save" />
           )
-          iconButton = <Icon type="save"/>
+          iconButton = <Icon type="save" />
           break
         case enumType.buttonType.Role:
           textButton = (
-            <FormattedMessage id="Button.Role" defaultMessage="Role"/>
+            <FormattedMessage id="Button.Role" defaultMessage="Role" />
           )
-          iconButton = <Icon type="property-safety"/>
+          iconButton = <Icon type="property-safety" />
           break
         case enumType.buttonType.Draft:
           textButton = (
@@ -115,38 +115,38 @@ const utils = {
               defaultMessage="Save as draft"
             />
           )
-          iconButton = <Icon type="snippets"/>
+          iconButton = <Icon type="snippets" />
           break
         case enumType.buttonType.Confirm:
           textButton = (
-            <FormattedMessage id="Button.Confirm" defaultMessage="Confirm"/>
+            <FormattedMessage id="Button.Confirm" defaultMessage="Confirm" />
           )
-          iconButton = <Icon type="check"/>
+          iconButton = <Icon type="check" />
           break
         case enumType.buttonType.Close:
           textButton = (
-            <FormattedMessage id="Button.Close" defaultMessage="Close"/>
+            <FormattedMessage id="Button.Close" defaultMessage="Close" />
           )
-          iconButton = <Icon type="close"/>
+          iconButton = <Icon type="close" />
           break
         case enumType.buttonType.Profile:
           textButton = (
-            <FormattedMessage id="Button.Profile" defaultMessage="OpenProfile"/>
+            <FormattedMessage id="Button.Profile" defaultMessage="OpenProfile" />
           )
-          iconButton = <Icon type="profile"/>
+          iconButton = <Icon type="profile" />
           break
         case enumType.buttonType.PostList:
           textButton = (
-            <FormattedMessage id="Button.PostList" defaultMessage="Post Lists"/>
+            <FormattedMessage id="Button.PostList" defaultMessage="Post Lists" />
           )
-          iconButton = <Icon type="bars"/>
+          iconButton = <Icon type="bars" />
           break
         case enumType.buttonType.CommentList:
           textButton = (
             <FormattedMessage id="Button.CommentList"
-                              defaultMessage="Comment Lists"/>
+              defaultMessage="Comment Lists" />
           )
-          iconButton = <Icon type="bars"/>
+          iconButton = <Icon type="bars" />
           break
         case enumType.buttonType.Accept:
           textButton = (
@@ -155,7 +155,7 @@ const utils = {
               defaultMessage="Accept"
             />
           )
-          iconButton = <Icon type="check"/>
+          iconButton = <Icon type="check" />
           break
         case enumType.buttonType.SaveAndConfirm:
           textButton = (
@@ -164,7 +164,7 @@ const utils = {
               defaultMessage="Save And Confirm"
             />
           )
-          iconButton = <Icon type="check-circle"/>
+          iconButton = <Icon type="check-circle" />
           break
         case enumType.buttonType.Adjustment:
           textButton = (
@@ -173,23 +173,23 @@ const utils = {
               defaultMessage="Adjustment"
             />
           )
-          iconButton = <Icon type="sync"/>
+          iconButton = <Icon type="sync" />
           break
         case enumType.buttonType.Search:
           textButton = (
             <FormattedMessage
               id="Button.Search"
-              defaultMessage="Search"/>
+              defaultMessage="Search" />
           )
-          iconButton = <Icon type="search"/>
+          iconButton = <Icon type="search" />
           break
         case enumType.buttonType.Hide:
           textButton = (
             <FormattedMessage
               id="Button.Hide"
-              defaultMessage="Hide"/>
+              defaultMessage="Hide" />
           )
-          iconButton = <Icon type="eye"/>
+          iconButton = <Icon type="eye" />
           break
         case enumType.buttonType.RestoreSuspend:
           textButton = (
@@ -198,7 +198,7 @@ const utils = {
               defaultMessage="Restore"
             />
           )
-          iconButton = <Icon type="minus-circle"/>
+          iconButton = <Icon type="minus-circle" />
           break
         case enumType.buttonType.RestoreLock:
           textButton = (
@@ -207,7 +207,7 @@ const utils = {
               defaultMessage="Restore"
             />
           )
-          iconButton = <Icon type="unlock"/>
+          iconButton = <Icon type="unlock" />
           break
         case enumType.buttonType.Restore:
           textButton = (
@@ -216,38 +216,38 @@ const utils = {
               defaultMessage="Restore"
             />
           )
-          iconButton = <Icon type="eye-invisible"/>
+          iconButton = <Icon type="eye-invisible" />
           break
         case enumType.buttonType.Add:
           textButton = <FormattedMessage
             id="Button.Add"
             defaultMessage="Add"
           />
-          iconButton = <Icon type="plus"/>
+          iconButton = <Icon type="plus" />
           break
         case enumType.buttonType.Preview:
           textButton = (
             <FormattedMessage
               id="Button.Preview"
-              defaultMessage="Preview"/>
+              defaultMessage="Preview" />
           )
-          iconButton = <Icon type="eye"/>
+          iconButton = <Icon type="eye" />
           break
         case enumType.buttonType.Lock:
           textButton = (
             <FormattedMessage
               id="Button.Lock"
-              defaultMessage="Lock"/>
+              defaultMessage="Lock" />
           )
-          iconButton = <Icon type="lock"/>
+          iconButton = <Icon type="lock" />
           break
         case enumType.buttonType.Unlock:
           textButton = (
             <FormattedMessage
               id="Button.Unlock"
-              defaultMessage="Unlock"/>
+              defaultMessage="Unlock" />
           )
-          iconButton = <Icon type="unlock"/>
+          iconButton = <Icon type="unlock" />
           break
         case enumType.buttonType.ContentGroupCategory:
           textButton = (
@@ -256,7 +256,7 @@ const utils = {
               defaultMessage="Category"
             />
           )
-          iconButton = <Icon type="apartment"/>
+          iconButton = <Icon type="apartment" />
           break
         case enumType.buttonType.ContentGroupUser:
           textButton = (
@@ -265,7 +265,7 @@ const utils = {
               defaultMessage="Member"
             />
           )
-          iconButton = <Icon type="usergroup-add"/>
+          iconButton = <Icon type="usergroup-add" />
           break
         case enumType.buttonType.Submit:
           textButton = (
@@ -274,7 +274,7 @@ const utils = {
               defaultMessage="Submit"
             />
           )
-          iconButton = <Icon type="upload"/>
+          iconButton = <Icon type="upload" />
           break
         case enumType.buttonType.Revert:
           textButton = (
@@ -283,7 +283,7 @@ const utils = {
               defaultMessage="Revert"
             />
           )
-          iconButton = <Icon type="undo"/>
+          iconButton = <Icon type="undo" />
           break
         case enumType.buttonType.Reject:
           textButton = (
@@ -292,7 +292,7 @@ const utils = {
               defaultMessage="Reject"
             />
           )
-          iconButton = <Icon type="close"/>
+          iconButton = <Icon type="close" />
           break
         case enumType.buttonType.Publish:
           textButton = (
@@ -301,7 +301,7 @@ const utils = {
               defaultMessage="Publish"
             />
           )
-          iconButton = <Icon type="global"/>
+          iconButton = <Icon type="global" />
           break
         case enumType.buttonType.History:
           textButton = (
@@ -310,7 +310,7 @@ const utils = {
               defaultMessage="History"
             />
           )
-          iconButton = <Icon type="history"/>
+          iconButton = <Icon type="history" />
           break
         case enumType.buttonType.Setting:
           textButton = (
@@ -319,7 +319,7 @@ const utils = {
               defaultMessage="Setting"
             />
           )
-          iconButton = <Icon type="setting"/>
+          iconButton = <Icon type="setting" />
           break
         case enumType.buttonType.LockedSelected:
           textButton = (
@@ -328,23 +328,23 @@ const utils = {
               defaultMessage="Lock Selected"
             />
           )
-          iconButton = <Icon type='lock'/>
+          iconButton = <Icon type='lock' />
           break
         case enumType.buttonType.HideSelected:
           textButton = (
             <FormattedMessage
               id="Button.HideSelected"
-              defaultMessage="Hide Selected"/>
+              defaultMessage="Hide Selected" />
           )
-          iconButton = <Icon type="eye"/>
+          iconButton = <Icon type="eye" />
           break
         case enumType.buttonType.SuspendedSelected:
           textButton = (
             <FormattedMessage
               id="Button.SuspendSelected"
-              defaultMessage="Suspend Selected"/>
+              defaultMessage="Suspend Selected" />
           )
-          iconButton = <Icon type="minus-circle"/>
+          iconButton = <Icon type="minus-circle" />
           break
         case enumType.buttonType.RestoreSelected:
           textButton = (
@@ -353,7 +353,7 @@ const utils = {
               defaultMessage="Restore Selected"
             />
           )
-          iconButton = <Icon type="undo"/>
+          iconButton = <Icon type="undo" />
           break
         default:
           textButton = null

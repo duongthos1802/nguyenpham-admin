@@ -1,6 +1,13 @@
 import { enumType } from '../constants'
 import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
 
+const getIdByUrl = (url) => {
+  if (!url) return null
+  const arrayStringUrl = url.split('/')
+  const id = arrayStringUrl.slice(arrayStringUrl.length - 1, arrayStringUrl.length)
+  return id
+}
+
 export default {
   initQuerySearchVideos(searchObject, defaultPageSize) {
     const {
@@ -45,9 +52,12 @@ export default {
     }
 
     if (values.url) {
+      const idVideo = getIdByUrl(values.url)
       queryClause += `, url: "${values.url}"`
+      queryClause += `, idUrl: "${idVideo}"`
     } else {
       queryClause += `, url: null`
+      queryClause += `, idUrl: ""`
     }
 
     if (values.category) {

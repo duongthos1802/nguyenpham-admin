@@ -237,10 +237,10 @@ export default {
     // http://www.endmemo.com/unicode/ascii.php
     return string
       ? string.trim().
-      replace(/\r?\n/g, '<br/>').
-      replace(/\\/g, '\\\\').
-      replace(/"/g, '\\"').
-      replace(/[\u0000-\u001F]/g, '')
+        replace(/\r?\n/g, '<br/>').
+        replace(/\\/g, '\\\\').
+        replace(/"/g, '\\"').
+        replace(/[\u0000-\u001F]/g, '')
       : ''
   },
 

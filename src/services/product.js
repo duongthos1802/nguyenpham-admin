@@ -57,7 +57,8 @@ export default {
     }
 
     if (values.description) {
-      queryClause += `, description: "${values.description}"`
+      const description = stringHelper.removeEscapeCharacter(values.description)
+      queryClause += `, description: "${description}"`
     } else {
       queryClause += `, description: ""`
     }

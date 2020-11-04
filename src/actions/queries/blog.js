@@ -4,7 +4,6 @@ export default {
     query {
       blog(${queryClause}) {
         _id
-        index
         name
         description
         slug
@@ -29,7 +28,6 @@ export default {
       searchBlogs(${queryClause.whereClause}) {
         items {
           _id
-          index
           name
           description
           slug

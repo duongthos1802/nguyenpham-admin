@@ -44,6 +44,10 @@ export default {
       queryClause += `_id: "${blogId}"`
     }
 
+    if (values.category) {
+      queryClause += `, category: "${values.category.value}"`
+    }
+
     if (values.name) {
       const name = stringHelper.removeEscapeCharacter(values.name)
       queryClause += `, name: "${name}"`
@@ -71,39 +75,39 @@ export default {
       const content = htmlHelper.encodeContent(values.content)
       queryClause += `, content: "${content}"`
     } else {
-    queryClause += `, content: null`
+      queryClause += `, content: null`
     }
 
-    if(values.updateBy) {
+    if (values.updateBy) {
       queryClause += `, updateBy: "${values.updateBy}"`
     }
 
-    if (values.metaTitle) {
-      const metaTitle = htmlHelper.encodeContent(values.metaTitle)
-      queryClause += `, metaTitle: "${metaTitle}"`
-    } else {
-      queryClause += `, metaTitle: null`
-    }
+    // if (values.metaTitle) {
+    //   const metaTitle = htmlHelper.encodeContent(values.metaTitle)
+    //   queryClause += `, metaTitle: "${metaTitle}"`
+    // } else {
+    //   queryClause += `, metaTitle: null`
+    // }
 
-    if (values.category) {
-      queryClause += `, category: "${values.category.value}"`
-    } else {
-      queryClause += `, category: null`
-    }
+    // if (values.category) {
+    //   queryClause += `, category: "${values.category.value}"`
+    // } else {
+    //   queryClause += `, category: null`
+    // }
 
-    if (values.metaDescription) {
-      const metaDescription = htmlHelper.encodeContent(values.metaDescription)
-      queryClause += `, metaDescription: "${metaDescription}"`
-    } else {
-      queryClause += `, metaDescription: null`
-    }
+    // if (values.metaDescription) {
+    //   const metaDescription = htmlHelper.encodeContent(values.metaDescription)
+    //   queryClause += `, metaDescription: "${metaDescription}"`
+    // } else {
+    //   queryClause += `, metaDescription: null`
+    // }
 
-    if (values.metaKeyword) {
-      const metaKeyword = htmlHelper.encodeContent(values.metaKeyword)
-      queryClause += `, metaKeyword: "${metaKeyword}"`
-    } else {
-      queryClause += `, metaKeyword: null`
-    }
+    // if (values.metaKeyword) {
+    //   const metaKeyword = htmlHelper.encodeContent(values.metaKeyword)
+    //   queryClause += `, metaKeyword: "${metaKeyword}"`
+    // } else {
+    //   queryClause += `, metaKeyword: null`
+    // }
 
     // query upload image
     let BlogsImage = []
@@ -136,7 +140,7 @@ export default {
     }
 
     queryClause += `, status: ${values.status}`
-    queryClause += `, index: ${values.index} `
+    // queryClause += `, index: ${values.index} `
     queryClause += `, createdBy: "${values.createdBy}"`
 
     return `record: {${queryClause}}`

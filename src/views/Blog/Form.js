@@ -37,8 +37,7 @@ const customFormik = withFormik({
         }
       },
       message: validateError.required
-    }),
-    index: yupHelper.numberRequired
+    })
   }),
   mapPropsToValues: ({ data, user }) => {
     console.log('uer', user)
@@ -55,7 +54,6 @@ const customFormik = withFormik({
       _id: formikHelper.getDefaultValueField(data, '_id', null),
       name: formikHelper.getDefaultValueField(data, 'name', null),
       slug: formikHelper.getDefaultValueField(data, 'slug', null),
-      index: formikHelper.getDefaultValueField(data, 'index', null),
       description: utils.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'description', null)
       ),
@@ -195,7 +193,7 @@ const Form = (props) => {
               />
             </FormItem>
 
-            <FormItem
+            {/* <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -222,46 +220,7 @@ const Form = (props) => {
                 errors={errors}
                 isValidate={true}
               />
-            </FormItem>
-            <FormItem
-              required={true}
-              label={
-                <FormattedMessage
-                  id="Label.Index"
-                  defaultMessage="index"
-                />
-              }
-              className='mb-0'
-            >
-              <FormattedMessage
-                id="Label.Index"
-                defaultMessage="index"
-              >
-                {
-                  placeholder => (
-                    <InputNumber
-                      placeholder={placeholder}
-                      value={values.index}
-                      customClass={classNames({
-                        'has-error': formikHelper.checkFieldError(errors, touched,
-                          'index')
-                      })}
-                      onChange={(value) => setFieldValue('index', value)}
-                      handleBlur={() => setFieldTouched('index', true)}
-                      min={100}
-                      max={10000}
-                    />
-                  )
-                }
-              </FormattedMessage>
-              <ErrorMessage
-                errors={errors}
-                touched={touched}
-                isValidate={true}
-                fieldName='index'
-              />
-            </FormItem>
-
+            </FormItem> */}
             <FormItem
               label={
                 <FormattedMessage
@@ -280,7 +239,7 @@ const Form = (props) => {
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     path={'category'}
-                    parentId={parentId} 
+                    parentId={parentId}
                   />
                 )}
               </FormattedMessage>
@@ -336,7 +295,7 @@ const Form = (props) => {
                 isValidate={true}
               />
             </FormItem>
-            <FormItem
+            {/* <FormItem
               label={
                 <FormattedMessage
                   id="Label.MetaTitle"
@@ -363,10 +322,10 @@ const Form = (props) => {
                 errors={errors}
                 isValidate={true}
               />
-            </FormItem>
+            </FormItem> */}
 
 
-            <FormItem
+            {/* <FormItem
               label={
                 <FormattedMessage
                   id="Label.MetaDescription"
@@ -400,8 +359,8 @@ const Form = (props) => {
                 errors={errors}
                 isValidate={true}
               />
-            </FormItem>
-            <FormItem
+            </FormItem> */}
+            {/* <FormItem
               label={
                 <FormattedMessage
                   id="Label.MetaKeyword"
@@ -428,7 +387,7 @@ const Form = (props) => {
                 errors={errors}
                 isValidate={true}
               />
-            </FormItem>
+            </FormItem> */}
           </Col>
           <Col lg={8}>
             <FormItem

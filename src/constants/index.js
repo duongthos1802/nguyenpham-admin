@@ -58,7 +58,7 @@ export const DEFAULT_FORMAT_HOURS = 'HH:mm a'
 
 export const DEFAULT_FORMAT_UTC_DATE_TIME = 'MM/DD/YYYY HH:mm a'
 
-export const DEFAULT_PAGE_SIZE = 20
+export const DEFAULT_PAGE_SIZE = 10
 
 export const DEFAULT_PAGE_INDEX = 1
 
@@ -90,9 +90,9 @@ export const DIRECTION_STEP_VERTICAL = 'vertical'
 
 export const WIDTH_ORDER = 1024
 
-export const stepWait= 'wait'
+export const stepWait = 'wait'
 
-export const stepProcess= 'process'
+export const stepProcess = 'process'
 
 export const FORM_ITEM_LAYOUT = {
   labelCol: {
@@ -119,12 +119,12 @@ export const FORM_ITEM_ROLE_LAYOUT = {
   labelCol: {
     xs: { span: 24 },
     sm: { span: 8 },
-    lg: {span: 24}
+    lg: { span: 24 }
   },
   wrapperCol: {
     xs: { span: 24 },
     sm: { span: 16 },
-    lg: {span: 24}
+    lg: { span: 24 }
   }
 }
 

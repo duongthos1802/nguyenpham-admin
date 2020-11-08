@@ -188,7 +188,7 @@ const FormAction = (props) => {
         }
       >
         <div className="">
-          <Radio.Group name="radiogroup" defaultValue={activeEvent}
+          <Radio.Group name="radiogroup" defaultValue={activeEvent} value={values.configEventRightActive}
             onChange={(e) => {
               setFieldValue('configEventRightActive', e.target.value)
             }}>

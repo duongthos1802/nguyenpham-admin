@@ -79,8 +79,6 @@ export default {
 
     const initConfigHomePage = {
       configBanner: values.configBanner,
-      configFeature: values.configFeature,
-      configFeatureBanner: values.configFeatureBanner,
       configCategory: values.configCategory,
       configCategorySecond: values.configCategorySecond,
       configCategoryThird: values.configCategoryThird,
@@ -90,7 +88,10 @@ export default {
       configCategoryFour: values.configCategoryFour,
       configService: values.configService,
       configEventLeft: values.configEventLeft,
-      configEventRight: values.configEventRight
+      configEventRightBanner: values.configEventRightBanner,
+      configEventRightVideo: values.configEventRightVideo,
+      configEventRightActive: values.configEventRightActive
+
     }
     let queryClause = `config: "${stringHelper.removeEscapeCharacter(
       JSON.stringify(initConfigHomePage))}"`

@@ -3,7 +3,7 @@ import { queryStringHelper, stringHelper, htmlHelper } from '../extensions'
 
 const getIdByUrl = (url) => {
   if (!url) return null
-  const arrayStringUrl = url.split('/')
+  const arrayStringUrl = url.split('=')
   const id = arrayStringUrl.slice(arrayStringUrl.length - 1, arrayStringUrl.length)
   return id
 }

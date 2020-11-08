@@ -575,6 +575,10 @@ export const FAQStatusEnum = [
   }
 ]
 
+export const eventLeftType = {
+  Video: 'Video',
+  Banner: 'Banner'
+}
 
 export default {
   mode,
@@ -614,4 +618,5 @@ export default {
   optionsCategory,
   FAQStatus,
   FAQStatusEnum,
+  eventLeftType
 }

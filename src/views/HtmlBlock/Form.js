@@ -10,7 +10,7 @@ import { enumType } from '../../constants'
 import { resource } from '../../routes'
 import { validateError } from '../../constants/validate'
 // extensions
-import { formikHelper, htmlHelper, yupHelper } from '../../extensions'
+import { formikHelper, htmlHelper, yupHelper, stringHelper } from '../../extensions'
 // utils
 import utils from '../../utils'
 // components
@@ -23,29 +23,13 @@ const FormItem = AntForm.Item
 const customFormik = withFormik({
   validationSchema: Yup.object().shape({
     code: yupHelper.stringRequired,
-    content: yupHelper.stringRequired.test({
-      name: 'emptyContent',
-      test: (value) => {
-        try {
-          if (value) {
-            const contentRemoveSpace = utils.standardizedContent(value)
-            return yupHelper.stringRequired.isValidSync(contentRemoveSpace)
-          }
-          return false
-        } catch (e) {
-          return true
-        }
-      },
-      message: validateError.required
-    })
   }),
   mapPropsToValues: ({ data }) => {
-
     return {
       id: formikHelper.getDefaultValueField(data, '_id', null),
       code: formikHelper.getDefaultValueField(data, 'code', null),
       title: formikHelper.getDefaultValueField(data, 'title', null),
-      description: utils.handleShowLineBreakTextarea(
+      description: stringHelper.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'description', null)
       ),
       content: htmlHelper.decodeContent(
@@ -192,16 +176,14 @@ const Form = (props) => {
               }
               className='mb-0'
             >
-
               <Input.TextArea
-                placeholder="Description"
                 rows={5}
                 className='height-auto'
                 value={values.description}
                 onChange={(input) => {
                   setFieldValue('description', input.target.value)
                 }}
-                onBlur={() => setFieldTouched('text', true)}
+                onBlur={() => setFieldTouched('description', true)}
               />
             </FormItem>
 

@@ -56,7 +56,7 @@ export default {
       const description = stringHelper.removeEscapeCharacter(values.description)
       queryClause += `, description: "${description}"`
     } else {
-      queryClause += `, description: null`
+      queryClause += `, description: ""`
     }
 
     if (values.htmlBlockGroup) {

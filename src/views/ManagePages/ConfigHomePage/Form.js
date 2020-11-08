@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 // lib
-import { Form as AntForm } from 'antd'
+import { Form as AntForm, Radio, Input } from 'antd'
 import { withFormik } from 'formik'
 import { FormattedMessage } from 'react-intl'
 // constant
@@ -19,8 +19,6 @@ const customFormik = withFormik({
     return {
       id: formikHelper.getDefaultValueField(data, '_id', null),
       configBanner: formikHelper.getDefaultValueField(dataConfigHome, 'configBanner', null),
-      configFeature: formikHelper.getDefaultValueField(dataConfigHome, 'configFeature', null),
-      configFeatureBanner: formikHelper.getDefaultValueField(dataConfigHome, 'configFeatureBanner', null),
       configCategory: formikHelper.getDefaultValueField(dataConfigHome, 'configCategory', null),
       configCategorySecond: formikHelper.getDefaultValueField(dataConfigHome, 'configCategorySecond', null),
       configCategoryThird: formikHelper.getDefaultValueField(dataConfigHome, 'configCategoryThird', null),
@@ -30,7 +28,11 @@ const customFormik = withFormik({
       configCategoryFour: formikHelper.getDefaultValueField(dataConfigHome, 'configCategoryFour', null),
       configService: formikHelper.getDefaultValueField(dataConfigHome, 'configService', null),
       configEventLeft: formikHelper.getDefaultValueField(dataConfigHome, 'configEventLeft', null),
-      configEventRight: formikHelper.getDefaultValueField(dataConfigHome, 'configEventRight', null),
+
+      configEventRightVideo: formikHelper.getDefaultValueField(dataConfigHome, 'configEventRightVideo', null),
+      configEventRightBanner: formikHelper.getDefaultValueField(dataConfigHome, 'configEventRightBanner', null),
+      configEventRightActive: formikHelper.getDefaultValueField(dataConfigHome, 'configEventRightActive', enumType.eventLeftType.Banner)
+
     }
   },
   handleSubmit: (values, { props }) => {
@@ -54,6 +56,8 @@ const FormAction = (props) => {
     handleCancel,
     resetForm
   } = props
+
+  const [activeEvent, setActiveEvent] = useState(enumType.eventLeftType.Banner)
 
   useEffect(
     () => {
@@ -179,30 +183,59 @@ const FormAction = (props) => {
         label={
           <FormattedMessage
             id="Label.Event"
-            defaultMessage="Event Right"
+            defaultMessage="Event Right "
           />
         }
       >
-        <div className="d-flex">
-          <div className="mr-2 w-100">
-            <FormattedMessage
-              id="Label.Event.Right"
-              defaultMessage="Event Right"
+        <div className="">
+          <Radio.Group name="radiogroup" defaultValue={activeEvent}
+            onChange={(e) => {
+              setFieldValue('configEventRightActive', e.target.value)
+            }}>
+            <Radio value={enumType.eventLeftType.Banner} >Banner</Radio>
+            <Radio value={enumType.eventLeftType.Video}> Video</Radio>
+          </Radio.Group>
+          {
+            values.configEventRightActive === enumType.eventLeftType.Banner
+              ? <div className="mr-2 w-100">
+                <FormattedMessage
+                  id="Label.Banner"
+                  defaultMessage="Banner event"
+                >
+                  {
+                    (placeholder) => (
+                      <BannerSelect
+                        placeholder={placeholder}
+                        value={values.configEventRightBanner}
+                        onChange={setFieldValue}
+                        onBlur={setFieldTouched}
+                        path={'configEventRightBanner'}
+                      />
+                    )
+                  }
+                </FormattedMessage>
+              </div>
+              : <div className="mr-2 w-100">
+                <FormattedMessage
+                  id="Label.Url.Video"
+                  defaultMessage="Url video"
 
-            >
-              {
-                (placeholder) => (
-                  <HtmlBlockSelect
-                    placeholder={placeholder}
-                    value={values.configEventRight}
-                    onChange={setFieldValue}
-                    onBlur={setFieldTouched}
-                    path={'configEventRight'}
-                  />
-                )
-              }
-            </FormattedMessage>
-          </div>
+                >
+                  {
+                    (placeholder) => (
+                      <Input
+                        placeholder={placeholder}
+                        value={values.configEventRightVideo}
+                        onChange={(input) => {
+                          setFieldValue('configEventRightVideo', input.target.value)
+                        }}
+                        onBlur={() => setFieldTouched('configEventRightVideo', true)}
+                      />
+                    )
+                  }
+                </FormattedMessage>
+              </div>
+          }
         </div>
       </FormItem>
 

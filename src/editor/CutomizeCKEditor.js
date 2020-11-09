@@ -27,7 +27,7 @@ class CKEditor extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {props, editor} = this;
+    const { props, editor } = this;
 
     /* istanbul ignore next */
     if (!editor) {
@@ -48,13 +48,13 @@ class CKEditor extends React.Component {
 
     //replace content and download image when paste
     editor.on('paste', function (event) {
-      const contentEditor = utils.standardizedContent( event.data.dataValue)
+      const contentEditor = utils.standardizedContent(event.data.dataValue)
       utils.replaceImage(contentEditor, editor)
     })
   }
 
   render() {
-    return <div contentEditable="true" style={this.props.style} ref={ref => (this.element = ref)}/>;
+    return <div contentEditable="true" style={this.props.style} ref={ref => (this.element = ref)} />;
   }
 
   _initEditor() {
@@ -75,6 +75,13 @@ class CKEditor extends React.Component {
       config.fillEmptyBlocks = false
       config.language = 'en'
       config.imageType = this.props.imageType
+      config.extraPlugins = 'justify,mentions'
+      config.justifyClasses = [
+        'editor-text-left',
+        'editor-text-center',
+        'editor-text-right',
+        'editor-text-justify']
+      CKEDITOR.addCss(editorConfig.cssConfig)
 
       if (this.props.customConfig) {
         config = {

@@ -44,8 +44,9 @@ export default {
       const name = stringHelper.removeEscapeCharacter(values.name)
       const slug = stringHelper.generateSlug(name)
       queryClause += `, name: "${name}"`
-      queryClause += `, slug: "${slug}"`
-
+      if (values.categoryParent) {
+        queryClause += `, slug: "${slug}"`
+      }
     } else {
       queryClause += `, name: null`
       queryClause += `, slug: null`
@@ -62,9 +63,9 @@ export default {
     } else {
       queryClause += `, parentId: null`
     }
-    if(values.option) {
+    if (values.option) {
       queryClause += `, option: ${values.option}`
-    } else if(values.categoryParent?.option) {
+    } else if (values.categoryParent?.option) {
       queryClause += `, option: ${values.categoryParent.option}`
     }
 

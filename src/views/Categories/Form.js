@@ -175,7 +175,7 @@ const Form = (props) => {
               />
             </FormItem>
 
-            <FormItem
+            {/* <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -202,10 +202,10 @@ const Form = (props) => {
                 errors={errors}
                 isValidate={true}
               />
-            </FormItem>
+            </FormItem> */}
 
             <FormItem
-              required={true}
+              required={values.categoryParent ? true : false}
               label={
                 <FormattedMessage
                   id="Label.Category.Parent"
@@ -217,6 +217,7 @@ const Form = (props) => {
               <FormattedMessage id="Label.Category" defaultMessage="Category Parent">
                 {() => (
                   <CategorySelect
+                    isDisabled={values.categoryParent ? false : true}
                     isProduct={true}
                     value={values.categoryParent}
                     isClearable={true}

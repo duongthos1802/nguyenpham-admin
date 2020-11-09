@@ -51,10 +51,10 @@ const DataGrid = (props) => {
       dataIndex: 'urlFrontEnd',
       key: 'url',
       render: (text) => {
-        const urlFE = `${process.env.REACT_APP_FRONT_END_URL}${text}`
+        // const urlFE = `${process.env.REACT_APP_FRONT_END_URL}${text}`
         return (
           <a
-            href={urlFE}
+            href={text}
             target={'_blank'}
           >
             {urlFE}

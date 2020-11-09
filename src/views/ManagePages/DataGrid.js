@@ -57,7 +57,7 @@ const DataGrid = (props) => {
             href={text}
             target={'_blank'}
           >
-            {urlFE}
+            {text}
           </a>
         )
       }

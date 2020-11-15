@@ -39,6 +39,9 @@ import videoQuery from './video'
 // FAQ
 import faqQuery from './faq'
 
+// Customer
+import customerQuery from './customer'
+
 // SELECT
 import select from './select'
 
@@ -69,5 +72,7 @@ export default {
 
   videoQuery,
 
-  faqQuery
+  faqQuery,
+
+  customerQuery
 }

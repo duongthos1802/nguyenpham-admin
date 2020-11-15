@@ -494,6 +494,51 @@ const blogStatusEnum = [
   }
 ]
 
+const customerStatus = {
+  Completed: 'Completed',
+  Awaiting: 'Awaiting',
+  Deleted: 'Deleted'
+}
+
+const customerStatusEnum = [
+  {
+    value: customerStatus.Awaiting,
+    label: <FormattedMessage
+      id="Enum.customerStatus.Awaiting"
+      defaultMessage="Awaiting"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Awaiting"
+      defaultMessage="Awaiting"
+    />
+  },
+  {
+    value: customerStatus.Completed,
+    label: <FormattedMessage
+      id="Enum.customerStatus.Completed"
+      defaultMessage="Completed"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Completed"
+      defaultMessage="Completed"
+    />
+  },
+  {
+    value: customerStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.customerStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
+
 
 const videoStatus = {
   Deleted: 'Deleted',
@@ -618,5 +663,7 @@ export default {
   optionsCategory,
   FAQStatus,
   FAQStatusEnum,
-  eventLeftType
+  eventLeftType,
+  customerStatusEnum,
+  customerStatus
 }

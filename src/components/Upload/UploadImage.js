@@ -104,8 +104,6 @@ const UploadImage = (props) => {
 
   const getResultUploadFile = (listFileUpload = []) => {
 
-    console.log('listFileUpload........', listFileUpload);
-
     let fileResult
     if (multiple) {
       fileResult = listFileUpload.map(file => getFileData(file))

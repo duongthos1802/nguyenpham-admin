@@ -63,7 +63,7 @@ export default {
     formData.append('file', file)
     // upload
     return await axios
-      .post(API_UPLOAD_URL, formData, {
+      .post(API_UPLOAD_URL, formData, { 
         headers: {
           'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
           'Access-Control-Allow-Credentials': true,

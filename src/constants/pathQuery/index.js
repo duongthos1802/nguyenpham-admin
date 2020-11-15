@@ -38,6 +38,8 @@ export default {
 
   BLOG_QUERY: 'blogQuery',
 
-  VIDEO_QUERY: 'videoQuery'
+  VIDEO_QUERY: 'videoQuery',
+
+  CUSTOMER_QUERY: 'customerQuery',
 
 }

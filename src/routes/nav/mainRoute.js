@@ -14,6 +14,7 @@ const VIDEO = 'video'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
 const SUPPORT = 'support'
+const CUSTOMER = 'customer'
 
 
 export default {
@@ -33,5 +34,6 @@ export default {
   ADMIN_MANAGE_PAGES: `/${MANAGE_PAGES}`,
   ADMIN_SUPPORT: `/${SUPPORT}`,
   ADMIN_BLOG: `/${BLOG}`,
-  ADMIN_VIDEO: `/${VIDEO}`
+  ADMIN_VIDEO: `/${VIDEO}`,
+  ADMIN_CUSTOMER: `/${CUSTOMER}`
 }

@@ -332,3 +332,14 @@
     max-height: 200px !important;
   }
 }
+
+.line-height-0 {
+  line-height: 0px !important;
+}
+
+
+.search-header {
+  .ant-form-item-control{
+    line-height: unset !important;
+  }
+}

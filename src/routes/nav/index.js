@@ -12,6 +12,7 @@ import { navManagePages, resourceManagePages } from './navManagePages'
 import { navBlogs, resourceBlogs } from './navBlog'
 import { navVideos, resourceVideos } from './navVideo'
 import { resourceFAQ, navFAQ } from './navFAQ'
+import { resourceCustomers, navCustomers } from './navCustomer'
 
 export const navAdmin = [
   {
@@ -41,6 +42,22 @@ export const navAdmin = [
     resource: 'MENU-DASHBOARD',
     key: 'dashboard',
     component: LoadableRoute(() => import('../../views/Admin/Dashboard'))
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Customer'
+        defaultMessage='Customer'
+      />
+    ),
+    path: mainRoutes.ADMIN_CUSTOMER,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-users',
+    actionType: enumType.action.View,
+    resource: resourceCustomers.MENU_MANAGEMENT_CUSTOMERS,
+    key: 'customer',
+    children: navCustomers
   },
   {
     name: (

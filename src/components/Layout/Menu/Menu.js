@@ -154,7 +154,7 @@ const MenuLeft = (props) => {
             <span className="menuLeft__item-title">{menuItem.name}</span>
             {
               menuItem.icon
-                ? <span className={menuItem.icon + ' menuLeft__icon'}/>
+                ? <span className={menuItem.icon + ' menuLeft__icon'} />
                 : null
             }
           </span>
@@ -174,7 +174,7 @@ const MenuLeft = (props) => {
     const { name, path, icon, disabled, key } = item
     if (item.divider) {
       return (
-        <Divider key={Math.random()} className="custom-divider"/>
+        <Divider key={Math.random()} className="custom-divider" />
       )
     }
     if (item.path) {
@@ -193,7 +193,7 @@ const MenuLeft = (props) => {
             <span className="menuLeft__item-title">{name}</span>
             {
               icon
-                ? <span className={icon + ' menuLeft__icon'}/>
+                ? <span className={icon + ' menuLeft__icon'} />
                 : null
             }
           </Link>
@@ -207,7 +207,7 @@ const MenuLeft = (props) => {
           <span className="menuLeft__item-title">{name}</span>
           {
             icon
-              ? <span className={icon + ' menuLeft__icon'}/>
+              ? <span className={icon + ' menuLeft__icon'} />
               : null
           }
         </Menu.Item>
@@ -258,17 +258,17 @@ const MenuLeft = (props) => {
             ' menuLeft__logoContainer--collapsed text-light d-flex justify-content-center align-items-center': params.collapsed
           })}>
           <a onClick={() => props.handleToggleMenuCollapse()}>
-            {/* <img
+            <img
               src={params.collapsed
-                ? require('../../../img/chuquancf-04.jpg')
-                : require('../../../img/chuquancf-04.jpg')}
+                ? require('../../../img/icon-log.png')
+                : require('../../../img/LogoCQCF.png')}
               alt="Lendor Logo"
               className="logo"
-            /> */}
+            />
             {/* {
               !params.collapsed
-              ? <span className="ml-2 font-size-16 font-weight-bold" style={{color: "white"}}>Lendor Admin</span>
-              : null
+                ? <span className="ml-2 font-size-16 font-weight-bold" style={{ color: "white" }}>Lendor Admin</span>
+                : null
             } */}
           </a>
         </div>

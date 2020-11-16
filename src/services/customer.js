@@ -1,5 +1,6 @@
 import { htmlHelper, queryStringHelper, stringHelper, datetimeHelper } from '../extensions'
 import { enumType } from '../constants'
+import moment from 'moment'
 
 export default {
   initQuerySearchCustomer(values, defaultPageSize) {
@@ -46,6 +47,9 @@ export default {
     if (values.id) {
       queryClause += `, _id: "${values.id}"`
     }
+    const date = moment(Date.now()).format('YYYY-MM-DD')
+
+    queryClause += `, date: "${date}"`
 
     if (values.name) {
       const name = stringHelper.removeEscapeCharacter(values.name)

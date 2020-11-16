@@ -35,7 +35,7 @@ const Search = ({ data, search, handleSearchClick, handleChangeDateRange }) => (
     </ColSearch>
     <ColSearch
       // label='Status'
-      customCol='col-lg-3'
+      customCol='col-lg-2'
     >
       <FormattedMessage
         id="Placeholder.Status"
@@ -95,17 +95,6 @@ const Index = (props) => {
     pageIndex,
     pageSize
   } = queryStringHelper.getSizeAndIndexPage(search, DEFAULT_PAGE_SIZE)
-
-  // const {
-  //   total,
-  //   dataGrid
-  // } = extensions.getDataAndCount({
-  //   data: data,
-  //   dataField: 'customers',
-  //   connectionField: 'customersCount',
-  //   pageSize: pageSize,
-  //   pageIndex: pageIndex
-  // })
 
   const {
     countConnection,

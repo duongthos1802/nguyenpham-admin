@@ -1,7 +1,6 @@
 import { getIn } from 'formik'
 import _ from 'lodash'
 import { imageUtils } from '../utils'
-import { categoryOfProduct } from '../constants'
 
 export default {
   checkFieldError(errors, touched, fieldName) {
@@ -77,25 +76,6 @@ export default {
       }
     }
     return null
-  },
-
-  getListCategoryValueField(
-    {
-      data,
-      fieldName
-    }
-  ) {
-    if (!data || !data[fieldName]) {
-      return []
-    }
-
-    return data[fieldName].map(categoryIndex => {
-      return {
-        key: `${categoryIndex}`,
-        value: `${categoryIndex}`,
-        label: categoryOfProduct[categoryIndex]
-      }
-    })
   },
 
   getListObjectValueField(

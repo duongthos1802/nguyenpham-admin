@@ -1,4 +1,4 @@
-import { htmlHelper, queryStringHelper, stringHelper } from '../extensions'
+import { htmlHelper, queryStringHelper, stringHelper, datetimeHelper } from '../extensions'
 import { enumType } from '../constants'
 
 export default {
@@ -9,10 +9,6 @@ export default {
     } = queryStringHelper.getSizeAndIndexPage(values, defaultPageSize)
 
     let query = ``
-    if (values.keyword) {
-      const keyword = stringHelper.removeEscapeCharacter(values.keyword)
-      query += `, keyword: "${keyword}"`
-    }
 
     let orderClause = `CREATEDAT_DESC`
     if (values.sortField) {
@@ -23,9 +19,25 @@ export default {
       }
     }
 
+    if (values.status) {
+      query += `, status: "${values.status}"`
+    }
+
+    if (values.startDate && values.endDate) {
+      const startDate = datetimeHelper.initNewVnDate(
+        values.startDate
+      ).format()
+      const endDate = datetimeHelper.initNewVnDate(
+        values.endDate
+      ).format()
+      query += `, startDate: "${values.startDate}"`
+      query += `, endDate: "${values.endDate}"`
+    }
+
+
     return {
-      whereClause: `filter: {${query}}, limit: ${pageSize}, skip: ${skip}`,//, sort: ${orderClause}`,
-      whereConnectionClause: `filter: {${query}}`
+      whereClause: `where: {${query}},first :${pageSize}, skip: ${skip}, sortBy: "${orderClause}"`,
+      whereConnectionClause: `where: {${query}}, first: ${pageSize}`
     }
   },
 

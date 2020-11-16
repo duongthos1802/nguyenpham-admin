@@ -4,18 +4,15 @@ import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { Divider, Tag } from 'antd'
 // constant
-import { enumType } from '../../constants'
+import { enumType, DEFAULT_FORMAT_DATE_SGN } from '../../constants'
 import { routes, resource } from '../../routes'
-// utils
-import utils, { imageUtils } from '../../utils'
+
 // component
 import { ButtonAction, ButtonDelete } from '../../components/Button'
 import { CustomTable } from '../../components'
 // extensions
 import { redirectPath } from '../../actions/commonAction'
-import { numberHelper } from '../../extensions'
-import { ProductImage } from '../../components/Image'
-import BlogStatus from '../../components/Tag/BlogStatus'
+import { datetimeHelper } from '../../extensions'
 import CustomerStatus from '../../components/Tag/CustomerStatus'
 
 const DataGrid = (props) => {
@@ -73,6 +70,18 @@ const DataGrid = (props) => {
       dataIndex: 'status',
       key: 'status',
       render: (text) => <CustomerStatus status={text} />
+    },
+    {
+      title: <FormattedMessage
+        id="Grid.createdAt"
+        defaultMessage="createdAt"
+      />,
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (text) => datetimeHelper.formatTimeStampToUtcTime(
+        text,
+        DEFAULT_FORMAT_DATE_SGN
+      ),
     },
     {
       title: <FormattedMessage

@@ -14,6 +14,7 @@ const DownloadExcel = (data) => {
         <ExcelColumn label="Phone" value="phone" />
         <ExcelColumn label="Address" value="address" />
         <ExcelColumn label="Description" value="description" />
+        <ExcelColumn label="Date" value="date" />
       </ExcelSheet>
     </ExcelFile >
   )

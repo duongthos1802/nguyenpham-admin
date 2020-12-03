@@ -217,7 +217,7 @@ const Form = (props) => {
               <FormattedMessage id="Label.Category" defaultMessage="Category Parent">
                 {() => (
                   <CategorySelect
-                    isDisabled={values.categoryParent ? false : true}
+                    // isDisabled={values.categoryParent ? false : true}
                     isProduct={true}
                     value={values.categoryParent}
                     isClearable={true}

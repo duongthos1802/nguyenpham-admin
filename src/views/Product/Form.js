@@ -49,11 +49,17 @@ const customFormik = withFormik({
       description: stringHelper.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'description', null)
       ),
-      category: utils.formatObjectSelect(
-        data ? data.category : null,
-        '_id',
-        'name'
-      ),
+      // category: utils.formatObjectSelect(
+      //   data ? data.category : null,
+      //   '_id',
+      //   'name'
+      // ),
+
+      category: formikHelper.getListObjectValueField({
+        data: data,
+        fieldName: 'category',
+        valueField: '_id'
+      }),
       logo: formikHelper.getImageValueField(data, 'logo', enumType.imagePath.Banner),
       fileUpload: fileUpload,
       expirationDate: htmlHelper.decodeContent(
@@ -255,6 +261,7 @@ const Form = (props) => {
                 <FormattedMessage id="Label.Category" defaultMessage="Category">
                   {() => (
                     <CategorySelect
+                      isMulti={true}
                       isProduct={true}
                       isClearable={true}
                       value={values.category}

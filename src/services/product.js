@@ -101,11 +101,19 @@ export default {
       queryClause += `, logo: null`
     }
 
-    if (values.category) {
-      queryClause += `, category: "${values.category.value}"`
-    } else {
-      queryClause += `, category: null`
+    // if (values.category) {
+    //   queryClause += `, category: "${values.category.value}"`
+    // } else {
+    //   queryClause += `, category: null`
+    // }
+
+    queryClause += `, category: [`
+    if (values.category && values.category.length > 0) {
+      values.category.map(category => {
+        queryClause += `, "${category.value}"`
+      })
     }
+    queryClause += `]`
 
     queryClause += `, recipes: [`
     if (values.recipes && values.recipes.length > 0) {

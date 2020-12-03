@@ -107,7 +107,7 @@ const Form = (props) => {
       }
     >
       <AntForm
-        onKeyDown={formikHelper.preventEnterSubmitForm}
+        // onKeyDown={formikHelper.preventEnterSubmitForm}
         onSubmit={handleSubmit}
       >
         <Row

@@ -78,11 +78,19 @@ export default {
       queryClause += `, videoUrl: ""`
     }
 
-    if (values.category) {
-      queryClause += `, category: "${values.category.key}"`
-    } else {
-      queryClause += `, category: null`
+    // if (values.category) {
+    //   queryClause += `, category: "${values.category.key}"`
+    // } else {
+    //   queryClause += `, category: null`
+    // }
+
+    queryClause += `, category: [`
+    if (values.category && values.category.length > 0) {
+      values.category.map(category => {
+        queryClause += `, "${category.value}"`
+      })
     }
+    queryClause += `]`
 
     if (values.ingredient) {
       const ingredient = htmlHelper.encodeContent(values.ingredient)

@@ -47,11 +47,11 @@ const customFormik = withFormik({
       name: formikHelper.getDefaultValueField(data, 'name', null),
       slug: formikHelper.getDefaultValueField(data, 'slug', null),
       videoUrl: formikHelper.getDefaultValueField(data, 'videoUrl', null),
-      category: utils.formatObjectSelect(
-        data ? data.category : null,
-        '_id',
-        'name'
-      ),
+      category: formikHelper.getListObjectValueField({
+        data: data,
+        fieldName: 'category',
+        valueField: '_id'
+      }),
       description: stringHelper.handleShowLineBreakTextarea(
         formikHelper.getDefaultValueField(data, 'description', null)
       ),
@@ -280,6 +280,7 @@ const Form = (props) => {
               <FormattedMessage id="Label.Category" defaultMessage="Category">
                 {() => (
                   <CategorySelect
+                    isMulti={true}
                     isProduct={true}
                     isClearable={true}
                     value={values.category}

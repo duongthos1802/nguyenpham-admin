@@ -132,7 +132,7 @@ const FormAction = (props) => {
               isValidate={true}
             />
           </FormItem>
-          {/* <FormItem
+          <FormItem
             required={true}
             label={
               <FormattedMessage
@@ -171,7 +171,7 @@ const FormAction = (props) => {
               errors={errors}
               isValidate={true}
             />
-          </FormItem> */}
+          </FormItem>
           <FormItem
             label={
               <FormattedMessage

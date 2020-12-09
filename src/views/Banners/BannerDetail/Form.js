@@ -133,7 +133,6 @@ const FormAction = (props) => {
             />
           </FormItem>
           <FormItem
-            required={true}
             label={
               <FormattedMessage
                 id="Label.Url"

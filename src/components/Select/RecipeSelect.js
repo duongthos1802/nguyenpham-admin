@@ -88,7 +88,7 @@ const CustomSelect = (props) => {
           defaultMessage="Select Recipe"
         />}
       notFoundContent={isLoading ? <Spin size="small" /> : null}
-      filterOption={false}
+      filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       onSearch={(value) => handleSearch(value)}
       onChange={handleChangeSelection}
       onBlur={handleBlurOption}

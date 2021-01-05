@@ -122,7 +122,7 @@ const customSelect = withSelect({
   defaultPath: 'recipe',
   loadData: (values, { loadDataPagerCallback }) => {
     const queryClause = selectServices.initQuerySelectRecipe(values,
-      DEFAULT_PAGE_SIZE)
+      300)
 
     loadDataPagerCallback(queryClause)
   }

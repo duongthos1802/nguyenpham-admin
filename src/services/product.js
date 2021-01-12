@@ -177,7 +177,7 @@ export default {
 
     queryClause += `, status: ${values.status}`
     queryClause += `, isPriority: ${!!values.isPriority}`
-    queryClause += `, goodProduct: ${!!values.goodProduct}`
+    // queryClause += `, goodProduct: ${!!values.goodProduct}`
     return `record: {${queryClause}}`
   },
   initQueryDeleteRecipe(data) {

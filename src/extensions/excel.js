@@ -1,4 +1,4 @@
-import XLSX from 'xlsx'
+// import XLSX from 'xlsx'
 import { DEFAULT_DISCOUNT_RANGE, enumType } from '../constants'
 
 const borderCell = {
@@ -238,42 +238,42 @@ export const productSheetColumn = [
   // }
 ]
 
-export const readFileImport = (
-  {
-    file,
-    handleFileData,
-    sheetIndex = 0,
-    hasHeader
-  }) => {
-  /* Boilerplate to set up FileReader */
-  const reader = new FileReader()
-  const rABS = !!reader.readAsBinaryString
-  reader.onload = (event) => {
-    /* Parse data */
-    const bstr = event.target.result
-    const workBook = XLSX.read(bstr, { type: rABS ? 'binary' : 'array' })
-    /* Get first worksheet */
-    const worksheetName = workBook.SheetNames[sheetIndex]
-    const workSheet = workBook.Sheets[worksheetName]
-    /* Convert array of arrays */
-    const option = {}
-    if (hasHeader) {
-      option.header = 1
-    }
-    let data = XLSX.utils.sheet_to_json(workSheet, option)
-    if (hasHeader) {
-      data.shift()
-    }
-    data = data.filter(record => record.length > 0)
+// export const readFileImport = (
+//   {
+//     file,
+//     handleFileData,
+//     sheetIndex = 0,
+//     hasHeader
+//   }) => {
+//   /* Boilerplate to set up FileReader */
+//   const reader = new FileReader()
+//   const rABS = !!reader.readAsBinaryString
+//   reader.onload = (event) => {
+//     /* Parse data */
+//     const bstr = event.target.result
+//     const workBook = XLSX.read(bstr, { type: rABS ? 'binary' : 'array' })
+//     /* Get first worksheet */
+//     const worksheetName = workBook.SheetNames[sheetIndex]
+//     const workSheet = workBook.Sheets[worksheetName]
+//     /* Convert array of arrays */
+//     const option = {}
+//     if (hasHeader) {
+//       option.header = 1
+//     }
+//     let data = XLSX.utils.sheet_to_json(workSheet, option)
+//     if (hasHeader) {
+//       data.shift()
+//     }
+//     data = data.filter(record => record.length > 0)
 
-    handleFileData(data)
-  }
-  if (rABS) {
-    reader.readAsBinaryString(file)
-  } else {
-    reader.readAsArrayBuffer(file)
-  }
-}
+//     handleFileData(data)
+//   }
+//   if (rABS) {
+//     reader.readAsBinaryString(file)
+//   } else {
+//     reader.readAsArrayBuffer(file)
+//   }
+// }
 
 export const getStyleForCell = (
   {
@@ -391,7 +391,7 @@ export const addCellValidation = (
 }
 
 export default {
-  readFileImport,
+  // readFileImport,
   getStyleForCell,
   getNameColumn,
   addColumnNameToHeader,

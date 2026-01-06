@@ -13,6 +13,7 @@ import { navBlogs, resourceBlogs } from './navBlog'
 import { navVideos, resourceVideos } from './navVideo'
 import { resourceFAQ, navFAQ } from './navFAQ'
 import { resourceCustomers, navCustomers } from './navCustomer'
+import navRecruitment, { resourceRecruitment } from './navRecruitment'
 
 export const navAdmin = [
   {
@@ -90,6 +91,22 @@ export const navAdmin = [
     resource: resourceBlogs.MENU_BLOGS,
     key: 'blog',
     children: navBlogs
+  },
+  {
+    name: (
+      <FormattedMessage
+        id='Menu.Recruitment'
+        defaultMessage='Recruitment'
+      />
+    ),
+    path: mainRoutes.ADMIN_RECRUITMENT,
+    isMenu: true,
+    isProtected: true,
+    icon: 'icmn icmn-blog',
+    actionType: enumType.action.View,
+    resource: resourceRecruitment.MENU_RECRUITMENT,
+    key: 'recruitment',
+    children: navRecruitment
   },
   {
     name: (

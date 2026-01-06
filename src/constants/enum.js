@@ -455,6 +455,50 @@ const blogStatus = {
   Suspended: 'Suspended'
 }
 
+const recruitmentStatus = {
+  Deleted: 'Deleted',
+  Published: 'Published',
+  Suspended: 'Suspended'
+}
+
+const recruitmentStatusEnum = [
+  {
+    value: recruitmentStatus.Suspended,
+    label: <FormattedMessage
+      id="Enum.recruitmentStatus.Suspended"
+      defaultMessage="Suspended"
+    />,
+    color: 'orange',
+    description: <FormattedMessage
+      id="Label.Suspended"
+      defaultMessage="Suspended"
+    />
+  },
+  {
+    value: recruitmentStatus.Published,
+    label: <FormattedMessage
+      id="Enum.recruitmentStatus.Published"
+      defaultMessage="Published"
+    />,
+    color: 'green',
+    description: <FormattedMessage
+      id="Label.Published"
+      defaultMessage="Published"
+    />
+  },
+  {
+    value: recruitmentStatus.Deleted,
+    label: <FormattedMessage
+      id="Enum.recruitmentStatus.Deleted"
+      defaultMessage="Deleted"
+    />,
+    color: 'red',
+    description: <FormattedMessage
+      id="Label.Deleted"
+      defaultMessage="Deleted"
+    />
+  }
+]
 const blogStatusEnum = [
   {
     value: blogStatus.Suspended,
@@ -658,6 +702,8 @@ export default {
   recipePriorityEnum,
   blogStatus,
   blogStatusEnum,
+  recruitmentStatus,
+  recruitmentStatusEnum,
   videoStatus,
   videoStatusEnum,
   optionsCategory,

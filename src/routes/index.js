@@ -10,6 +10,7 @@ import { resourceBlogs, routeBlogs } from './nav/navBlog'
 import { resourceVideos, routeVideos } from './nav/navVideo'
 import { resourceFAQ, routeFAQ } from './nav/navFAQ'
 import { resourceCustomers, routeCustomers } from './nav/navCustomer'
+import { resourceRecruitment, routeRecruitment } from './nav/navRecruitment'
 
 export { default as navAdmin } from './nav'
 export const resource = {
@@ -33,7 +34,9 @@ export const resource = {
 
   ...resourceFAQ,
 
-  ...resourceCustomers
+  ...resourceCustomers,
+
+  ...resourceRecruitment
 }
 
 export const routes = {
@@ -59,5 +62,7 @@ export const routes = {
 
   ...routeFAQ,
 
-  ...routeCustomers
+  ...routeCustomers,
+  
+  ...routeRecruitment
 }

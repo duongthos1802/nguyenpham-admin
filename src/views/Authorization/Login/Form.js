@@ -152,18 +152,18 @@ const LoginForm = (props) => {
         </div>
       </FormItem>
       <FormItem>
-        <Checkbox>
+        {/* <Checkbox>
           <FormattedMessage
             id="Label.StayLoggedIn"
             defaultMessage="Remember me"
           />
-        </Checkbox>
-        <a className="login-form-forgot pull-right text-primary cursor-pointer">
+        </Checkbox> */}
+        {/* <a className="login-form-forgot pull-right text-primary cursor-pointer">
           <FormattedMessage
             id="Label.ForgotPassword"
             defaultMessage="Forgot Password"
           />
-        </a>
+        </a> */}
       </FormItem>
       <div className="form-actions">
         <Button
@@ -177,13 +177,13 @@ const LoginForm = (props) => {
         </Button>
       </div>
 
-      <div className="form-group">
+      {/* <div className="form-group">
         <p>Use another service to Log In</p>
         <div className="mt-2">
           <a className="btn btn-icon mr-2"><i className="icmn-facebook"/></a>
           <a className="btn btn-icon mr-2"><i className="icmn-google"/></a>
         </div>
-      </div>
+      </div> */}
     </Form>
   )
 }

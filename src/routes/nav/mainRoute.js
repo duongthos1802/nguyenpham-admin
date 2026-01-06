@@ -10,6 +10,7 @@ const CATEGORIES = 'categories'
 const SYSTEMS = 'systems'
 const BANNER_GROUP = 'banner-group'
 const BLOG = 'blog'
+const RECRUITMENT = 'recruitment'
 const VIDEO = 'video'
 const ROLE = 'role'
 const USER_ROLE = 'userRole'
@@ -34,6 +35,7 @@ export default {
   ADMIN_MANAGE_PAGES: `/${MANAGE_PAGES}`,
   ADMIN_SUPPORT: `/${SUPPORT}`,
   ADMIN_BLOG: `/${BLOG}`,
+  ADMIN_RECRUITMENT: `/${RECRUITMENT}`,  //recruitments
   ADMIN_VIDEO: `/${VIDEO}`,
   ADMIN_CUSTOMER: `/${CUSTOMER}`
 }

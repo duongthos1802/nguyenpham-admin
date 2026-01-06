@@ -1,11 +1,11 @@
-import React, { useEffect, useCallback } from 'react'
-import { withUpdate } from '../../hocs/withUpdate'
-import { enumType, queryPath } from '../../constants'
-import { blogServices, categoryService } from '../../services'
-import Form from './Form'
-import { routes } from '../../routes'
-import { useDispatch, useSelector } from 'react-redux'
-import dataActions from '../../actions/dataActions'
+import React from "react";
+import { enumType, queryPath } from "../../constants";
+import { withUpdate } from "../../hocs/withUpdate";
+import { routes } from "../../routes";
+import {
+  recruitmentServices
+} from "../../services";
+import Form from "./Form";
 
 const Edit = (props) => {
   const {
@@ -14,64 +14,43 @@ const Edit = (props) => {
     data,
     handleSubmitForm,
     handleCancelForm,
-    user
-  } = props
+    user,
+  } = props;
 
-  const { id } = match.params
+  const { id } = match.params;
 
-  const blockDetail = data && data.blog && data.blog._id === id
-    ? data.blog
-    : null
+  const recruitmentDetail =
+    data && data.recruitment && data.recruitment._id === id ? data.recruitment : null;
 
-  const dispatch = useDispatch()
 
-  const loadData = useCallback(
-    (queryClause) => dispatch(dataActions.loadDataPager(queryClause, queryPath.CATEGORY_QUERY)),
-    [dispatch]
-  )
-  const state = useSelector(state => {
-    return {
-      data: state.data ? state.data.get(queryPath.CATEGORY_QUERY) : null
-    }
-  })
-
-  useEffect(
-    () => {
-      const queryClause = categoryService.initQuerySearchCategoryByOption(enumType.optionsCategory.BLOG)
-      loadData(queryClause)
-    }, [dispatch])
-
-    const parentId = state.data?.searchCategories?.items[0]?._id ?? null
-
-  return blockDetail
-    ? (
-      <Form
-        formError={formError}
-        data={blockDetail}
-        mode={enumType.mode.edit}
-        handleCancel={handleCancelForm}
-        handleSubmit={handleSubmitForm}
-        user={user}
-        parentId={parentId}
-      />
-    )
-    : null
-}
+    console.log("recruitmentDetail======", recruitmentDetail);
+    
+  return recruitmentDetail ? (
+    <Form
+      formError={formError}
+      data={recruitmentDetail}
+      mode={enumType.mode.edit}
+      handleCancel={handleCancelForm}
+      handleSubmit={handleSubmitForm}
+      user={user}
+    />
+  ) : null;
+};
 
 const customUpdate = withUpdate({
-  pathName: queryPath.BLOG_QUERY,
+  pathName: queryPath.RECRUITMENT_QUERY,
   loadData: (values, { loadDataCallback }) => {
-    const query = `_id: "${values}"`
-    loadDataCallback(query)
+    const query = `_id: "${values}"`;
+    loadDataCallback(query);
   },
   updateData: (values, { updateDataCallback }) => {
-    const query = blogServices.initQueryCreateOrUpdateBlogs({
+    const query = recruitmentServices.initQueryCreateOrUpdate({
       values: values,
-      blogId: values._id
-    })
-    updateDataCallback(query)
+      _id: values._id,
+    });
+    updateDataCallback(query);
   },
-  pathRedirect: routes.ADMIN_BLOG
-})
+  pathRedirect: routes.ADMIN_RECRUITMENT,
+});
 
-export default customUpdate(Edit)
+export default customUpdate(Edit);

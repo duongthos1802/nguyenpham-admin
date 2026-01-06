@@ -8,6 +8,8 @@ export default {
 
   PRODUCT_QUERY: 'productQuery',
 
+  RECRUITMENT_QUERY: 'recruitmentQuery',
+
   RECIPE_QUERY: 'recipeQuery',
 
   // SUPPORT_QUERY: 'supportQuery',

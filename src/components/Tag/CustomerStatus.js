@@ -7,6 +7,8 @@ import { enumType } from '../../constants'
 const CustomerStatus = ({ status }) => {
   let currentStatus = enumType.customerStatusEnum.find(
     option => option.value === status)
+
+    
   if (!currentStatus) {
     currentStatus = enumType.customerStatusEnum.find(
       option => option.value === enumType.customerStatus.Awaiting)

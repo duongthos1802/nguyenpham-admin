@@ -29,34 +29,7 @@ import {
 } from "../../components";
 import { errorCode } from "../../constants/error";
 import { EnumSelect, CategorySelect } from "../../components/Select";
-
-// name: {
-//   type: String,
-//   require: true,
-// },
-// price: {
-//   type: String,
-// },
-// content: {
-//   type: String,
-// },
-// address: {
-//   type: String,
-// },
-// startDate: {
-//   type: Date,
-// },
-// endDate: {
-//   type: Date,
-// },
-// timeWork: {
-//   type: String,
-// },
-// status: {
-//   type: String,
-//   enum: Object.values(BLOG_STATUS),
-// }
-
+ 
 const FormItem = AntForm.Item;
 
 const customFormik = withFormik({
@@ -79,62 +52,35 @@ const customFormik = withFormik({
     }),
   }),
   mapPropsToValues: ({ data, user }) => {
-    console.log("uer", user);
-    const blogPictures = formikHelper.getListImageValueField({
-      data: data,
-      fieldName: "pictures",
-      imageType: enumType.imagePath.Blog,
-      fileNameField: "filename",
-    });
 
-    const fileUpload =
-      blogPictures && blogPictures.length > 0 ? blogPictures : [];
 
+    console.log("data ===  ", data);
+    
     return {
       _id: formikHelper.getDefaultValueField(data, "_id", null),
       name: formikHelper.getDefaultValueField(data, "name", null),
       slug: formikHelper.getDefaultValueField(data, "slug", null),
-      description: utils.handleShowLineBreakTextarea(
-        formikHelper.getDefaultValueField(data, "description", null)
-      ),
+      address: formikHelper.getDefaultValueField(data, "address", null),
+      salary: formikHelper.getDefaultValueField(data, "salary", null),
+      timeWork: formikHelper.getDefaultValueField(data, "timeWork", null), 
+      startDate: formikHelper.getDefaultValueField(data, "startDate", null), 
+      endDate: formikHelper.getDefaultValueField(data, "endDate", null), 
       content: htmlHelper.decodeContent(
         formikHelper.getDefaultValueField(data, "content", null)
-      ),
-      category: utils.formatObjectSelect(
-        data ? data.category : null,
-        "_id",
-        "name"
-      ),
+      ), 
       createdBy: user?.username ?? null,
-      metaTitle: formikHelper.getDefaultValueField(data, "metaTitle", null),
-      metaDescription: stringHelper.handleShowLineBreakTextarea(
-        formikHelper.getDefaultValueField(data, "metaDescription", null)
-      ),
-      metaKeyword: formikHelper.getDefaultValueField(data, "metaKeyword", null),
-      fileUpload: fileUpload,
       status: formikHelper.getDefaultValueField(
         data,
         "status",
-        enumType.blogStatusEnum.PUBLISHED
+        enumType.recruitmentStatus.Published
       ),
     };
   },
-  handleSubmit: (values, { props }) => {
+  handleSubmit: (values, { props }) => {    
     props.handleSubmit(values);
   },
   displayName: "RecruitmentForm",
 });
-
-const handleChangeDateRange = (
-  startDateField,
-  startDate,
-  endDateField,
-  endDate
-) => {
-  // setFormData(
-  //   immutableHelper.updateDateRange(formData, startDateField, startDate,
-  //     endDateField, endDate))
-};
 
 const Form = (props) => {
   const {
@@ -181,12 +127,26 @@ const Form = (props) => {
       }
     }
   }, [formError]);
+
+  const handleChangeDateRange = (
+    startDateField,
+    startDate,
+    endDateField,
+    endDate
+  ) => {
+    setFieldValue(startDateField, startDate);
+    setFieldValue(endDateField, endDate);
+  };
+
   return (
     <CustomForm
       title={
         <span>
           {utils.initTitleForm(
-            <FormattedMessage id="Page.BLog" defaultMessage="recruitment" />,
+            <FormattedMessage
+              id="Page.Recruitment"
+              defaultMessage="recruitment"
+            />,
             mode
           )}
         </span>
@@ -232,7 +192,10 @@ const Form = (props) => {
               <Col lg={12}>
                 <FormItem
                   label={
-                    <FormattedMessage id="Label.salary" defaultMessage="Salary" />
+                    <FormattedMessage
+                      id="Label.salary"
+                      defaultMessage="Salary"
+                    />
                   }
                   className="mb-0"
                 >
@@ -258,8 +221,8 @@ const Form = (props) => {
                 <FormItem
                   label={
                     <FormattedMessage
-                      id="Label.timeWork"
-                      defaultMessage="Time Work"
+                      id="Label.workinghour"
+                      defaultMessage="Working hour"
                     />
                   }
                   className="mb-0"
@@ -299,6 +262,7 @@ const Form = (props) => {
                     startDateField="startDate"
                     endDateField="endDate"
                     enableClear={true}
+                    customClass={"w-100"}
                     onChange={handleChangeDateRange}
                   />
                 </FormItem>

@@ -42,6 +42,9 @@ import faqQuery from './faq'
 // Customer
 import customerQuery from './customer'
 
+// recruitment
+import recruitmentQuery from './recruitment'
+
 // SELECT
 import select from './select'
 
@@ -74,5 +77,7 @@ export default {
 
   faqQuery,
 
-  customerQuery
+  customerQuery,
+
+  recruitmentQuery
 }

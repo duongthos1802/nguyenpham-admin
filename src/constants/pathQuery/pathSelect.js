@@ -3,5 +3,7 @@ export default {
 
   RECIPE_SELECT_PATH: 'recipeSelect',
 
+  BLOG_SELECT_PATH: 'blogSelect',
+
   USER_SELECT_PATH: 'userSelect'
 }

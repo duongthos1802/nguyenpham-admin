@@ -668,6 +668,10 @@ export const eventLeftType = {
   Video: 'Video',
   Banner: 'Banner'
 }
+export const typeBrand = {
+  brand: 'Brand',
+  blog: 'Blog'
+}
 
 export default {
   mode,
@@ -711,5 +715,6 @@ export default {
   FAQStatusEnum,
   eventLeftType,
   customerStatusEnum,
-  customerStatus
+  customerStatus,
+  typeBrand
 }

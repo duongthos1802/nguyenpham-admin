@@ -48,6 +48,30 @@ export default {
     const orderClause = 'date_DESC'
 
     return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
+  }, 
+
+  initQuerySelectBlog(keyword, defaultPageSize) {
+    let query = ''
+
+    if (keyword) {
+      const word = stringHelper.removeEscapeCharacter(keyword)
+      query += `keyword: "${word}"`
+    }
+
+    const orderClause = 'date_DESC'
+
+    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
+  },
+
+  initQuerySelectBrand(keyword, defaultPageSize) {
+    let query = ''
+
+    if (keyword) {
+      const word = stringHelper.removeEscapeCharacter(keyword)
+      query += `keyword: "${word}"`
+    }
+
+    return `filter: {${query}}, limit: ${defaultPageSize}`
   }
 
 }

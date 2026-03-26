@@ -19,3 +19,7 @@ export { default as ResourceSelect } from './ResourceSelect'
 export { default as HtmlBlockSelect } from './HtmlBlockSelect'
 
 export { default as RecipeSelect } from './RecipeSelect'
+
+export { default as BlogSelect } from './BlogSelect'
+
+export { default as BrandSelect } from './BrandSelect'

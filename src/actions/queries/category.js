@@ -10,6 +10,19 @@ export default {
           description,
           slug
           option
+          content
+          isHome
+          isBrand
+          isMenu
+          typeBrand
+          blogId {
+            _id
+            name
+          }
+          brands {
+            _id
+            name
+          }
           parentId {
             _id
             name

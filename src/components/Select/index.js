@@ -23,3 +23,7 @@ export { default as RecipeSelect } from './RecipeSelect'
 export { default as BlogSelect } from './BlogSelect'
 
 export { default as BrandSelect } from './BrandSelect'
+
+export { default as BrandHomeSelect } from './BrandHomeSelect'
+
+export { default as ProductSelect } from './ProductSelect'

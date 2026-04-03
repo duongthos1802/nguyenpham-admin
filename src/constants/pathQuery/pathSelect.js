@@ -5,5 +5,7 @@ export default {
 
   BLOG_SELECT_PATH: 'blogSelect',
 
+  PRODUCT_SELECT_PATH: 'productSelect',
+
   USER_SELECT_PATH: 'userSelect'
 }

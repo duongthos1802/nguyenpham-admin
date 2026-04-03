@@ -1,77 +1,82 @@
-import { queryStringHelper, stringHelper } from '../extensions'
+import { enumType } from "../constants";
+import { queryStringHelper, stringHelper } from "../extensions";
 
 export default {
-
   initQuerySelectCategoryProduct() {
-    return `filter: {status: Published}`
+    return `filter: {status: Published}`;
   },
 
   initQuerySelectGroupBanner(search, defaultPageSize) {
-    const {
-      pageSize,
-      skip
-    } = queryStringHelper.getSizeAndIndexPage(search, defaultPageSize)
+    const { pageSize, skip } = queryStringHelper.getSizeAndIndexPage(
+      search,
+      defaultPageSize
+    );
 
-    let queryClause = ``
+    let queryClause = ``;
 
     if (search.keyword) {
-      const keyword = stringHelper.removeEscapeCharacter(search.keyword)
-      queryClause += `, keyword: "${keyword}"`
+      const keyword = stringHelper.removeEscapeCharacter(search.keyword);
+      queryClause += `, keyword: "${keyword}"`;
     }
 
     return {
       whereClause: `filter: {${queryClause}}, limit: ${pageSize}, skip: ${skip}`,
-      whereConnectionClause: `filter: {${queryClause}}`
-    }
+      whereConnectionClause: `filter: {${queryClause}}`,
+    };
   },
 
   initQuerySelectResource(keyword, defaultPageSize) {
-    let query = ''
+    let query = "";
 
     if (keyword) {
-      const word = stringHelper.removeEscapeCharacter(keyword)
-      query += `keyword: "${word}"`
+      const word = stringHelper.removeEscapeCharacter(keyword);
+      query += `keyword: "${word}"`;
     }
-    const orderClause = '_ID_DESC'
+    const orderClause = "_ID_DESC";
 
-    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
+    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`;
   },
 
   initQuerySelectRecipe(keyword, defaultPageSize) {
-    let query = ''
+    let query = "";
 
     if (keyword) {
-      const word = stringHelper.removeEscapeCharacter(keyword)
-      query += `keyword: "${word}"`
+      const word = stringHelper.removeEscapeCharacter(keyword);
+      query += `keyword: "${word}"`;
     }
 
-    const orderClause = 'date_DESC'
+    const orderClause = "date_DESC";
 
-    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
-  }, 
+    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`;
+  },
 
   initQuerySelectBlog(keyword, defaultPageSize) {
-    let query = ''
+    let query = "";
 
     if (keyword) {
-      const word = stringHelper.removeEscapeCharacter(keyword)
-      query += `keyword: "${word}"`
+      const word = stringHelper.removeEscapeCharacter(keyword);
+      query += `keyword: "${word}"`;
     }
 
-    const orderClause = 'date_DESC'
+    const orderClause = "date_DESC";
 
-    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`
+    return `filter: {${query}}, limit: ${defaultPageSize}, sort: ${orderClause}`;
+  },
+
+  initQuerySelectBrandHome(defaultPageSize) {
+    let query = `isHome: true, status: ${enumType.categoryStatus.PUBLISHED}`;
+
+    return `filter: {${query}}, limit: ${defaultPageSize}`;
   },
 
   initQuerySelectBrand(keyword, defaultPageSize) {
-    let query = ''
+    let query = "";
 
     if (keyword) {
-      const word = stringHelper.removeEscapeCharacter(keyword)
-      query += `keyword: "${word}"`
+      const word = stringHelper.removeEscapeCharacter(keyword);
+      query += `keyword: "${word}"`;
     }
 
-    return `filter: {${query}}, limit: ${defaultPageSize}`
-  }
-
-}
+    return `filter: {${query}}, limit: ${defaultPageSize}`;
+  },
+};

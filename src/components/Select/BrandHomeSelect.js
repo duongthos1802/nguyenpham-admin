@@ -1,0 +1,132 @@
+import React, { useEffect, useState } from "react";
+// lib
+import { FormattedMessage } from "react-intl";
+import PerfectScrollbar from "react-perfect-scrollbar";
+// hoc
+import { withSelect } from "../../hocs/withSelect";
+// constant
+import { enumType, queryPath } from "../../constants";
+// services
+import { selectServices } from "../../services";
+// utils
+import utils from "../../utils";
+// component
+import { Icon, Select, Spin } from "antd";
+import PropTypes from "prop-types";
+import ProductStatus from "../Tag/ProductStatus";
+
+const Option = Select.Option;
+
+const CustomSelect = (props) => {
+  const {
+    path,
+    data,
+    value,
+    isLoading,
+    onChange,
+    handleSearch,
+    handleBlurOption,
+    isMulti,
+    isClearable,
+    placeholder,
+    isDisabled,
+  } = props;
+
+  const [listOptions, setListOptions] = useState([]);
+
+  useEffect(() => {
+    handleResetData(data ? data.categories : null);
+  }, [data]);
+
+  useEffect(() => {
+    const options = utils.initValueToOption(value, listOptions);
+    setListOptions(options);
+  }, [value]);
+
+  const handleChangeSelection = (value) => {
+    const optionSelected = utils.getValueOption(listOptions, value);
+    onChange(path, optionSelected);
+  };
+
+  const handleResetData = (categories) => {
+    let options = [];
+    if (categories && categories.length > 0) {
+      options = categories.map((category) => ({
+        value: category._id,
+        key: category._id,
+        label: category.name,
+      }));
+    }
+
+    const listOptions = utils.initValueToOption(value, options);
+
+    setListOptions(listOptions);
+  };
+
+  const valueSelected = utils.getValueOption(listOptions, value);
+
+  return (
+    <Select
+      disabled={!!isDisabled}
+      mode={isMulti ? "multiple" : "default"}
+      showSearch
+      labelInValue
+      value={valueSelected}
+      allowClear={!!isClearable}
+      placeholder={
+        placeholder ? (
+          placeholder
+        ) : (
+          <FormattedMessage
+            id="Placeholder.SelectBrand"
+            defaultMessage="Select Brand"
+          />
+        )
+      }
+      notFoundContent={isLoading ? <Spin size="small" /> : null}
+      filterOption={(input, option) =>
+        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+      }
+      onSearch={(value) => handleSearch(value)}
+      onChange={handleChangeSelection}
+      onBlur={handleBlurOption}
+      style={{ width: "100%" }}
+      className="custom-select-antd"
+      dropdownRender={(menu) => (
+        <div className="custom-selection">
+          <PerfectScrollbar>{menu}</PerfectScrollbar>
+        </div>
+      )}
+      suffixIcon={<Icon type="caret-down" />}
+    >
+      {listOptions && listOptions.length > 0
+        ? listOptions.map((item) => (
+            <Option key={item.value}>{item.label}</Option>
+          ))
+        : null}
+    </Select>
+  );
+};
+
+const customSelect = withSelect({
+  pathName: queryPath.CATEGORY_SELECT_PATH,
+  defaultPath: "category",
+  loadData: (values, { loadDataPagerCallback }) => {
+    const queryClause = selectServices.initQuerySelectBrandHome(300);
+    loadDataPagerCallback(queryClause);
+  },
+});
+
+CustomSelect.propTypes = {
+  isMulti: PropTypes.bool,
+  isClearable: PropTypes.bool,
+  placeholder: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  handleBlurOption: PropTypes.func,
+  path: PropTypes.string,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+};
+
+export default customSelect(CustomSelect);

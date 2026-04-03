@@ -122,10 +122,9 @@ const CustomSelect = (props) => {
 const customSelect = withSelect({
   pathName: queryPath.CATEGORY_SELECT_PATH,
   defaultPath: 'category',
-  loadData: (values, { loadDataPagerCallback }) => {
+  loadData: (values, { loadDataPagerCallback }) => {    
     const queryClause = selectServices.initQuerySelectBrand(values,
-      300)
-
+      300) 
     loadDataPagerCallback(queryClause)
   }
 })

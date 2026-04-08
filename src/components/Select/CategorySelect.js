@@ -50,6 +50,7 @@ const CustomSelect = (props) => {
     currentId,
     parentId,
     showCategoryParent = true,
+    isShowAll
   } = props
   const [listOptions, setListOptions] = useState([])
   const [selectAll, setSelectAll] = useState(false)

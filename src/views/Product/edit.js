@@ -46,7 +46,7 @@ const Edit = (props) => {
       mode={enumType.mode.edit}
       handleCancel={handleCancelForm}
       handleSubmit={handleSubmitForm}
-      parentId={parentId}
+      // parentId={parentId}
     />
   )
 }

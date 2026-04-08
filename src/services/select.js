@@ -3,7 +3,7 @@ import { queryStringHelper, stringHelper } from "../extensions";
 
 export default {
   initQuerySelectCategoryProduct() {
-    return `filter: {status: Published}`;
+    return `filter: {status: Published}, limit: 0`;
   },
 
   initQuerySelectGroupBanner(search, defaultPageSize) {

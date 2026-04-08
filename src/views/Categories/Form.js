@@ -38,7 +38,7 @@ import {
   BlogSelect,
   BrandSelect,
   CategorySelect,
-  EnumSelect
+  EnumSelect,
 } from "../../components/Select";
 
 const FormItem = AntForm.Item;
@@ -132,8 +132,6 @@ const Form = (props) => {
   } = props;
   const nameRef = useRef(null);
   const slugRef = useRef(null);
-
-   
 
   useEffect(() => {
     resetForm();
@@ -539,6 +537,36 @@ const Form = (props) => {
             </FormItem> */}
 
             <FormItem
+              label={
+                <FormattedMessage id="Label.Brands" defaultMessage="Brands" />
+              }
+              className="mb-0"
+            >
+              <BrandSelect
+                isMulti={true}
+                value={values.brands}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+                path={"brands"}
+                placeholder={"Brand"}
+              />
+            </FormItem>
+
+            <FormItem
+              label={<FormattedMessage id="Label.Blog" defaultMessage="Blog" />}
+              className="mb-0"
+            >
+              <BlogSelect
+                isMulti={false}
+                value={values.blogId}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+                path={"blogId"}
+                placeholder={"Blog"}
+              />
+            </FormItem>
+
+            {/* <FormItem
               required={true}
               label={
                 <FormattedMessage
@@ -591,7 +619,7 @@ const Form = (props) => {
                   </div>
                 )}
               </div>
-            </FormItem>
+            </FormItem> */}
 
             <div className="d-flex justify-content-between">
               <FormItem

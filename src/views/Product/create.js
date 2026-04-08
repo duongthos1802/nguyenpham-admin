@@ -38,7 +38,7 @@ const Create = (props) => {
       mode={enumType.mode.create}
       handleSubmit={handleSubmitForm}
       handleCancel={handleCancelForm}
-      parentId={parentId}
+      // parentId={parentId}
     />
   )
 }

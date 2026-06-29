@@ -1,6 +1,6 @@
 export default {
-	loadDataPager(queryClause) {
-		return `
+  loadDataPager(queryClause) {
+    return `
 		query {
 			searchCustomer(${queryClause.whereClause}) {
 				items {
@@ -9,6 +9,7 @@ export default {
 				phone
 				email
 				address
+				object
 				description
 				status
 				date
@@ -17,11 +18,11 @@ export default {
 				total
 			}
 		}
-		`
-	},
+		`;
+  },
 
-	loadData(queryClause) {
-		return `
+  loadData(queryClause) {
+    return `
 			query {
 				customer(${queryClause}) {
 					_id
@@ -29,31 +30,32 @@ export default {
 					phone
 					email
           address
+          object
           description
 					status
 					createdAt
 				}
 			}
-		`
-	},
+		`;
+  },
 
-	create(dataClause) {
-		return `
+  create(dataClause) {
+    return `
       mutation {
         createCustomer(${dataClause}) {
           recordId
         }
       }
-    `
-	},
+    `;
+  },
 
-	update(queryClause) {
-		return `
+  update(queryClause) {
+    return `
 			mutation {
 				updateCustomer(${queryClause}) {
 					recordId
 				}
 			}
-    `
-	}
-}
+    `;
+  },
+};

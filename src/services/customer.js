@@ -58,6 +58,13 @@ export default {
       queryClause += `, name: null`
     }
 
+    if (values?.object) {
+      const object = stringHelper.removeEscapeCharacter(values.object)
+      queryClause += `, object: "${object}"`
+    } else {
+      queryClause += `, object: null`
+    }
+
     if (values.email) {
       const email = stringHelper.removeEscapeCharacter(values.email)
       queryClause += `, email: "${email}"`

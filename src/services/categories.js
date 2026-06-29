@@ -127,17 +127,17 @@ export default {
       queryClause += `, metaKeyword: null`;
     }
 
-    if (values.image) {
-      if (values.image.filename) {
-        queryClause += `, image: "${values.image.filename}"`;
-      }
-      if (values.image.uid) {
-        queryClause += `, imageFile: "${values.image.uid}"`;
-      }
-    } else {
-      queryClause += `, image: null`;
-      queryClause += `, imageFile: null`;
-    }
+    // if (values.image) {
+    //   if (values.image.filename) {
+    //     queryClause += `, image: "${values.image.filename}"`;
+    //   }
+    //   if (values.image.uid) {
+    //     queryClause += `, imageFile: "${values.image.uid}"`;
+    //   }
+    // } else {
+    //   queryClause += `, image: null`;
+    //   queryClause += `, imageFile: null`;
+    // }
 
     // banner
     if (values.banner) {
@@ -146,6 +146,15 @@ export default {
       }
     } else {
       queryClause += `, banner: null`;
+    }
+
+
+    if (values.image) {
+      if (values.image.filename) {
+        queryClause += `, image: "${values.image.filename}"`;
+      }
+    } else {
+      queryClause += `, image: null`;
     }
 
     queryClause += `, status: ${values.status} `;

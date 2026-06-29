@@ -55,7 +55,7 @@ const customFormik = withFormik({
     name: formikHelper.getDefaultValueField(data, "name", null),
     slug: formikHelper.getDefaultValueField(data, "slug", null),
     description: stringHelper.handleShowLineBreakTextarea(
-      formikHelper.getDefaultValueField(data, "description", null)
+      formikHelper.getDefaultValueField(data, "description", null),
     ),
     isHome: formikHelper.getDefaultValueField(data, "isHome", false),
     isBrand: formikHelper.getDefaultValueField(data, "isBrand", false),
@@ -76,7 +76,7 @@ const customFormik = withFormik({
     categoryParent: utils.formatObjectSelect(
       data ? data.parentId : null,
       "_id",
-      "name"
+      "name",
     ),
 
     blogId: utils.formatObjectSelect(data ? data.blogId : null, "_id", "name"),
@@ -84,29 +84,35 @@ const customFormik = withFormik({
     banner: formikHelper.getImageValueField(
       data,
       "banner",
-      enumType.imagePath.Banner
+      enumType.imagePath.Banner,
+    ),
+
+    image: formikHelper.getImageValueField(
+      data,
+      "image",
+      enumType.imagePath.Banner,
     ),
     index: formikHelper.getDefaultValueField(data, "index", null),
     metaTitle: formikHelper.getDefaultValueField(data, "metaTitle", null),
     metaDescription: stringHelper.handleShowLineBreakTextarea(
-      formikHelper.getDefaultValueField(data, "metaDescription", null)
+      formikHelper.getDefaultValueField(data, "metaDescription", null),
     ),
     metaKeyword: formikHelper.getDefaultValueField(data, "metaKeyword", null),
     // image: formikHelper.getImageValueField(data, 'image',
     //   enumType.imagePath.Banner),
     content: htmlHelper.decodeContent(
-      formikHelper.getDefaultValueField(data, "content", null)
+      formikHelper.getDefaultValueField(data, "content", null),
     ),
     status: formikHelper.getDefaultValueField(
       data,
       "status",
-      enumType.categoryStatus.PUBLISHED
+      enumType.categoryStatus.PUBLISHED,
     ),
     option: data && data.parentId ? data.parentId.option : null,
     typeBrand: formikHelper.getDefaultValueField(
       data,
       "typeBrand",
-      enumType.typeBrand.brand
+      enumType.typeBrand.brand,
     ),
   }),
   handleSubmit: (values, { props }) => {
@@ -192,7 +198,7 @@ const Form = (props) => {
         <span>
           {utils.initTitleForm(
             <FormattedMessage id="Page.Category" defaultMessage="Category" />,
-            mode
+            mode,
           )}
         </span>
       }
@@ -222,7 +228,7 @@ const Form = (props) => {
                   "has-error": formikHelper.checkFieldError(
                     errors,
                     touched,
-                    "name"
+                    "name",
                   ),
                 })}
               />
@@ -314,7 +320,7 @@ const Form = (props) => {
                       "has-error": formikHelper.checkFieldError(
                         errors,
                         touched,
-                        "index"
+                        "index",
                       ),
                     })}
                     onChange={(value) => setFieldValue("index", value)}
@@ -505,6 +511,26 @@ const Form = (props) => {
                 handleUploadFile={(file) => setFieldValue("banner", file)}
                 handleChangeFile={(fileList) =>
                   setFieldValue("banner", fileList)
+                }
+                showUploadList={true}
+                type={enumType.uploadType.Banner}
+                showSingleImage={false}
+              />
+            </FormItem>
+
+            <FormItem
+              label={
+                <FormattedMessage id="Label.Banner" defaultMessage="Banner Detail" />
+              }
+              className="mb-0"
+            >
+              <UploadImage
+                name={"icon"}
+                data={values.image}
+                multiple={false}
+                handleUploadFile={(file) => setFieldValue("image", file)}
+                handleChangeFile={(fileList) =>
+                  setFieldValue("image", fileList)
                 }
                 showUploadList={true}
                 type={enumType.uploadType.Banner}
